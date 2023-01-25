@@ -1,0 +1,85 @@
+// @mixin media-phone-resp {
+//   @media screen and (max-width: 479px) {
+//     @content;
+//   }
+// }
+
+// @mixin media-phone {
+//   @media screen and (min-width: 480px) and (max-width: 767px) {
+//     @content;
+//   }
+// }
+
+// @mixin media-phone-top {
+//   @media screen and (max-width: 767px) {
+//     @content;
+//   }
+// }
+
+// @mixin media-tablet {
+//   @media screen and (min-width: 768px) {
+//     @content;
+//   }
+// }
+
+// @mixin media-tablet-desktop {
+//   @media screen and (min-width: 768px) and (max-width: 1279px) {
+//     @content;
+//   }
+// }
+
+// @mixin media-desktop {
+//   @media screen and (min-width: 1280px) {
+//     @content;
+//   }
+// }
+
+$media-max: (
+  'phone-resp': 479px,
+  'phone': 767px,
+  'tablet': 1299px,
+  'desktop-resp': 1439px,
+);
+
+$media-min: (
+  'tablet': 768px,
+  'desktop-resp': 1300px,
+  'desktop': 1440px,
+);
+
+@mixin media-max($breakpoint) {
+  @each $breakpoints, $size in $media-max {
+    @if $breakpoint==$breakpoints {
+      @media screen and (max-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin media-min($breakpoint) {
+  @each $breakpoints, $size in $media-min {
+    @if $breakpoint==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin retina {
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// @include media-phone {       ________
+//   body {                            / -
+//     background-color: tomato;  <<< =  - Все как обычно, тут твои стили, все просто, просто запись покороче.
+//   }                          _______\ -
+// }
+
+// Тоже самое для background-image - достаточно прописать @include retina { <your styles> } и все макароны для ретина дисплеев будут автоматически подставлены.
