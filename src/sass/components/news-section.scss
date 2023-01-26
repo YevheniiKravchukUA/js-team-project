@@ -1,0 +1,24 @@
+.news__list {
+  @include grid-fixed(1, 28px, 30px);
+  @media screen and (min-width: 768px) {
+    @include grid-fixed(2, 30px, 30px);
+  }
+  @media screen and (min-width: 1280px) {
+    @include grid-fixed(2, 40px, 32px);
+  }
+}
+.news__image {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.news__title {
+  margin-bottom: 20px;
+}
+.news__text {
+  margin-bottom: 20px;
+}
+.news__lower-box {
+  display: flex;
+  justify-content: space-between;
+}
