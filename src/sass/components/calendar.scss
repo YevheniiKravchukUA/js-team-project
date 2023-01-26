@@ -1,0 +1,63 @@
+.calendar {
+  position: relative;
+  display: inline-block;
+}
+
+.calendar__btn {
+  width: 152px;
+  height: 31px;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  color: rgba(17, 19, 33, 0.4);
+
+  background-color: transparent;
+
+  border: 1px solid #111321;
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    color: #ffffff;
+    background-color: #4440f6;
+    border: #4440f6;
+  }
+
+  &:focus ~ .calendar__img,
+  &:hover ~ .calendar__img {
+    fill: #ffffff;
+  }
+
+  &:focus ~ .calendar__img--right {
+    transform: scaleY(-1);
+  }
+}
+
+.calendar__img {
+  position: absolute;
+  pointer-events: none;
+}
+
+.calendar__img--left {
+  top: 6px;
+  left: 12px;
+  fill: #4440f6;
+}
+
+.calendar__img--right {
+  top: 11px;
+  right: 12px;
+  fill: #a2a2a2;
+}
+
+@media screen and (min-width: 767px) {
+  .calendar__btn {
+    width: 168px;
+  }
+}
