@@ -1,0 +1,16 @@
+.news__list {
+  @include grid-fixed(1, 28px, 30px);
+}
+.news__image {
+  margin-bottom: 20px;
+}
+.news__title {
+  margin-bottom: 20px;
+}
+.news__text {
+  margin-bottom: 20px;
+}
+.news__lower-box {
+  display: flex;
+  justify-content: space-between;
+}
