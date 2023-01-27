@@ -24,7 +24,7 @@ const axiosNews = axios.create({
   baseURL: 'https://api.worldnewsapi.com/search-news',
   params: {
     'api-key': NEWS_KEY,
-    number: 8,
+    number: 0,
   },
 });
 
