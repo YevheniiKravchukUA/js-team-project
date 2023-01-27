@@ -1,16 +1,116 @@
 .news__list {
   @include grid-fixed(1, 28px, 30px);
+  @media screen and (min-width: 768px) {
+    @include grid-fixed(2, 30px, 30px);
+  }
+  @media screen and (min-width: 1280px) {
+    @include grid-fixed(3, 40px, 32px);
+  }
+}
+
+.news__image-box {
+  position: relative;
+}
+.news__item {
+  height: 630px;
+  // position: relative;
 }
 .news__image {
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
 }
 .news__title {
   margin-bottom: 20px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  letter-spacing: -0.01em;
+
+  color: #111321;
 }
 .news__text {
   margin-bottom: 20px;
+  // width: 395px;
+  // height: 57px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+
+  color: #111321;
 }
 .news__lower-box {
   display: flex;
   justify-content: space-between;
+}
+
+.news__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.news__readmore-link {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+
+  color: #4440f7;
+}
+.news__date {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: right;
+
+  color: #a8a8a8;
+}
+.news__favorite-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 8px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: none;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #111321;
+  width: 126px;
+  height: 28px;
+}
+
+.news__image-heading {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 112px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #ffffff;
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0px 4px 4px 0px;
 }

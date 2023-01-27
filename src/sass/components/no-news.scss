@@ -1,0 +1,37 @@
+.no-news {
+  padding-top: 40px;
+  padding-bottom: 60px;
+
+  @include media-min(tablet) {
+    padding-top: 90px;
+    padding-bottom: 100px;
+  }
+
+  @include media-min(desktop) {
+    padding-top: 120px;
+    padding-bottom: 225px;
+  }
+}
+
+.no-news__tite {
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 275px;
+
+  @include main-font(700, 20px, 27px, -0.01em);
+  text-align: center;
+
+  color: #111321;
+
+  @include media-min(tablet) {
+    width: 550px;
+    @include main-font(700, 40px, 55px, -0.01em);
+  }
+}
+
+.no-news__img {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
