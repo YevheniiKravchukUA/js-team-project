@@ -51,12 +51,14 @@
 }
 
 .header-input {
+  border: 1px solid #111321;
   border-radius: 20px;
+  padding-left: 48px;
+  background: url(/src/images/bx_search.svg) 8px 5px no-repeat;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 213px;
     height: 31px;
-    border-radius: 20px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -193,13 +195,13 @@
   position: absolute;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
+    top: 49%;
     left: 55%;
-    top: 50%;
   }
 
   @media screen and (min-width: 1280px) {
-    left: 53.5%;
     top: 50%;
+    left: 53.5%;
   }
 }
 
@@ -235,4 +237,62 @@
 
 .btn-toggle {
   display: flex;
+}
+
+// бегунок переключатель
+.toggle {
+  position: relative;
+  width: 40px; /* Ширина переключателя */
+  height: 20px; /* Высота переключателя */
+  display: inline-block;
+  user-select: none; /* Запрещаем выделение */
+  border: 0.604701px solid #4b48db;
+  border-radius: 20px;
+}
+
+.toggle > .checkbox {
+  display: none; /* Скрываем браузерный чекбокс */
+}
+
+.toggle > .switch {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s; /* Для плавности */
+  cursor: pointer;
+  background-color: #ffffff; /* Цвет в начальном состоянии */
+}
+
+.toggle > .switch:before {
+  position: absolute;
+  content: '';
+  width: 16px; /* Ширина бегунка */
+  height: 16px; /* Высота бегунка */
+  left: 1px;
+  bottom: 1px;
+  background-color: #4b48db; /* Цвет бегунка */
+  transition: 0.3s;
+}
+
+/* При состоянии checked - смещаем бегунок вправо */
+.checkbox:checked + .switch:before {
+  transform: translateX(20px);
+}
+
+/* При состоянии checked - меняем цвет фона */
+.checkbox:checked + .switch {
+  // background-color: #4440f7;
+  background-color: grey;
+}
+
+/* Стили загругленного переключателя */
+.toggle.round > .switch {
+  border-radius: 20px;
+}
+
+/* Делаем бегунок круглым  */
+.toggle.round > .switch:before {
+  border-radius: 50%;
 }
