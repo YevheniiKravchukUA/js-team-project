@@ -16,3 +16,4 @@ async function getNews(category, parameters) {
 }
 
 export { getNews };
+
