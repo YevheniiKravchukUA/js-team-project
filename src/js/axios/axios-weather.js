@@ -1,10 +1,7 @@
 import axios from 'axios';
+import { KEYS } from '../axios/axiosDefaults';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const KEYS = {
-  WEATHER: 'f3ada08f24524eaebe0dab7657f9578c',
-  NEWS: 'zqSBDCWWfsUqmPN3a0NlmObTljUQwqkT',
-};
 
 class Weather {
   constructor() {
@@ -33,10 +30,6 @@ class Weather {
   }
   renderweatherMarkup(data) {
     const weatherBlockEl = document.querySelector('.weather');
-
-    const weatherIcon = data.weather[0].icon;
-    const weatherSituation = data.weather[0].main;
-
     const localDate = this.dateFormatter(this.userTime);
 
     const markup = `
@@ -46,7 +39,7 @@ class Weather {
     <p class="info__situation">${data.weather[0].main}</p>
     <div class="info-wrapper-items">
       <svg class="info-wrapper__svg" width="18" height="18">
-        <use class="geo" href="../images/icons.svg#icon-heart-favorite"></use>
+        <use class="geo" href="../images/icons.svg#icon-geo"></use>
       </svg>
       <p class="info__geo">${data.name}</p>
     </div>
@@ -57,39 +50,29 @@ class Weather {
   alt="image of sun"
   width="128"
   class="weather-img"
-/>
-<div class="weather__date date">
-  <p class="date__day-of-week">${localDate.dayOfWeek}</p>
-  <p class="date__current">
-    <span class="date-date">${localDate.dateUser}</span
-    ><span class="date-month">${localDate.dateMonth}</span
-    ><span class="date-year">${localDate.dateYear}</span>
-  </p>
-</div>`;
+/><p class="weather__date-week">
+  ${localDate.dayOfWeek}
+</p>
+<p class="weather__date-date">
+  ${localDate.dateUser} ${localDate.dateMonth} ${localDate.dateYear}
+</p>
+<a class="weather__link" href="https://weather.com/weather/tenday/l/35a741555bbfc8bc576be864b0b64af6d1b2ad1328d2ee729f0de0ae00098e85">weather for week</a>`;
     weatherBlockEl.innerHTML = markup;
   }
   dateFormatter(date) {
-    const days = [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
-    ];
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const month = [
-      'January',
-      'February',
-      'March',
-      'April',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
       'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'November',
-      'December',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Nov',
+      'Dec',
     ];
     const userDate = new Date(date);
 
