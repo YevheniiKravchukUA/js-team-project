@@ -1,93 +1,92 @@
 <header class="header" id="home">
-    <div class="header__container container">
-        <!-- Logo -->
-        <a class="logo" href="/src/index.html">
-            <svg class="logo__img" width="63" height="33">
-                <use href="#"></use>
-            </svg>NEWS
-        </a>
+  <div class="header__container container">
+    <!-- Logo -->
+    <a class="logo" href="/src/index.html"> News </a>
+    <!-- nav menu -->
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a href="/src/index.html" class="nav__link nav__link--current">Home</a>
+        </li>
+        <li class="nav__item">
+          <a href="/src/favorite.html" class="nav__link">Favorite</a>
+        </li>
+        <li class="nav__item">
+          <a href="/src/read.html" class="nav__link">Read</a>
+        </li>
+      </ul>
+    </nav>
 
-        <!-- nav menu -->
-        <nav class="nav">
-            <ul class="nav__list">
-                <li class="nav__item">
-                    <a href="/src/index.html" class="nav__link">Home</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Favorite</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Read</a>
-                </li>
-            </ul>
-        </nav>
+    <!-- search from -->
+    <label class="label">
+      <input class="header-input" type="search" name="search" placeholder="       Search |" />
+      <svg class="form-icon" width="20" height="19">
+        <use href="/src/images/header-icons.svg#icon-search"></use>
+      </svg>
+    </label>
 
-        <!-- search from -->
-        <label>
-            <input type="search" name="search" />
-        </label>
+    <!-- switch menu desktop -->
+    <ul class="header-switch-menu-desk list">
+      <li>
+        <button class="btn-light btn" type="button">Light</button>
+      </li>
 
-        <!-- switch menu desktop -->
-        <ul class="switch-menu list">
-            <li>
-                <button>Light</button>
-            </li>
+      <li>
+        <button class="btn-toggle btn">
+          <svg class="svg-toggle" width="40" height="20">
+            <use href="/src/images/header-icons.svg#icon-toggle"></use>
+          </svg>
+        </button>
+      </li>
 
-            <li>
-                <button>
-                    <svg class="svg-Toggle" width="40" height="20">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
+      <li>
+        <button class="btn-dark btn" type="button">Dark</button>
+      </li>
+    </ul>
 
-            <li>
-                <button>Dark</button>
-            </li>
-        </ul>
+    <!-- switch menu tablet -->
+    <ul class="header-switch-menu-tablet list">
+      <li>
+        <button class="btn-svg-sun btn">
+          <svg class="svg-sun" width="21" height="21">
+            <use href="/src/images/header-icons.svg#icon-sun"></use>
+          </svg>
+        </button>
+      </li>
 
-        <!-- switch menu tablet -->
-        <ul>
-            <li>
-                <button class="">
-                    <svg class="" width="20" height="20">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
-            <li>
-                <button class="menu-toggle js-open-menu" aria-expanded="false">
-                    <svg class="menu-toggle__icon" width="24" height="24">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
+      <li>
+        <button class="btn-toggle btn">
+          <svg class="svg-Toggle" width="40" height="20">
+            <use href="/src/images/header-icons.svg#icon-toggle"></use>
+          </svg>
+        </button>
+      </li>
 
-        <ul class="switch-menu list">
-            <li>
-                <button>
-                    <svg class="svg-sun" width="21" height="21">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
+      <li>
+        <button class="btn-svg-moon btn">
+          <svg class="svg-moon" width="21" height="21">
+            <use href="/src/images/header-icons.svg#icon-moon"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
 
-            <li>
-                <button>
-                    <svg class="svg-Toggle" width="40" height="20">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
-
-            <li>
-                <button>
-                    <svg class="svg-moon" width="21" height="21">
-                        <use href="#"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
-    </div>
+    <!-- switch menu mob -->
+    <ul class="header-switch-menu-mob list">
+      <li>
+        <button class="btn-search">
+          <svg class="svg-btn-search" width="20" height="20">
+            <use href="/src/images/header-icons.svg#icon-search"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button class="menu-toggle js-open-menu" aria-expanded="false">
+          <svg class="menu-toggle__icon" width="24" height="24">
+            <use href="/src/images//icons.svg#icon-menu-burger"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
 </header>

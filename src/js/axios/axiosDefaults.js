@@ -1,48 +1,39 @@
 import axios from 'axios';
 
-const WEATHER_KEY = 'f3ada08f24524eaebe0dab7657f9578c';
-const NEWS_KEY = '72d6cb71b51142c882b1548125436dc8';
+const KEYS = {
+  WEATHER: 'f3ada08f24524eaebe0dab7657f9578c',
+  NEWS: 'zqSBDCWWfsUqmPN3a0NlmObTljUQwqkT',
+};
 
 const axiosWeather = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
   params: {
-    appid: WEATHER_KEY,
+    appid: KEYS.WEATHER,
     units: 'metric',
   },
 });
+
+// ------------------------ Пример запроса за погодой по ширине и долготе, ниже по названию города:
 
 // axiosWeather.get('', {
 //   params: {
 //     lat: 44.34,
 //     lon: 10.99,
 //   },
-// })
+// });
 
-const axiosNews = axios.create({
-  baseURL: 'https://api.worldnewsapi.com/search-news',
-  params: {
-    'api-key': NEWS_KEY,
-    number: 32,
-  },
-});
-
-// ------------------------ Пример запроса за погодой по тексту tesla, первые  30 новостей:
-
-// axiosNews.get('', {
+// axiosWeather.get('', {
 //   params: {
-//     text: 'tesla',
-//     number: 30,
-//     offset: 0,
+//     q: 'Amsterdam',
 //   },
 // });
 
-// ------------------------ Запрос для опеределения долготы и широты по имени страны или города.
-
-// const axiosWeatherGeocoding = axios.create({
-//   baseURL:
-//     'https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}',
-//   timeout: 1000,
-// });
+const axiosNews = axios.create({
+  baseURL: 'https://api.nytimes.com/svc/',
+  params: {
+    'api-key': KEYS.NEWS,
+  },
+});
 
 // ------------------------ Возможно код для поиска IP пользователя
 

@@ -1,0 +1,238 @@
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.header__container {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+.logo {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  color: #111321;
+  margin: 24px 0px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 32px;
+    line-height: 44px;
+    margin: 32px 48px 30px 2px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 42px;
+    line-height: 57px;
+    margin: 28px 102px 28px 0;
+  }
+}
+
+.nav {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.label {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-right: 24px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-right: 147px;
+  }
+}
+
+.header-input {
+  border-radius: 20px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 213px;
+    height: 31px;
+    border-radius: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+    height: 31px;
+  }
+}
+
+.nav__list {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    gap: 44px;
+    margin-right: 32px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 69px;
+    margin-right: 147px;
+  }
+}
+
+.nav__item {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #111321;
+  }
+}
+
+.nav__link {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #111321;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    color: #111321;
+  }
+}
+
+// .nav__link--current {
+//   &::after {
+//     content: '';
+
+//     /* вынимаем этот элемент из потока */
+//     position: absolute;
+//     bottom: 0;
+//     left: 0;
+
+//     display: block;
+//     width: 100%;
+//     border: 1px solid #4440f7;
+//   }
+// }
+
+.header-switch-menu-desk {
+  @media screen and (min-width: 320px) and (max-width: 1279px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+}
+
+.header-switch-menu-tablet {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: flex;
+    gap: 8px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+}
+
+.header-switch-menu-mob {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.btn-search {
+  min-height: 20px;
+  min-width: 20px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.menu-toggle {
+  min-height: 24px;
+  min-width: 24px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.form-icon {
+  position: absolute;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    left: 55%;
+    top: 50%;
+  }
+
+  @media screen and (min-width: 1280px) {
+    left: 53.5%;
+    top: 50%;
+  }
+}
+
+.btn {
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.btn-light {
+  min-height: 24px;
+  min-width: 43px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #4b48db;
+}
+
+.btn-dark {
+  min-height: 24px;
+  min-width: 41px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #5f6775;
+}
+
+.btn-toggle {
+  display: flex;
+}

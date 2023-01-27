@@ -1,2 +1,5 @@
-import './js/axios/axiosDefaults';
-import './js/calendar';
+// import './js/calendar';
+// import './js/burger-menu';
+import { getNews } from './js/requests/newsFetch';
+
+getNews('category', {});
