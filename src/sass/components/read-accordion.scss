@@ -1,13 +1,16 @@
 main {
-  outline: 2px solid rgb(9, 255, 0);
-  outline-offset: -2px;
   padding-top: 40px;
   padding-bottom: 60px;
-}
 
-.container {
-  outline: 2px solid red;
-  outline-offset: -2px;
+  @include media-min(tablet) {
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+
+  @include media-min(desktop) {
+    padding-top: 60px;
+    padding-bottom: 210px;
+  }
 }
 
 .accordion__item {
@@ -56,12 +59,7 @@ main {
 }
 
 .accordion__header:hover {
-  background-color: rgba(68, 64, 247, 0.5);
-}
-
-.accordion__item:not(.accordion__item_show) .accordion__header {
-  // border-bottom-right-radius: 0.25rem;
-  // border-bottom-left-radius: 0.25rem;
+  background-color: rgba(102, 92, 248, 0.5);
 }
 
 .accordion__content {
@@ -85,4 +83,8 @@ main {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+
+  @include media-min(desktop) {
+    display: none;
+  }
 }

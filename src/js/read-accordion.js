@@ -1,18 +1,3 @@
-// // $(document).ready(function () {
-// //   $('.accordion-item__trigger').click(function () {
-// //     $(this).next('.accordion-item__content').slideToggle(200);
-// //   });
-// // });
-
-// const triggerEl = document.querySelector('.accordion-item__trigger');
-// const newsEl = document.querySelector('.accordion-item');
-
-// triggerEl.addEventListener('click', handletriggerClick);
-
-// function handletriggerClick() {
-//   newsEl.classList.toggle('accordion-item--active');
-// }
-
 class ItcAccordion {
   constructor(target, config) {
     this._el =
