@@ -32,32 +32,40 @@ class Weather {
     }
   }
   renderweatherMarkup(data) {
-    const weatherIcon = data.weather[0].icon;
     const weatherBlockEl = document.querySelector('.weather');
+
+    const weatherIcon = data.weather[0].icon;
     const weatherSituation = data.weather[0].main;
 
     const localDate = this.dateFormatter(this.userTime);
 
     const markup = `
     <div class="weather__info info">
-      <p class="info__temp">${Math.floor(data.main.temp)}</p>
-      <p class="info__situation">${data.weather[0].main}</p>
+  <p class="info__temp">${Math.floor(data.main.temp)}°</p>
+  <div class="info-wrapper">
+    <p class="info__situation">${data.weather[0].main}</p>
+    <div class="info-wrapper-items">
+      <svg class="info-wrapper__svg" width="18" height="18">
+        <use class="geo" href="../images/icons.svg#icon-heart-favorite"></use>
+      </svg>
       <p class="info__geo">${data.name}</p>
     </div>
-    <img
-      src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
-      alt="image of sun"
-      width="128"
-      class="weather-img"
-    />
-    <div class="weather__date date">
-      <p class="date__day-of-week">${localDate.dayOfWeek}</p>
-      <p class="date__current"><span class="date-date">${
-        localDate.dateUser
-      }</span><span class="date-month">${
-      localDate.dateMonth
-    }</span><span class="date-year">${localDate.dateYear}</span></p>
-    </div>`;
+  </div>
+</div>
+<img
+  src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
+  alt="image of sun"
+  width="128"
+  class="weather-img"
+/>
+<div class="weather__date date">
+  <p class="date__day-of-week">${localDate.dayOfWeek}</p>
+  <p class="date__current">
+    <span class="date-date">${localDate.dateUser}</span
+    ><span class="date-month">${localDate.dateMonth}</span
+    ><span class="date-year">${localDate.dateYear}</span>
+  </p>
+</div>`;
     weatherBlockEl.innerHTML = markup;
   }
   dateFormatter(date) {

@@ -1,31 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .weather {
   height: 470px;
   max-width: 290px;
+  font-family: 'Roboto', sans-serif;
 
-  background: #4440f7;
+  background: getColor('primary-active');
   mix-blend-mode: normal;
   border-radius: 4px;
 }
 
 .weather__info {
+  margin: 0 36px 40px 36px;
+  padding-top: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto';
+  color: getColor('full-white');
 }
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
 .info {
-  margin: 32px 36px 40px 36px;
 }
+
 .info__temp {
+  font-size: 55px;
+  line-height: 64px;
+
+  padding-right: 1px;
+
+  border-right: 1px solid getColor('full-white');
+  margin-right: 10px;
 }
+
 .info__situation {
+  font-size: 24px;
+  line-height: 28px;
 }
+
+.info-wrapper-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-wrapper__svg {
+}
+
 .info__geo {
 }
+
 .weather-img {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+
+  display: block;
+  width: 128px;
+  height: 120px;
 }
+
 .weather__date {
 }
+
 .date {
 }
 .date__day-of-week {
 }
+
 .date__current {
 }
 
