@@ -11,18 +11,20 @@ const axiosWeather = axios.create({
   },
 });
 
+// ------------------------ Пример запроса за погодой по ширине и долготе:
+
 // axiosWeather.get('', {
 //   params: {
 //     lat: 44.34,
 //     lon: 10.99,
 //   },
-// })
+// });
 
 const axiosNews = axios.create({
   baseURL: 'https://api.worldnewsapi.com/search-news',
   params: {
     'api-key': NEWS_KEY,
-    number: 32,
+    number: 8,
   },
 });
 
@@ -31,8 +33,7 @@ const axiosNews = axios.create({
 // axiosNews.get('', {
 //   params: {
 //     text: 'tesla',
-//     number: 30,
-//     offset: 0,
+//     offset: 30,
 //   },
 // });
 
