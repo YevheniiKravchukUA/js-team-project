@@ -1,5 +1,5 @@
-import { Datepicker } from 'vanillajs-datepicker';
+// import { Datepicker } from 'vanillajs-datepicker';
 
-const calendar = document.querySelector('.calendar__btn');
+// const calendar = document.querySelector('.calendar__btn');
 
-const datepicker = new Datepicker(calendar, {});
+// const datepicker = new Datepicker(calendar, {});
