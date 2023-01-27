@@ -20,14 +20,14 @@
 
   &:focus,
   &:hover {
-    color: getColor('fullWhite');
+    color: getColor('full-white');
     background-color: getColor('primary-active');
     border: getColor('primary-active');
   }
 
   &:focus ~ .calendar__img,
   &:hover ~ .calendar__img {
-    fill: getColor('fullWhite');
+    fill: getColor('full-white');
   }
 
   &:focus ~ .calendar__img--right {
