@@ -14,11 +14,13 @@ function getSelectedDate() {
 }
 
 function addEventListenerToCalendar(callback) {
-  const cells = document.querySelectorAll('.datepicker-cell');
-  cells.forEach(cel =>
-    cel.addEventListener('click', e => {
-      datepicker.hide();
-      callback(e);
-    })
-  );
+  const grid = document.querySelector('.datepicker-grid');
+  grid.addEventListener('click', e => {
+    e.preventDefault();
+    datepicker.setDate(Number(e.target.dataset.date));
+    datepicker.hide();
+    callback(e);
+  });
 }
+
+export { getSelectedDate, addEventListenerToCalendar };
