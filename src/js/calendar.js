@@ -1,7 +1,6 @@
 import { Datepicker } from 'vanillajs-datepicker';
 
 const calendar = document.querySelector('.calendar__btn');
-
 const datepicker = new Datepicker(calendar, {
   weekStart: 1,
   todayHighlight: true,
@@ -9,6 +8,14 @@ const datepicker = new Datepicker(calendar, {
 datepicker.setDate(Date.now());
 
 function getSelectedDate() {
-  const date = datepicker.getDate();
-  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  return datepicker.getDate('yyyy-mm-dd');
 }
+
+function addEventListenerToChangeDate(callback) {
+  calendar.addEventListener('changeDate', e => {
+    datepicker.hide();
+    callback(e);
+  });
+}
+
+export { getSelectedDate, addEventListenerToChangeDate };
