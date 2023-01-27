@@ -2,4 +2,4 @@
 // import './js/burger-menu';
 import { getNews } from './js/requests/newsFetch';
 
-getNews('mostPopular');
+getNews('category', {});
