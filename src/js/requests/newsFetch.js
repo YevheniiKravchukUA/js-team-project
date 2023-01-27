@@ -6,7 +6,7 @@ async function getNews(pathName, parameters, category) {
     mostPopular: 'mostpopular/v2/emailed/7.json',
     articles: 'search/v2/articlesearch.json',
     allCategories: 'news/v3/content/section-list.json',
-    category: `news/v3/content/all/${category}`,
+    category: `news/v3/content/all/${category}.json`,
   };
   try {
     const response = await axiosNews.get(path[pathName], {
@@ -17,6 +17,8 @@ async function getNews(pathName, parameters, category) {
     Notify.failure(error);
   }
 }
+const yourData = '2023-01-20';
+getNews('articles', { fq: `pub_date:${yourData}` });
 
 export { getNews };
 
@@ -24,3 +26,4 @@ export { getNews };
 // Для поиска по слову: getNews("articles", {q: your-input-value in string})
 // Для получения всех категорий: getNews("allCategories")
 // Для поиска по категории: getNews("category", {}, your-category in string)
+// Для поиска по датеЖ getNews("articles", {fq: `pub_date:YYYY-MM-DD`})
