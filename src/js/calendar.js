@@ -12,3 +12,13 @@ function getSelectedDate() {
   const date = datepicker.getDate();
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
+
+function addEventListenerToCalendar(callback) {
+  const cells = document.querySelectorAll('.datepicker-cell');
+  cells.forEach(cel =>
+    cel.addEventListener('click', e => {
+      datepicker.hide();
+      callback(e);
+    })
+  );
+}
