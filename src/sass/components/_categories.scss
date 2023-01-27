@@ -1,0 +1,95 @@
+.categories_btn {
+  width: 112px;
+  height: 31px;
+  color: #4b48db;
+  border: 1px solid #4440f7;
+  border-radius: 20px;
+  background-color: #fff;
+  font-family: 'Manrope';
+  font-size: 12px;
+  line-height: 1.33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24px;
+  cursor: pointer;
+}
+.open_icon {
+  margin-left: 10px;
+}
+.input_time {
+  width: 152px;
+  height: 31px;
+  border-radius: 20px;
+  font-size: 12px;
+  line-height: 1.33;
+  font-family: 'Manrope';
+  border: 1px solid #4440f7;
+  margin-left: auto;
+
+  @media screen and (min-width: 1200px) {
+    width: 168px;
+    margin-left: 0;
+  }
+}
+.btn_group {
+  position: absolute;
+  list-style: none;
+  background-color: #f8f8f8;
+  width: 148px;
+  color: #4440f7;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.01em;
+  padding: 14px;
+  border-radius: 20px;
+  visibility: hidden;
+}
+.categories_link {
+  margin-bottom: 12px;
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    margin-bottom: 14px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 16px;
+  }
+}
+.is_hidden {
+  visibility: visible;
+}
+.is_active {
+  color: #4440f6;
+}
+.categories_list {
+  display: flex;
+}
+.date_text {
+  margin-left: auto;
+  margin-right: 37px;
+  font-family: 'Manrope';
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #111321;
+}
+.mobile {
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+  display: none;
+}
+.tablet {
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    display: flex;
+  }
+  display: none;
+}
+.desktop {
+  @media screen and (min-width: 1200px) {
+    display: flex;
+  }
+
+  display: none;
+}
