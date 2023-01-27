@@ -20,6 +20,10 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 4px;
+  // @media screen and (min-width: 1280px) {
+  //   width: 395px;
+  //   height: 395px;
+  // }
 }
 .news__title {
   margin-bottom: 20px;
@@ -34,8 +38,7 @@
 }
 .news__text {
   margin-bottom: 20px;
-  // width: 395px;
-  // height: 57px;
+
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 400;
