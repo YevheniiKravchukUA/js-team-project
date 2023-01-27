@@ -19,10 +19,10 @@
 
     <!-- search from -->
     <label class="label">
-      <input class="header-input" type="search" name="search" placeholder="       Search |" />
-      <svg class="form-icon" width="20" height="19">
+      <input class="header-input" type="search" name="search" placeholder="Search |" />
+      <!-- <svg class="form-icon" width="20" height="19">
         <use href="/src/images/header-icons.svg#icon-search"></use>
-      </svg>
+      </svg> -->
     </label>
 
     <!-- switch menu desktop -->
@@ -31,12 +31,12 @@
         <button class="btn-light btn" type="button">Light</button>
       </li>
 
+      <!-- бегунок переключатель -->
       <li>
-        <button class="btn-toggle btn">
-          <svg class="svg-toggle" width="40" height="20">
-            <use href="/src/images/header-icons.svg#icon-toggle"></use>
-          </svg>
-        </button>
+        <div class="toggle round">
+          <input type="checkbox" class="checkbox" id="checkbox2" />
+          <label for="checkbox2" class="switch"></label>
+        </div>
       </li>
 
       <li>
@@ -81,7 +81,7 @@
         </button>
       </li>
       <li>
-        <button class="menu-toggle js-open-menu" aria-expanded="false">
+        <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="menu-toggle__icon" width="24" height="24">
             <use href="/src/images//icons.svg#icon-menu-burger"></use>
           </svg>
