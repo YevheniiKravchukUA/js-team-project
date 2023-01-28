@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const KEYS = {
+export const KEYS = {
   WEATHER: 'f3ada08f24524eaebe0dab7657f9578c',
   NEWS: 'zqSBDCWWfsUqmPN3a0NlmObTljUQwqkT',
 };
