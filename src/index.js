@@ -8,7 +8,6 @@ import './js/burger-menu';
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
-
 getNews('mostPopular').then(resp => {
   const markup = createMarkup(resp.data.results, 'popularCards');
   renderMarkup(refs.newsList, markup);
