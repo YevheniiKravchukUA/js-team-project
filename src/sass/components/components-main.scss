@@ -5,5 +5,8 @@
 @import './news-section.scss';
 @import './read-accordion.scss';
 @import './calendar.scss';
-@import './vanillajs-datepicker.scss';
+@import './node_modules/vanillajs-datepicker/sass/datepicker';
 @import './categories.scss';
+@import './weather-block';
+@import './burger-menu';
+@import './pagination';

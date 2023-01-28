@@ -1,0 +1,55 @@
+.menu-container {
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 24px 16px 18px 16px;
+  background-color: #ffffff;
+  z-index: 100;
+
+  transform: translateY(-100%);
+  transition: transform 250ms ease-in-out;
+
+  &.is-open {
+    transform: translateY(0);
+  }
+}
+
+.menu-container .menu-toggle {
+  position: absolute;
+  top: 28px;
+  right: 16px;
+  color: #111321;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 248px;
+
+  background-color: tomato;
+}
+
+.burger-logo {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 33px;
+  color: #111321;
+  margin: 0 0 68px 0;
+}
+
+.switch-menu {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-menu-item {
+  display: flex;
+}
