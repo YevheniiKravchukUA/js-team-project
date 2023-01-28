@@ -6,6 +6,7 @@ function createMarkup(data, markupName) {
     inputsCards: '',
     categories: '',
     weather: '',
+    pagination: '',
   };
 
   const IMAGES_URL = 'https://www.nytimes.com/';
@@ -138,6 +139,12 @@ function createMarkup(data, markupName) {
         <a class="weather__link" href="https://weather.com/weather/tenday/l/35a741555bbfc8bc576be864b0b64af6d1b2ad1328d2ee729f0de0ae00098e85">
           weather for week
         </a>`;
+      });
+    }
+
+    if (markupName === 'pagination') {
+      markupArr = data.arr.map((el, idx, arr) => {
+        return ``;
       });
     }
   }
