@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.weather {
+.weather,
+.weather-test {
   height: 470px;
   max-width: 290px;
   font-family: 'Roboto', sans-serif;
 
   background: getColor('primary-active');
-  // mix-blend-mode: normal;
+  mix-blend-mode: normal;
   border-radius: 4px;
 
   @include media-min(tablet) {
@@ -50,6 +51,7 @@
 .info__geo {
   font-size: 14px;
   line-height: 16px;
+  text-align: center;
   @include media-min(tablet) {
     font-size: 20px;
     line-height: 23px;
@@ -101,7 +103,14 @@
 }
 
 .info-wrapper__svg {
-  margin-right: 5px;
+  margin-right: 4px;
+  width: 18px;
+  height: 18px;
+
+  @include media-min(tablet) {
+    width: 27px;
+    height: 27px;
+  }
 }
 
 .weather-img {
