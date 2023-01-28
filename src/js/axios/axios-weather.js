@@ -14,11 +14,16 @@ class Weather {
         units: 'metric',
       },
     };
+    this.IP_API_URL = 'https://ipapi.co/json/';
     this.userTime = null;
   }
 
   async getWeather() {
     const response = await axios.get(`${this.options.baseURL}`, this.options);
+    return response.data;
+  }
+  async checkUserGeo() {
+    const response = await axios(`${this.IP_API_URL}`);
     return response.data;
   }
   checkNavPermissions() {
@@ -28,7 +33,7 @@ class Weather {
       alert('Your browser not support geolocation api');
     }
   }
-  renderweatherMarkup(data) {
+  renderWeatherMarkup(data) {
     const weatherBlockEl = document.querySelector('.weather');
     const localDate = this.dateFormatter(this.userTime);
 
@@ -60,7 +65,7 @@ class Weather {
     weatherBlockEl.innerHTML = markup;
   }
   dateFormatter(date) {
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const month = [
       'Jan',
       'Feb',
@@ -101,11 +106,28 @@ function onSuccess(position) {
   weather
     .getWeather()
     .then(response => {
-      weather.renderweatherMarkup(response);
+      weather.renderWeatherMarkup(response);
     })
     .catch(e => console.log(e));
 }
 
-function onError(error) {
-  console.log('error -->', error);
+async function onError(error) {
+  const userGeo = await weather
+    .checkUserGeo()
+    .then(response => {
+      const { latitude, longitude } = response;
+
+      weather.userTime = Date.now();
+
+      weather.options.params.lat = latitude;
+      weather.options.params.lon = longitude;
+    })
+    .catch(e => console.log(e));
+
+  weather
+    .getWeather()
+    .then(response => {
+      weather.renderWeatherMarkup(response);
+    })
+    .catch(e => console.log(e));
 }
