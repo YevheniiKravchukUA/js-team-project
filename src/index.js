@@ -3,6 +3,7 @@ import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
 
 // import './js/calendar';
+import './js/toggle-theme-dark';
 import './js/burger-menu';
 import './js/markup/render-markup';
 import './js/pagination';

@@ -11,11 +11,15 @@
   background-color: #ffffff;
   z-index: 100;
 
-  transform: translateY(-100%);
+  transform: translateY(-1000%);
   transition: transform 250ms ease-in-out;
 
   &.is-open {
     transform: translateY(0);
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 }
 
