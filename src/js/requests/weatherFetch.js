@@ -1,5 +1,1 @@
-// import { axiosWeather } from '../axios/axiosDefaults';
-
-class WeatherFetch {
-    constructor ()
-}
+import { axiosWeather } from '../axios/axiosDefaults';
