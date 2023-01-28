@@ -45,7 +45,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 5px;
 }
 
 .info__geo {
@@ -61,7 +60,7 @@
 .info__temp {
   font-size: 55px;
   line-height: 64px;
-
+  height: 63px;
   padding-right: 1px;
 
   border-right: 1px solid getColor('full-white');
@@ -71,6 +70,7 @@
     font-size: 64px;
     line-height: 75px;
     padding-right: 8px;
+    height: 90px;
   }
 }
 
