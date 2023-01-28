@@ -14,7 +14,7 @@ async function getNews(pathName, parameters, category) {
     });
     return response;
   } catch (error) {
-    Notify.failure(error);
+    // Notify.failure(error);
   }
 }
 const yourData = '2023-01-20';
