@@ -1,22 +1,32 @@
-// const favoriteBtnAddEl = document.querySelectorAll('.news__favorite-btn-add')
-// const favoriteBtnRemoveEl = document.querySelectorAll('.news__favorite-btn-remove')
+console.log(123)
+const newsListEl = document.querySelector('.news__list')
+const addBtnEl = document.querySelector('.news__favorite-btn-add')
+const removeBtnEl = document.querySelector('.news__favorite-btn-remove')
+const svgEl = document.querySelectorAll('.favorite-btn__icon-add')
 
-// console.log(favoriteBtnAddEl)
-// const x = Object.values(favoriteBtnAddEl)
-// console.log(x)
-// x.map(item =>console.log(item))
-// favoriteBtnRemoveEl.map(item =>console.log(item))
 
-// favoriteBtnRemoveEl.style.display = 'none'
+function addRemoveHandler(event) {
+  // console.log(event.target.textContent.length)
+//   console.log(event.target.nodeName)
+  if (event.target.nodeName !== "BUTTON" ) {
+    return
+  }
 
-// const addHandler = () => {
-//     favoriteBtnAddEl.style.display = 'none'
-//     favoriteBtnRemoveEl.style.display = 'block'
-// }
-// const removeHandler = () => {
-//      favoriteBtnAddEl.style.display = 'block'
-//     favoriteBtnRemoveEl.style.display = 'none'
-// }
+  else if (event.target.textContent === 'Add to favorite') {
+    // console.log(event.target.textContent.length)
+    event.target.textContent = 'Remove from favorite'
+      event.target.classList.add('news__favorite-btn-remove')
+      let x = Object.values(svgEl)
+      x.map(item =>item.classList.add('aaa'))
+    //   svgEl.style.fill ='#4440f7'
+  } else if (event.target.textContent === 'Remove from favorite') {
+    event.target.textContent = 'Add to favorite'
+      event.target.classList.remove('news__favorite-btn-remove')
+    //   svgEl.style.fill ='transparent'
+  }
 
-// favoriteBtnAddEl.addEventListener('click', addHandler)
-// favoriteBtnRemoveEl.addEventListener('click', removeHandler)
+  
+}
+newsListEl.addEventListener('click', addRemoveHandler)
+
+

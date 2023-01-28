@@ -4,7 +4,7 @@ import { renderMarkup } from './js/markup/renderMarkup';
 
 // import './js/calendar';
 import './js/burger-menu';
-
+import './js/favorit/favoritButton';
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
