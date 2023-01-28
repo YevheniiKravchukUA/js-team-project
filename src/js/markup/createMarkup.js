@@ -12,9 +12,10 @@ function createMarkup(data, markupName) {
 
   let markupArr;
 
-  if (markupName === 'popularCard') {
-    markupArr = data.flatMap(el => {
-      return `<li class="news__item">
+  if (markupName === 'popularCards') {
+    markupArr = data.flatMap(
+      el =>
+        `<li class="news__item">
         <div class="news__image-box">
           <img class="news__image" src="${el.media[0]['media-metadata'][2].url}" alt="" />
           <button class="news__favorite-btn" type="button">Add to favorite</button>
@@ -30,12 +31,8 @@ function createMarkup(data, markupName) {
           <p class="news__date">${el.published_date}</p>
           <a class="news__readmore-link" href="${el.url}">Read more</a>
         </div>
-      </li>`;
-    });
-
-    markup[markupName] = popularCards.join('');
-
-    return markup[markupName];
+      </li>`
+    );
   }
 
   if (markupName === 'dateCards') {
@@ -108,11 +105,10 @@ function createMarkup(data, markupName) {
         return `<li class="categories_link"><button class="categories_link_btn">${el}</button></li>`;
       });
     }
-
-    markup[markupName] = popularCards.join('');
-    console.log(markup[markupName]);
-    return markup[markupName];
   }
+
+  markup[markupName] = markupArr.join('');
+  return markup[markupName];
 }
 
 export { createMarkup };
