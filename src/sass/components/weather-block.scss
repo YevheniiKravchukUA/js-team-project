@@ -6,7 +6,7 @@
   font-family: 'Roboto', sans-serif;
 
   background: getColor('primary-active');
-  mix-blend-mode: normal;
+  // mix-blend-mode: normal;
   border-radius: 4px;
 
   @include media-min(tablet) {
@@ -110,12 +110,15 @@
   margin-bottom: 40px;
 
   display: block;
-  width: 128px;
-  height: 120px;
+  width: 138px;
+  height: 130px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
   @include media-min(tablet) {
-    width: 165px;
-    height: 155px;
+    width: 175px;
+    height: 165px;
     margin-bottom: 90px;
   }
 }
