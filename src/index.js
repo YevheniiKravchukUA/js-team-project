@@ -8,6 +8,9 @@ import './js/burger-menu';
 import './js/favorit/favoritButton';
 import './js/pagination';
 import './js/favorit/favoriteToLocalStorage';
+import './js/requests/weatherFetch';
+import './js/categories';
+import './js/pagination/purePajinate.es5.min.js';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
