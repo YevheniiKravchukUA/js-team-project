@@ -11,7 +11,7 @@ function createMarkup(data, markupName) {
 
   const IMAGES_URL = 'https://www.nytimes.com/';
 
-  let markupArr;
+  let markupArr = [];
 
   if (markupName === 'popularCards') {
     markupArr = data.flatMap(
@@ -56,10 +56,11 @@ function createMarkup(data, markupName) {
         </div>
       </li>`;
     });
+  }
 
-    if (markupName === 'categoryCards') {
-      markupArr = data.flatMap(el => {
-        return `<li class="news__item">
+  if (markupName === 'categoryCards') {
+    markupArr = data.flatMap(el => {
+      return `<li class="news__item">
         <div class="news__image-box">
           <img class="news__image" src="${IMAGES_URL}${el.multimedia[0].url}" alt="" />
           <button class="news__favorite-btn" type="button">Add to favorite</button>
@@ -76,12 +77,12 @@ function createMarkup(data, markupName) {
           <a class="news__readmore-link" href="${el.web_url}">Read more</a>
         </div>
       </li>`;
-      });
-    }
+    });
+  }
 
-    if (markupName === 'inputsCards') {
-      markupArr = data.flatMap(el => {
-        return `<li class="news__item">
+  if (markupName === 'inputsCards') {
+    markupArr = data.flatMap(el => {
+      return `<li class="news__item">
         <div class="news__image-box">
           <img class="news__image" src="${IMAGES_URL}${el.multimedia[0].url}" alt="" />
           <button class="news__favorite-btn" type="button">Add to favorite</button>
@@ -98,18 +99,18 @@ function createMarkup(data, markupName) {
           <a class="news__readmore-link" href="${el.web_url}">Read more</a>
         </div>
       </li>`;
-      });
-    }
+    });
+  }
 
-    if (markupName === 'categories') {
-      markupArr = data.flatMap(el => {
-        return `<li class="categories_link"><button class="categories_link_btn">${el}</button></li>`;
-      });
-    }
+  if (markupName === 'categories') {
+    markupArr = data.flatMap(el => {
+      return `<li class="categories_link"><button class="categories_link_btn">${el}</button></li>`;
+    });
+  }
 
-    if (markupName === 'weather') {
-      markupArr = data.flatMap(el => {
-        return `
+  if (markupName === 'weather') {
+    markupArr = data.flatMap(el => {
+      return `
         <div class="weather__info info">
           <p class="info__temp">${Math.floor(data.main.temp)}°</p>
           <div class="info-wrapper">
@@ -139,13 +140,13 @@ function createMarkup(data, markupName) {
         <a class="weather__link" href="https://weather.com/weather/tenday/l/35a741555bbfc8bc576be864b0b64af6d1b2ad1328d2ee729f0de0ae00098e85">
           weather for week
         </a>`;
-      });
-    }
+    });
+  }
 
-    if (markupName === 'pagination') {
-      markupArr = data.arr.map((el, idx, arr) => {
-        return ``;
-      });
+  if (markupName === 'pagination') {
+    // createMarkup(8, "pagination")
+    for (let i = 1; i <= data; i += 1) {
+      markupArr.push(`<li class="pagination-item">${i}</li>`);
     }
   }
 
