@@ -10,6 +10,7 @@ import './js/pagination';
 import './js/requests/weatherFetch';
 import './js/categories';
 import './js/pagination/purePajinate.es5.min.js';
+import '../src/js/btn-search-mob'
 
 const refs = {
   newsList: document.querySelector('.news__list'),
