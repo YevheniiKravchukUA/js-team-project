@@ -60,17 +60,17 @@
 // main();
 
 // 2222222
-document.addEventListener('DOMContentLoaded', function () {
-  var myPagination = new purePajinate({
-    navigationSelector: '.pagination',
-    containerSelector: '.pagination-list',
-    itemSelector: '.pagination-item',
-    activeClass: 'active',
-    startPage: 1,
-    itemsPerPage: 5,
-    wrapAround: true,
-    pageLinksToDisplay: 20,
-  });
+// document.addEventListener('DOMContentLoaded', function () {
+//   var myPagination = new purePajinate({
+//     navigationSelector: '.pagination',
+//     containerSelector: '.pagination-list',
+//     itemSelector: '.pagination-item',
+//     activeClass: 'active',
+//     startPage: 1,
+//     itemsPerPage: 5,
+//     wrapAround: true,
+//     pageLinksToDisplay: 20,
+//   });
 
-  console.log(myPagination);
-});
+//   console.log(myPagination);
+// });
