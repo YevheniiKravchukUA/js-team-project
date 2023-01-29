@@ -10,6 +10,7 @@ import './js/pagination/pagination';
 import './js/favorit/favoriteToLocalStorage';
 import './js/requests/weatherFetch';
 import './js/categories';
+import '../src/js/btn-search-mob'
 
 const refs = {
   newsList: document.querySelector('.news__list'),
