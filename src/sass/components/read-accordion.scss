@@ -13,6 +13,13 @@ main {
   }
 }
 
+.accordion__list {
+  @include media-min(tablet) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 .accordion__item {
   margin-bottom: 0.5rem;
   border-radius: 0.25rem;
@@ -71,6 +78,11 @@ main {
 
 .accordion__item:not(.accordion__item_show) .accordion__body {
   display: none;
+}
+
+.accordion__news {
+  @include media-min(tablet) {
+  }
 }
 
 .accordion__list {
