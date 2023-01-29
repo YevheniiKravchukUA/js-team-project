@@ -1,4 +1,3 @@
-
 const newsListEl = document.querySelector('.news__list')
 
 function addRemoveHandler(event) {
@@ -25,7 +24,3 @@ if (event.target.nodeName !== "DIV" ) {
 } 
 
 newsListEl.addEventListener('click', addRemoveHandler)
-
-
-
-

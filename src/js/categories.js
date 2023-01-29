@@ -8,7 +8,6 @@ const click = document.querySelector('.categories_list');
 const newsListRef = document.querySelector('.news__list')
 click.addEventListener('click', (e) => {
    
-    console.log(e.currentTarget.children)
     if (e.target.nodeName !== 'BUTTON') {
         return
     }
@@ -32,5 +31,4 @@ click.addEventListener('click', (e) => {
             
         })
     }
-    
 })
