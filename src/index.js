@@ -10,7 +10,6 @@ import './js/pagination';
 import './js/favorit/favoriteToLocalStorage';
 import './js/requests/weatherFetch';
 import './js/categories';
-import './js/pagination/purePajinate.es5.min.js';
 import './js/header/btn-search-mob';
 import './js/header/inputFetch';
 
