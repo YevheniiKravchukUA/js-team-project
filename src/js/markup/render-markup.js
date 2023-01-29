@@ -1,1 +1,0 @@
-function renderMarkup(parent, markup) {}

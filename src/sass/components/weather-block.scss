@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.weather {
+.weather,
+.weather-test {
   height: 470px;
   max-width: 290px;
   font-family: 'Roboto', sans-serif;
@@ -44,12 +45,12 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 5px;
 }
 
 .info__geo {
   font-size: 14px;
   line-height: 16px;
+  text-align: center;
   @include media-min(tablet) {
     font-size: 20px;
     line-height: 23px;
@@ -59,7 +60,7 @@
 .info__temp {
   font-size: 55px;
   line-height: 64px;
-
+  height: 63px;
   padding-right: 1px;
 
   border-right: 1px solid getColor('full-white');
@@ -69,6 +70,7 @@
     font-size: 64px;
     line-height: 75px;
     padding-right: 8px;
+    height: 90px;
   }
 }
 
@@ -101,7 +103,14 @@
 }
 
 .info-wrapper__svg {
-  margin-right: 5px;
+  margin-right: 4px;
+  width: 18px;
+  height: 18px;
+
+  @include media-min(tablet) {
+    width: 27px;
+    height: 27px;
+  }
 }
 
 .weather-img {
@@ -110,12 +119,15 @@
   margin-bottom: 40px;
 
   display: block;
-  width: 128px;
-  height: 120px;
+  width: 138px;
+  height: 130px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 
   @include media-min(tablet) {
-    width: 165px;
-    height: 155px;
+    width: 175px;
+    height: 165px;
     margin-bottom: 90px;
   }
 }

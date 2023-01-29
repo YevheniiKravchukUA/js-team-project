@@ -23,6 +23,7 @@
 
   grid-template-columns: 1fr;
   row-gap: $row-gap;
+  justify-items: center;
 
   @if $columns >= 2 {
     @if $column-gap >= 1 {
