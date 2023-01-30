@@ -55,24 +55,14 @@ export function handleReadMoreBtnClick(e) {
   alreadyRead.newsArr = news; // записываем их для поиска
 
   const checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
+  console.log('🆑  checkedNew', checkedNew);
 
-  console.log('readNews -->', alreadyRead.readNews);
-  const currDate = alreadyRead.readNews[0] || [
-    `${alreadyRead.getCurrentDate()}`,
-    checkedNew,
-  ];
-  console.log('🆑  currDate', currDate);
+  const todayNews = {
+    date: `${alreadyRead.getCurrentDate()}`,
+    news: checkedNew,
+  };
 
-  if (currDate[0] !== alreadyRead.getCurrentDate()) {
-    const dailyNews = [`${alreadyRead.getCurrentDate()}`, checkedNew];
-
-    alreadyRead.readNews.push(dailyNews); // пушим в массив из ЛокалС или пустой
-  } else {
-    console.log('alreadyRead.readNews[length - 1] -->');
-    const dailyNews = [`${alreadyRead.getCurrentDate()}`, checkedNew];
-
-    alreadyRead.readNews.push(dailyNews); // пушим в массив из ЛокалС или пустой
-  }
+  alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
 
   // alreadyRead.leaveUniqueNews();
   alreadyRead.saveToLocalStorage();
