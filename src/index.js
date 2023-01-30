@@ -1,7 +1,6 @@
 import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
-import { addToread } from './js/add-to-read';
 
 // import './js/calendar';
 import './js/header/toggle-theme-dark';
@@ -18,7 +17,15 @@ import './js/add-to-read';
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
-getNews('mostPopular').then(resp => {
-  const markup = createMarkup(resp.data.results, 'popularCards');
-  renderMarkup(refs.newsList, markup);
-});
+getNews('mostPopular')
+  .then(resp => {
+    const markup = createMarkup(resp.data.results, 'popularCards');
+    renderMarkup(refs.newsList, markup);
+    return resp.data.results;
+  })
+  .then(results => {
+    console.log('results -->', results);
+    localStorage.setItem('NewsFromHome', JSON.stringify(results));
+  });
+
+const item = localStorage.getItem('NewsFromHome');

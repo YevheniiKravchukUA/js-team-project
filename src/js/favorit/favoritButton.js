@@ -1,6 +1,11 @@
+import { handleReadMoreBtnClick } from '../add-to-read';
+
 const newsListEl = document.querySelector('.news__list');
 
 function addRemoveHandler(event) {
+  if (event.target.classList.contains('news__readmore-link')) {
+    handleReadMoreBtnClick(event);
+  }
   if (event.target.nodeName !== 'DIV') {
     return;
   } else if (event.target.firstElementChild.textContent === 'Add to favorite') {
