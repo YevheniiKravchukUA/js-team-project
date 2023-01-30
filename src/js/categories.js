@@ -8,9 +8,13 @@ const click = document.querySelector('.categories_list');
 const newsListRef = document.querySelector('.news__list');
 
 getNews('allCategories').then(resp => {
-  renderMarkup(click, createMarkup(resp.data.results, 'categories'));
+  renderMarkup(modal, createMarkup(resp.data.results, 'categoriesFull'));
+  renderMarkup(
+    click,
+    createMarkup(resp.data.results, 'categoriesForDesktop'),
+    'afterbegin'
+  );
 });
-
 click.addEventListener('click', e => {
   const activeBtnLine = document.querySelector('.active_underline');
   const activeBtn = document.querySelector('.is_active');

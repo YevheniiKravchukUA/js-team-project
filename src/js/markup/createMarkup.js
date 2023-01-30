@@ -4,7 +4,8 @@ function createMarkup(data, markupName) {
     dateCards: '',
     categoryCards: '',
     inputsCards: '',
-    categories: '',
+    categoriesForDesktop: '',
+    categoriesFull: '',
     weather: '',
     pagination: '',
   };
@@ -151,9 +152,19 @@ function createMarkup(data, markupName) {
     });
   }
 
-  if (markupName === 'categories') {
-    markupArr = data.flatMap(el => {
-      return `<li class="categories_link"><button class="categories_link_btn">${el}</button></li>`;
+  if (markupName === 'categoriesForDesktop') {
+    markupArr = data.map((el, idx) => {
+      if (idx >= 7 || idx === 0) {
+        return;
+      } else {
+        return `<li class="categories_btn_link" data-search=${el.section}><button class="btn_group">${el.display_name}</button></li>`;
+      }
+    });
+  }
+
+  if (markupName === 'categoriesFull') {
+    markupArr = data.flatMap((el, idx) => {
+      return `<li class="categories_link" data-search=${el.section}><button class="categories_link_btn">${el.display_name}</button></li>`;
     });
   }
 
@@ -200,6 +211,7 @@ function createMarkup(data, markupName) {
   }
 
   markup[markupName] = markupArr.join('');
+  console.log(markup[markupName]);
   return markup[markupName];
 }
 
