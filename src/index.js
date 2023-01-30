@@ -12,11 +12,19 @@ import './js/requests/weatherFetch';
 import './js/categories';
 import './js/header/btn-search-mob';
 import './js/header/inputFetch';
+import './js/add-to-read';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
-getNews('mostPopular').then(resp => {
-  const markup = createMarkup(resp.data.results, 'popularCards');
-  renderMarkup(refs.newsList, markup);
-});
+getNews('mostPopular')
+  .then(resp => {
+    const markup = createMarkup(resp.data.results, 'popularCards');
+    renderMarkup(refs.newsList, markup);
+    return resp.data.results;
+  })
+  .then(results => {
+    localStorage.setItem('NewsFromHome', JSON.stringify(results));
+  });
+
+const item = localStorage.getItem('NewsFromHome');
