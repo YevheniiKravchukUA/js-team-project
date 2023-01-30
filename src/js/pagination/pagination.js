@@ -122,9 +122,9 @@ var Pagination = {
   // create skeleton
   Create: function (e) {
     var html = [
-      '<a class="arr"> < </a>', // previous button
+      '<a class="arr"> < Prew </a>', // previous button
       '<span></span>', // pagination container
-      '<a class="arr"> > </a>', // next button
+      '<a class="arr"> Next > </a>', // next button
     ];
 
     e.innerHTML = html.join('');
