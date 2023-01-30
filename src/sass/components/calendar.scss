@@ -31,23 +31,34 @@
   }
 
   &:focus ~ .calendar__img--right {
-    transform: scaleY(-1);
+    transform: translate(0, -50%) rotate(180deg);
+  }
+}
+
+body.dark-theme .calendar__btn {
+  color: rgba(244, 244, 244, 0.6);
+  border: 1px solid getColor('dark-white');
+
+  &:focus,
+  &:hover {
+    color: getColor('full-white');
+    border: getColor('primary-active');
   }
 }
 
 .calendar__img {
   position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
   pointer-events: none;
 }
 
 .calendar__img--left {
-  top: 6px;
   left: 12px;
   fill: getColor('primary-active');
 }
 
 .calendar__img--right {
-  top: 11px;
   right: 12px;
   fill: rgb(162, 162, 162);
 }
