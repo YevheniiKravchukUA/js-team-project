@@ -157,14 +157,14 @@ function createMarkup(data, markupName) {
       if (idx >= 7 || idx === 0) {
         return;
       } else {
-        return `<li class="categories_btn_link" data-search=${el.section}><button class="btn_group">${el.display_name}</button></li>`;
+        return `<li class="categories-link-desktop" data-search=${el.section}><button class="btn-desktop">${el.display_name}</button></li>`;
       }
     });
   }
 
   if (markupName === 'categoriesFull') {
     markupArr = data.flatMap((el, idx) => {
-      return `<li class="categories_link" data-search=${el.section}><button class="categories_link_btn">${el.display_name}</button></li>`;
+      return `<li class="categories-menu-link" data-search=${el.section}><button class="btn-menu">${el.display_name}</button></li>`;
     });
   }
 
