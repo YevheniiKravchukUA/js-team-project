@@ -12,13 +12,21 @@ function createMarkup(data, markupName) {
   const IMAGES_URL = 'https://www.nytimes.com/';
 
   let markupArr = [];
+  let imageUrl;
 
   if (markupName === 'popularCards') {
-    markupArr = data.flatMap(
-      el => `
+    markupArr = data.flatMap(el => {
+      if (el.media.length !== 0) {
+        imageUrl = el.media[0]['media-metadata'][2].url;
+      } else {
+        imageUrl =
+          'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
+      }
+
+      return `
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
-          <img class="news__image" src="${el.media[0]['media-metadata'][2].url}" alt="" />
+          <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
               <button class="news__favorite-btn " data-value="4" type="button">Add to favorite</button>
               <svg class="favorite-btn__icon-add" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
@@ -35,16 +43,23 @@ function createMarkup(data, markupName) {
           rel="noopener noreferrer" href="${el.url}">Read more</a>
         </div>
       </li>
-      `
-    );
+      `;
+    });
   }
 
   if (markupName === 'dateCards') {
     markupArr = data.flatMap(el => {
+      if (el.multimedia.length !== 0) {
+        imageUrl = IMAGES_URL + el.multimedia[0].url;
+      } else {
+        imageUrl =
+          'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
+      }
+
       return `
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
-          <img class="news__image" src="${IMAGES_URL}${el.multimedia[0].url}" alt="" />
+          <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
               <button class="news__favorite-btn " data-value="4" type="button">Add to favorite</button>
               <svg class="favorite-btn__icon-add" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
@@ -67,24 +82,36 @@ function createMarkup(data, markupName) {
 
   if (markupName === 'categoryCards') {
     markupArr = data.flatMap(el => {
+      if (el.multimedia) {
+        if (el.multimedia.length >= 3) {
+          imageUrl = el.multimedia[2].url;
+        } else {
+          imageUrl =
+            'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
+        }
+      } else {
+        imageUrl =
+          'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
+      }
+
       return `
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
-          <img class="news__image" src="${IMAGES_URL}${el.multimedia[0].url}" alt="" />
+          <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
               <button class="news__favorite-btn " data-value="4" type="button">Add to favorite</button>
               <svg class="favorite-btn__icon-add" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4.66659 1C2.82592 1 1.33325 2.47733 1.33325 4.3C1.33325 5.77133 1.91659 9.26333 7.65858 12.7933C7.76144 12.8559 7.87952 12.889 7.99992 12.889C8.12032 12.889 8.2384 12.8559 8.34125 12.7933C14.0833 9.26333 14.6666 5.77133 14.6666 4.3C14.6666 2.47733 13.1739 1 11.3333 1C9.49258 1 7.99992 3 7.99992 3C7.99992 3 6.50725 1 4.66659 1Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3 class="news__image-heading">${el.section_name}</h3>
+            <h3 class="news__image-heading">${el.section}</h3>
         </div>
-        <h2 class="news__title">${el.abstract}</h2>
-        <p class="news__text">${el.lead_paragraph}</p>
+        <h2 class="news__title">${el.title}</h2>
+        <p class="news__text">${el.abstract}</p>
         <div class="news__lower-box">
-          <p class="news__date">${el.pub_date}</p>
+          <p class="news__date">${el.published_date}</p>
           <a class="news__readmore-link" target="_blank"
-          rel="noopener noreferrer" href="${el.web_url}">Read more</a>
+          rel="noopener noreferrer" href="${el.url}">Read more</a>
         </div>
       </li>
       `;
@@ -92,7 +119,6 @@ function createMarkup(data, markupName) {
   }
 
   if (markupName === 'inputsCards') {
-    let imageUrl;
     markupArr = data.flatMap(el => {
       if (el.multimedia.length !== 0) {
         imageUrl = IMAGES_URL + el.multimedia[0].url;
