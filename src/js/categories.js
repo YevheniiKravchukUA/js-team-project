@@ -7,10 +7,13 @@ const othersBtn = document.querySelector('.js_others_btn');
 const click = document.querySelector('.categories_list');
 const newsListRef = document.querySelector('.news__list');
 
+getNews('allCategories').then(resp => {
+  renderMarkup(click, createMarkup(resp.data.results, 'categories'));
+});
+
 click.addEventListener('click', e => {
   const activeBtnLine = document.querySelector('.active_underline');
   const activeBtn = document.querySelector('.is_active');
-
   if (e.target.nodeName !== 'BUTTON') {
     return;
   } else if (e.target.classList.contains('categories_btn')) {
