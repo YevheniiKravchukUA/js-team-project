@@ -37,6 +37,7 @@
   margin-left: 10px;
   fill: #4440f7;
   transition: 0.5s;
+  pointer-events: none;
 }
 
 .input_time {
@@ -78,6 +79,9 @@
     fill: #fff;
   }
 }
+.active_underline {
+  text-decoration: underline;
+}
 .thumb {
   position: relative;
 }
@@ -92,6 +96,7 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.01em;
+  // text-decoration: underline;
 }
 .categories_link {
   margin-bottom: 12px;
