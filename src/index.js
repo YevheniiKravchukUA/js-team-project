@@ -1,6 +1,7 @@
 import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
+import { addToread } from './js/add-to-read';
 
 // import './js/calendar';
 import './js/toggle-theme-dark';

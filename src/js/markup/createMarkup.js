@@ -30,7 +30,7 @@ function createMarkup(data, markupName) {
         </p>
         <div class="news__lower-box">
           <p class="news__date">${el.published_date}</p>
-          <a class="news__readmore-link" href="${el.url}">Read more</a>
+          <a class="news__readmore-link" href="${el.url}" target="_blank">Read more</a>
         </div>
       </li>`
     );

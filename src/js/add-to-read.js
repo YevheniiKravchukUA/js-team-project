@@ -1,18 +1,18 @@
-const readLinkEl = document.querySelector('.news__readmore-link');
-const newsItemEl = document.querySelector('.news__item');
-const loverBoxEl = document.querySelector('.news__lower-box');
+// getNews('mostPopular').then(resp => {
+//   const readMoreLinkEl = document.querySelector('.news__readmore-link');
+//   readMoreLinkEl.addEventListener('click', handleReadMoreBtnClick);
 
-loverBoxEl.addEventListener('click', handleClickReadBtn);
+//   function handleReadMoreBtnClick(e) {
+//     console.log('e.t -->', e.target);
+//   }
+// });
 
-function handleClickReadBtn(e) {
-  e.preventDefault();
+export function addToread() {
+  console.log('read -->');
+  const readMoreLinkEl = document.querySelector('.news__readmore-link');
+  readMoreLinkEl.addEventListener('click', handleReadMoreBtnClick);
 
-  console.log('e.target -->', e.target);
-  console.log('123Y -->');
-
-  if (e.target.classList.contains('news__readmore-link')) {
-    console.log('contains -->');
-
-    currentTarget.setAttribute('in-read');
+  function handleReadMoreBtnClick(e) {
+    console.log('e.t -->', e.target);
   }
 }
