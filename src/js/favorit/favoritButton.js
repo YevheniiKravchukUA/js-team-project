@@ -1,6 +1,6 @@
 const newsListEl = document.querySelector('.news__list')
 
-function addRemoveHandler(event) {
+ function addRemoveHandler(event) {
 if (event.target.nodeName !== "DIV" ) {
     return
 } else if (event.target.firstElementChild.textContent === 'Add to favorite') {
@@ -24,3 +24,10 @@ if (event.target.nodeName !== "DIV" ) {
 } 
 
 newsListEl.addEventListener('click', addRemoveHandler)
+
+
+
+   
+// const itemInLocStore = JSON.parse(localStorage.getItem('news-added-to-favorite')).map(item => {
+//     if(item.id ===)
+// })
