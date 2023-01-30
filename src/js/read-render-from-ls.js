@@ -1,11 +1,9 @@
 import { alreadyRead } from './add-to-read';
 
-const accordeonListEl = document.querySelector('.accordion__list');
 const jsonFromLocalStorage =
   alreadyRead.getJsonFromLocalStorage('alreadyReadNews');
 const news = alreadyRead.dataFromLocalStorage(jsonFromLocalStorage);
-
-console.log('🆑  news', news);
+const accordionEl = document.querySelector('.accordion');
 
 function spliceObjWithNews() {
   const arrOfNews = news.map(arr => arr[0]);
@@ -13,9 +11,8 @@ function spliceObjWithNews() {
 }
 
 const arrOfNews = spliceObjWithNews();
-console.log('🆑  arrOfNews', arrOfNews);
 
-const accordionEl = document.querySelector('.accordion');
+renderAccordionBody();
 
 function renderAccordionBody() {
   const markup = arrOfNews
@@ -37,7 +34,7 @@ function renderAccordionItems(arr) {
   const markup = arr
     .map(
       item =>
-        `<li class="news__item accordion__news">
+        `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
           <img
             class="news__image"
@@ -71,5 +68,3 @@ function renderAccordionItems(arr) {
     .join('');
   return markup;
 }
-
-renderAccordionBody();

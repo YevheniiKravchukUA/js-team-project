@@ -24,7 +24,6 @@ getNews('mostPopular')
     return resp.data.results;
   })
   .then(results => {
-    console.log('results -->', results);
     localStorage.setItem('NewsFromHome', JSON.stringify(results));
   });
 

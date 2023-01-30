@@ -21,9 +21,15 @@ main {
 }
 
 .accordion__item {
-  margin-bottom: 0.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 15%);
+  margin-bottom: 20px;
+  @include media-min(tablet) {
+    margin-bottom: 30px;
+  }
+  @include media-min(desktop) {
+    margin-bottom: 60px;
+  }
 }
 
 .accordion__header {
@@ -82,12 +88,34 @@ main {
 
 .accordion__news {
   @include media-min(tablet) {
+    margin-left: 0;
+    &:nth-child(even) {
+      margin-right: 0;
+    }
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+  }
+  @include media-min(desktop) {
+    margin-left: 0;
+    margin-right: 0;
+    &:nth-child(3) {
+      margin-right: 0;
+      margin-left: 30px;
+    }
   }
 }
 
 .accordion__list {
   margin-top: 40px;
   margin-bottom: 28px;
+
+  @include media-min(tablet) {
+    margin-bottom: 48px;
+  }
+  @include media-min(desktop) {
+    margin-bottom: 60px;
+  }
 }
 
 .loading-svg {
@@ -98,5 +126,35 @@ main {
 
   @include media-min(desktop) {
     display: none;
+  }
+}
+
+.accordion__read {
+  opacity: 0.8;
+  position: relative;
+}
+
+.accordion__read .news__image-box {
+  &::before {
+    content: 'Have read';
+    background-color: transparent;
+    font-family: 'Manrope';
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #00b912;
+
+    position: absolute;
+    right: 10;
+    top: 10;
+
+    @include media-min(tablet) {
+      right: 20;
+      top: 20;
+    }
+    @include media-min(tablet) {
+      right: 30;
+      top: 15;
+    }
   }
 }
