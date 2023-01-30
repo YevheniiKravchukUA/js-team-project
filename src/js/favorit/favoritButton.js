@@ -1,6 +1,6 @@
 const newsListEl = document.querySelector('.news__list')
 
-function addRemoveHandler(event) {
+ function addRemoveHandler(event) {
 if (event.target.nodeName !== "DIV" ) {
     return
 } else if (event.target.firstElementChild.textContent === 'Add to favorite') {
