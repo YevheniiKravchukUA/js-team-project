@@ -8,8 +8,6 @@ const refs = {
   newsList: document.querySelector('.news__list'),
 };
 
-let page = 1;
-
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -19,11 +17,9 @@ refs.form.addEventListener('submit', e => {
 
   const oprions = {
     q: refs.input.value.trim(),
-    page,
   };
 
   getNews('articles', oprions).then(resp => {
-    console.log(resp);
     refs.newsList.innerHTML = '';
     renderMarkup(
       refs.newsList,
@@ -31,6 +27,13 @@ refs.form.addEventListener('submit', e => {
     );
   });
 
+  window.localStorage.setItem(
+    'lastFetchType',
+    JSON.stringify({
+      type: 'input',
+      value: refs.input.value,
+    })
+  );
+
   refs.input.value = '';
-  page += 1;
 });

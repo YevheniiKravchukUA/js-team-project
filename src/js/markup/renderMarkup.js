@@ -1,5 +1,5 @@
-function renderMarkup(parent, markup) {
-  parent.insertAdjacentHTML('beforeend', markup);
+function renderMarkup(parent, markup, placeForRender = 'beforeend') {
+  parent.insertAdjacentHTML(placeForRender, markup);
   return;
 }
 
