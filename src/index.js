@@ -1,8 +1,8 @@
 import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
-import { getDate, setDate, addEventListenerToChangeDate } from './js/calendar';
 import './js/header/toggle-theme-dark';
+import './js/calendar/calendar';
 import './js/header/burger-menu';
 import './js/favorit/favoritButton';
 import './js/pagination/pagination';
