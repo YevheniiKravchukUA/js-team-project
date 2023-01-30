@@ -19,4 +19,5 @@ const refs = {
 getNews('mostPopular').then(resp => {
   const markup = createMarkup(resp.data.results, 'popularCards');
   renderMarkup(refs.newsList, markup);
+  // console.log(resp.data.results)
 });

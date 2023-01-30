@@ -24,3 +24,10 @@ if (event.target.nodeName !== "DIV" ) {
 } 
 
 newsListEl.addEventListener('click', addRemoveHandler)
+
+
+
+   
+// const itemInLocStore = JSON.parse(localStorage.getItem('news-added-to-favorite')).map(item => {
+//     if(item.id ===)
+// })

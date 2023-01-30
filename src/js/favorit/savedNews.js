@@ -50,6 +50,8 @@ function deleteItemMarkup(event) {
     createMarkup()
 }
             
+
+
             
             
             favoretiNewsEl.addEventListener('click', deleteItemMarkup)
