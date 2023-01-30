@@ -4,15 +4,15 @@ import { renderMarkup } from './js/markup/renderMarkup';
 import { addToread } from './js/add-to-read';
 
 // import './js/calendar';
-import './js/toggle-theme-dark';
-import './js/burger-menu';
+import './js/header/toggle-theme-dark';
+import './js/header/burger-menu';
 import './js/favorit/favoritButton';
-import './js/pagination';
+import './js/pagination/pagination';
 import './js/favorit/favoriteToLocalStorage';
 import './js/requests/weatherFetch';
 import './js/categories';
-import './js/pagination/purePajinate.es5.min.js';
-import '../src/js/btn-search-mob';
+import './js/header/btn-search-mob';
+import './js/header/inputFetch';
 import './js/add-to-read';
 
 const refs = {
