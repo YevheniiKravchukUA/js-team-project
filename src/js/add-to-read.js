@@ -48,6 +48,8 @@ export function handleReadMoreBtnClick(e) {
   );
 
   console.log('readNews -->', alreadyRead.readNews);
+  console.log('readN[0] -->', alreadyRead.readNews[0]);
+  console.log('readN[0].news -->', alreadyRead.readNews[0].news);
 
   const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
   const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
@@ -55,14 +57,26 @@ export function handleReadMoreBtnClick(e) {
   alreadyRead.newsArr = news; // записываем их для поиска
 
   const checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
-  console.log('🆑  checkedNew', checkedNew);
 
-  const todayNews = {
-    date: `${alreadyRead.getCurrentDate()}`,
-    news: checkedNew,
-  };
+  if (alreadyRead.readNews.length === 0) {
+    const todayNews = {
+      date: `${alreadyRead.getCurrentDate()}`,
+      news: [checkedNew],
+    };
 
-  alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
+    alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
+  }
+  // (alreadyRead.getCurrentDate() === alreadyRead.readNews[0].date)
+  else {
+    alreadyRead.readNews[0].news.push(checkedNew);
+  }
+
+  // const todayNews = {
+  //   date: `${alreadyRead.getCurrentDate()}`,
+  //   news: [checkedNew],
+  // };
+
+  // alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
 
   // alreadyRead.leaveUniqueNews();
   alreadyRead.saveToLocalStorage();
