@@ -3,11 +3,16 @@ import { Datepicker } from 'vanillajs-datepicker';
 const calendar = document.querySelector('.calendar__btn');
 const datepicker = new Datepicker(calendar, {
   weekStart: 1,
-  todayHighlight: true,
+  defaultViewDate: new Date(),
+  format: 'dd/mm/yyyy',
 });
-datepicker.setDate(Date.now());
+setDate(new Date());
 
-function getSelectedDate() {
+function setDate(timestamp) {
+  datepicker.setDate(timestamp);
+}
+
+function getDate() {
   return datepicker.getDate('yyyy-mm-dd');
 }
 
@@ -18,4 +23,4 @@ function addEventListenerToChangeDate(callback) {
   });
 }
 
-export { getSelectedDate, addEventListenerToChangeDate };
+export { getDate, setDate, addEventListenerToChangeDate };
