@@ -5,16 +5,16 @@ const jsonFromLocalStorage =
 const news = alreadyRead.dataFromLocalStorage(jsonFromLocalStorage);
 const accordionEl = document.querySelector('.accordion');
 
+spliceObjWithNews();
+
 function spliceObjWithNews() {
-  const arrOfNews = news.map(arr => arr[0]);
-  return arrOfNews;
+  if (news !== null) {
+    const arrOfNews = news.map(arr => arr[0]);
+    renderAccordionBody(arrOfNews);
+  }
 }
 
-const arrOfNews = spliceObjWithNews();
-
-renderAccordionBody();
-
-function renderAccordionBody() {
+function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews
     .map(
       item => `<div class="accordion__item accordion__item_show">
