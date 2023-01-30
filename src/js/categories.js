@@ -10,6 +10,7 @@ const newsListRef = document.querySelector('.news__list');
 click.addEventListener('click', (e) => {
     const activeBtnLine = document.querySelector('.active_underline');
      const activeBtn = document.querySelector('.is_active')
+
     if (e.target.nodeName !== 'BUTTON') {
         return
     }
@@ -48,5 +49,4 @@ click.addEventListener('click', (e) => {
             
         })
     }
-    
 })
