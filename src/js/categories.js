@@ -44,6 +44,14 @@ function getCategoriesNews(e) {
         newsListRef,
         createMarkup(resp.data.results, 'categoryCards')
       );
+
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'category',
+          value: e.target.textContent.toLowerCase(),
+        })
+      );
     });
   } else {
     if (activeBtnLine) {
@@ -60,6 +68,13 @@ function getCategoriesNews(e) {
       renderMarkup(
         newsListRef,
         createMarkup(resp.data.results, 'categoryCards')
+      );
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'category',
+          value: e.target.textContent.toLowerCase(),
+        })
       );
     });
   }

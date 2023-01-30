@@ -211,7 +211,6 @@ function createMarkup(data, markupName) {
   }
 
   markup[markupName] = markupArr.join('');
-  console.log(markup[markupName]);
   return markup[markupName];
 }
 
