@@ -19,7 +19,6 @@ addEventListenerToChangeDate(e => {
   } else {
     console.log('else');
     getNews('articles', { fq: date }).then(resp => {
-      console.log(resp.data.response.docs);
       refs.newsList.innerHTML = '';
       renderMarkup(
         refs.newsList,
