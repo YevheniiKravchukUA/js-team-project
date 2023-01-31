@@ -3,6 +3,10 @@ import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
 import { addFetchedToLocalStorage } from './fromFetchToLocalStorage';
 import { haveRead } from './haveReadOnHome.js';
+import { all } from 'axios';
+import { init } from './pagination/pagination.js';
+import { showNoNewsSection } from './requests/emptyFetch.js';
+import { checkBtnId } from './favorit/checkBtnId.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
@@ -35,6 +39,7 @@ function getCategoriesNews(e) {
     e.target.classList.contains('btn-menu') ||
     e.target.classList.contains('btn-desktop')
   ) {
+  
     getNews('category', {}, e.target.textContent.toLowerCase())
       .then(resp => {
         newsListRef.innerHTML = '';
@@ -77,6 +82,33 @@ function renderActiveBtn(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
+
+    getNews(
+      'category',
+      { limit: 500 },
+      e.target.textContent.toLowerCase()
+    ).then(resp => {
+      init(Math.ceil(resp.data.results.length / 10));
+    });
+
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+
+        showNoNewsSection(resp.data.results);
+
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
   } else {
     if (activeBtnLine) {
       activeBtnLine.classList.remove('active-underline');
@@ -87,6 +119,33 @@ function renderActiveBtn(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
+
+    getNews(
+      'category',
+      { limit: 500 },
+      e.target.textContent.toLowerCase()
+    ).then(resp => {
+      init(Math.ceil(resp.data.results.length / 10));
+    });
+
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+
+        showNoNewsSection(resp.data.results);
+
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
   }
 }
 
