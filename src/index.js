@@ -29,3 +29,4 @@ getNews('mostPopular')
   });
 
 const item = localStorage.getItem('NewsFromHome');
+// console.log('🆑  item', item);

@@ -7,6 +7,7 @@
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 
   @media screen and (max-width: 767px) {
     height: 630px;
@@ -246,4 +247,48 @@
   width: 168px;
   height: 28px;
   cursor: pointer;
+}
+
+.already-read {
+  &::before {
+    content: 'Already read';
+    background-color: transparent;
+    font-family: 'Manrope';
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #00b912;
+
+    position: absolute;
+    right: 10;
+    top: 10;
+    @include media-min(tablet) {
+      right: 20;
+      top: 20;
+    }
+    @include media-min(desktop) {
+      right: 30;
+      top: 15;
+    }
+  }
+}
+
+.already-read-bg {
+  &::after {
+    content: '';
+    background: rgba(244, 244, 244, 0.4);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 395px;
+    height: 630px;
+    @include media-min(tablet) {
+      width: 353px;
+      height: 675px;
+    }
+    @include media-min(desktop) {
+      width: 395px;
+    }
+  }
 }
