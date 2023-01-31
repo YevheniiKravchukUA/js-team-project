@@ -24,7 +24,6 @@ class Read {
   }
 
   findCheckedNew(id) {
-    // debugger;
     console.log('id -->', id);
 
     let selectedNews;
@@ -99,6 +98,7 @@ export function handleReadMoreBtnClick(e) {
 // toDo - create uniqueFilter function
 // toDo - fix date format from 12/1/2023 to 12/01/2023
 // toDo - сделать класс show только первому списку аккордеона
+// toDo - убрать дублирование в сторедж пришедщих новіх новостей
 
 // testing arrays with different days
 const dayOne = [

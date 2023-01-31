@@ -42,9 +42,9 @@ function renderAccordionItems(arr) {
       let wayToUrl;
 
       if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
-        wayToUrl = `${item.multimedia[0].url}`;
+        wayToUrl = `${item.multimedia[3].url}`;
       } else if (item.hasOwnProperty('multimedia')) {
-        wayToUrl = `https://static01.nyt.com/${item.multimedia[0].url}`;
+        wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
       } else if (item.hasOwnProperty('media')) {
         wayToUrl = item.media[0]['media-metadata'][2].url;
       }

@@ -48,9 +48,6 @@ addEventListenerToChangeDate(e => {
         console.log('resp -->', resp);
         addFetchedToLocalStorage(resp);
         haveRead.checkFetchedNewsByID(resp);
-
-        // localStorage.setItem('NewsFromHome', JSON.stringify(results));
-        // haveRead.checkFetchedNewsByID(results);
       });
   }
 });

@@ -17,8 +17,18 @@ class HaveReadStyles {
 
     if (arrOfId !== null) {
       array.forEach(result => {
-        if (arrOfId.includes(String(result.id))) {
-          this.addAlreadyReadStyles(String(result.id));
+        let selected;
+
+        if (result.hasOwnProperty('slug_name')) {
+          selected = result.slug_name;
+        } else if (result.hasOwnProperty('_id')) {
+          selected = result._id;
+        } else if (result.hasOwnProperty('id')) {
+          selected = String(result.id);
+        }
+
+        if (arrOfId.includes(selected)) {
+          this.addAlreadyReadStyles(selected);
         }
       });
     }
