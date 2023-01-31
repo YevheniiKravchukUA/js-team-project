@@ -47,10 +47,6 @@ export function handleReadMoreBtnClick(e) {
     e.target.parentNode.parentNode.getAttribute('data-id')
   );
 
-  console.log('readNews -->', alreadyRead.readNews);
-  // console.log('readN[0] -->', alreadyRead.readNews[0]);
-  // console.log('readN[0].news -->', alreadyRead.readNews[0].news);
-
   const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
   const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
 
@@ -63,7 +59,6 @@ export function handleReadMoreBtnClick(e) {
       date: `${alreadyRead.getCurrentDate()}`,
       news: [checkedNew],
     };
-
     alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
   } else {
     alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(checkedNew);
@@ -75,7 +70,7 @@ export function handleReadMoreBtnClick(e) {
 
 // common arr in localStorage []
 // strucure of arr with read-news on single day
-//    [{date:30.01.2023, news: {...}, {....}, {....}}] - arr on every date
+//    [{date:30.01.2023, news: [{...}, {....}, {....}]] - arr on every date
 
 // toDo - create uniqueFilter function
 // toDo - fix date format from 12/1/2023 to 12/01/2023
@@ -976,3 +971,5 @@ const dayTwo = [
 const arr = [dayOne, dayTwo];
 
 // localStorage.setItem('alreadyReadNews', JSON.stringify(arr));
+
+// let idOfHaveReadNews = [];

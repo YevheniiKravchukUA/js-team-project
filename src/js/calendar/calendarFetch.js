@@ -3,27 +3,41 @@ import { getDate, setDate, addEventListenerToChangeDate } from './calendar';
 import { getNews } from '../requests/newsFetch';
 import { renderMarkup } from '../markup/renderMarkup';
 import { createMarkup } from '../markup/createMarkup';
+import { init } from '../pagination/pagination';
+import { showNoNewsSection } from '../requests/emptyFetch';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
 
 addEventListenerToChangeDate(e => {
-  const date = getDate();
-  const chooseDate = new Date(date);
+
+  let size;
+  const date = getDate('yyyymmdd');
+  const chooseDate = new Date(getDate('yyyy-mm-dd'));
   const dateNow = Date.now();
 
   if (dateNow <= chooseDate.getTime()) {
     Notify.warning('You can`t see into the future, it`s a pity!');
+
     return;
   } else {
-    console.log('else');
-    getNews('articles', { fq: date }).then(resp => {
+    getNews('articles', {
+      begin_date: date,
+      end_date: date,
+    }).then(resp => {
       refs.newsList.innerHTML = '';
       renderMarkup(
         refs.newsList,
-        createMarkup(resp.data.response.docs, 'inputsCards')
+        createMarkup(resp.data.response.docs, 'dateCards')
       );
+      size = Math.ceil(resp.data.response.meta.hits / 10);
+      if (size > 99) {
+        size = 99;
+      }
+      init(size);
+
+      showNoNewsSection(resp.data.response.docs);
 
       window.localStorage.setItem(
         'lastFetchType',

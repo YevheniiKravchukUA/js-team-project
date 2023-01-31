@@ -1,12 +1,15 @@
 import { getNews } from './requests/newsFetch.js';
 import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
+import { all } from 'axios';
+import { init } from './pagination/pagination.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
 const categoriesMenuJs = document.querySelector('.js-others-btn');
 const categoriesBtn = document.querySelector('.categories');
 const newsListRef = document.querySelector('.news__list');
+const bodyClik = document.querySelector('body');
 
 getNews('allCategories').then(resp => {
   renderMarkup(
@@ -21,6 +24,29 @@ getNews('allCategories').then(resp => {
 });
 
 function getCategoriesNews(e) {
+  if (
+    e.target.classList.contains('btn-menu') ||
+    e.target.classList.contains('btn-desktop')
+  ) {
+    getNews('category', {}, e.target.textContent.toLowerCase()).then(resp => {
+      newsListRef.innerHTML = '';
+      renderMarkup(
+        newsListRef,
+        createMarkup(resp.data.results, 'categoryCards')
+      );
+
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'category',
+          value: e.target.textContent.toLowerCase(),
+        })
+      );
+    });
+  }
+}
+
+function renderActiveBtn(e) {
   const activeBtnLine = document.querySelector('.active-underline');
   const activeBtnColor = document.querySelector('.is-active');
   if (e.target.nodeName !== 'BUTTON') {
@@ -38,21 +64,26 @@ function getCategoriesNews(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
-    getNews('category', {}, e.target.textContent.toLowerCase()).then(resp => {
-      newsListRef.innerHTML = '';
-      renderMarkup(
-        newsListRef,
-        createMarkup(resp.data.results, 'categoryCards')
-      );
 
-      window.localStorage.setItem(
-        'lastFetchType',
-        JSON.stringify({
-          type: 'category',
-          value: e.target.textContent.toLowerCase(),
-        })
-      );
-    });
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        newsListRef.innerHTML = '';
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+        init(10);
+
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
+
   } else {
     if (activeBtnLine) {
       activeBtnLine.classList.remove('active-underline');
@@ -63,21 +94,35 @@ function getCategoriesNews(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
-    getNews('category', {}, e.target.textContent.toLowerCase()).then(resp => {
-      newsListRef.innerHTML = '';
-      renderMarkup(
-        newsListRef,
-        createMarkup(resp.data.results, 'categoryCards')
-      );
-      window.localStorage.setItem(
-        'lastFetchType',
-        JSON.stringify({
-          type: 'category',
-          value: e.target.textContent.toLowerCase(),
-        })
-      );
-    });
+
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        newsListRef.innerHTML = '';
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+        init(10);
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
   }
 }
 
 categoriesBtn.addEventListener('click', getCategoriesNews);
+categoriesBtn.addEventListener('click', renderActiveBtn);
+bodyClik.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') {
+    if (categoriesMenu.classList.contains('visible')) {
+      categoriesMenu.classList.remove('visible');
+      showCategories.classList.remove('desktop-btn-active');
+      categoriesMenuJs.classList.remove('desktop-btn-active');
+    }
+  }
+});

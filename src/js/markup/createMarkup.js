@@ -25,6 +25,7 @@ function createMarkup(data, markupName) {
       }
 
       return `
+
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
@@ -49,6 +50,9 @@ function createMarkup(data, markupName) {
   }
 
   if (markupName === 'dateCards') {
+    let date;
+    let normalDate;
+
     markupArr = data.flatMap(el => {
       if (el.multimedia.length !== 0) {
         imageUrl = IMAGES_URL + el.multimedia[0].url;
@@ -57,8 +61,11 @@ function createMarkup(data, markupName) {
           'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
       }
 
+      date = new Date(el.pub_date);
+      normalDate = date.toISOString().split('T')[0];
+
       return `
-      <li class="news__item" data-id="${el.id}">
+      <li class="news__item" data-id="${el._id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
@@ -72,7 +79,7 @@ function createMarkup(data, markupName) {
         <h2 class="news__title">${el.abstract}</h2>
         <p class="news__text">${el.lead_paragraph}</p>
         <div class="news__lower-box">
-          <p class="news__date">${el.pub_date}</p>
+          <p class="news__date">${normalDate}</p>
           <a class="news__readmore-link" target="_blank"
           rel="noopener noreferrer" href="${el.web_url}">Read more</a>
         </div>
@@ -82,6 +89,9 @@ function createMarkup(data, markupName) {
   }
 
   if (markupName === 'categoryCards') {
+    let date;
+    let normalDate;
+
     markupArr = data.flatMap(el => {
       if (el.multimedia) {
         if (el.multimedia.length >= 3) {
@@ -95,8 +105,11 @@ function createMarkup(data, markupName) {
           'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
       }
 
+      date = new Date(el.published_date);
+      normalDate = date.toISOString().split('T')[0];
+
       return `
-      <li class="news__item" data-id="${el.id}">
+      <li class="news__item" data-id="${el.uri}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
@@ -110,7 +123,7 @@ function createMarkup(data, markupName) {
         <h2 class="news__title">${el.title}</h2>
         <p class="news__text">${el.abstract}</p>
         <div class="news__lower-box">
-          <p class="news__date">${el.published_date}</p>
+          <p class="news__date">${normalDate}</p>
           <a class="news__readmore-link" target="_blank"
           rel="noopener noreferrer" href="${el.url}">Read more</a>
         </div>
@@ -120,6 +133,9 @@ function createMarkup(data, markupName) {
   }
 
   if (markupName === 'inputsCards') {
+    let date;
+    let normalDate;
+
     markupArr = data.flatMap(el => {
       if (el.multimedia.length !== 0) {
         imageUrl = IMAGES_URL + el.multimedia[0].url;
@@ -128,8 +144,11 @@ function createMarkup(data, markupName) {
           'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
       }
 
+      date = new Date(el.pub_date);
+      normalDate = date.toISOString().split('T')[0];
+
       return `
-      <li class="news__item" data-id="${el.id}">
+      <li class="news__item" data-id="${el._id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">
@@ -143,7 +162,7 @@ function createMarkup(data, markupName) {
         <h2 class="news__title">${el.abstract}</h2>
         <p class="news__text">${el.lead_paragraph}</p>
         <div class="news__lower-box">
-          <p class="news__date">${el.pub_date}</p>
+          <p class="news__date">${normalDate}</p>
           <a class="news__readmore-link" target="_blank"
           rel="noopener noreferrer" href="${el.web_url}">Read more</a>
         </div>

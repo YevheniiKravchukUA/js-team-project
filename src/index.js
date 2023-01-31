@@ -1,6 +1,7 @@
 import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
+import { haveRead } from './js/haveReadOnHome';
 import './js/header/toggle-theme-dark';
 import './js/calendar/calendar';
 import './js/calendar/calendarFetch';
@@ -26,6 +27,5 @@ getNews('mostPopular')
   })
   .then(results => {
     localStorage.setItem('NewsFromHome', JSON.stringify(results));
+    haveRead.checkFetchedNewsByID(results);
   });
-
-const item = localStorage.getItem('NewsFromHome');
