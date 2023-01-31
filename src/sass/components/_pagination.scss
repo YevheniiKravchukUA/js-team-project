@@ -1,53 +1,3 @@
-// .tui-pagination {
-//   margin-top: 40px;
-//   display: flex;
-//   justify-content: center;
-
-//   margin-bottom: 60px;
-//   gap: 4px;
-// }
-
-// .tui-page-btn {
-// @include main-font(500, 14px, 19px);
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// text-align: center;
-// height: 28px;
-// width: 28px;
-// background-color: getColor(full-white);
-// border: 1px solid #4440f6;
-// border-radius: 2px;
-// @media screen and (min-width: 768px) {
-//   height: 33px;
-//   width: 31px;
-//   }
-// }
-// .tui-is-selected {
-//   background-color: #4440f6;
-//   color: getColor(full-white);
-// }
-// .tui-prev-is-ellip {
-//   border: none;
-// }
-// .tui-next-is-ellip {
-//   border: none;
-// }
-// .tui-first {
-//   display: none;
-// }
-// .tui-last {
-//   display: none;
-// }
-// .tui-prev {
-//   width: 82px;
-//   height: 33px;
-// }
-// .tui-next {
-//   width: 82px;
-//   height: 33px;
-// }
-
 #pagination {
   margin-top: 40px;
   display: flex;
@@ -100,6 +50,6 @@
   color: getColor(full-white);
 }
 a.arr {
-  width: 80px;
-  height: 30px;
+  width: 80px !important;
+  height: 30px !important;
 }
