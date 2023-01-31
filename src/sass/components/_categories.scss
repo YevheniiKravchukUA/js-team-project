@@ -129,6 +129,10 @@
   margin-top: 28px;
 
   justify-content: space-between;
+
+  @include media-max(mobile) {
+    margin-bottom: 40px;
+  }
 }
 
 .modal {

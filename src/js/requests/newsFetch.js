@@ -17,8 +17,6 @@ async function getNews(pathName, parameters, category) {
     Notify.failure(error);
   }
 }
-const yourData = '2023-01-20';
-getNews('articles', { fq: `pub_date:${yourData}` });
 
 export { getNews };
 
