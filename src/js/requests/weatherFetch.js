@@ -1,8 +1,21 @@
 import axios from 'axios';
 import { KEYS } from '../axios/axiosDefaults';
+import {
+  rain,
+  clearDay,
+  clearNight,
+  fog,
+  storm,
+  partlyCloudDay,
+  partlyCloudDayRain,
+  partlyCloudSnow,
+  partlyCloudNigtht,
+  partlyCloudNigthtRain,
+} from './weather-svg';
+
+let svgWeather = '';
 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
-
 class Weather {
   constructor() {
     this.options = {
@@ -36,7 +49,81 @@ class Weather {
   renderWeatherMarkup(data) {
     const weatherBlockEl = document.querySelector('.weather');
     const localDate = this.dateFormatter(this.userTime);
+    switch (data.weather[0].icon) {
+      case '01d':
+        svgWeather = clearDay;
+        break;
 
+      case '01n':
+        svgWeather = clearNight;
+        break;
+
+      case '02d':
+        svgWeather = partlyCloudDay;
+        break;
+
+      case '02n':
+        svgWeather = partlyCloudNigtht;
+        break;
+
+      case '03d':
+        svgWeather = partlyCloudDay;
+        break;
+
+      case '03n':
+        svgWeather = partlyCloudNigtht;
+        break;
+
+      case '04d':
+        svgWeather = partlyCloudDay;
+        break;
+
+      case '04n':
+        svgWeather = partlyCloudNigtht;
+        break;
+
+      case '09d':
+        svgWeather = rain;
+        break;
+
+      case '09n':
+        svgWeather = rain;
+        break;
+
+      case '10d':
+        svgWeather = partlyCloudDayRain;
+        break;
+
+      case '10n':
+        svgWeather = partlyCloudNigthtRain;
+        break;
+
+      case '11d':
+        svgWeather = storm;
+        break;
+
+      case '11n':
+        svgWeather = storm;
+        break;
+
+      case '13d':
+        svgWeather = partlyCloudSnow;
+        break;
+
+      case '13n':
+        svgWeather = partlyCloudSnow;
+        break;
+
+      case '50d':
+        svgWeather = fog;
+        break;
+
+      case '50n':
+        svgWeather = fog;
+        break;
+
+      default:
+    }
     const markup = `
     <div class="weather__info info">
   <p class="info__temp">${Math.floor(data.main.temp)}°</p>
@@ -50,12 +137,9 @@ class Weather {
     </div>
   </div>
 </div>
-<img
-  src="http://openweathermap.org/img/w/${data.weather[0].icon}.png"
-  alt="image of sun"
-  width="128"
-  class="weather-img"
-/><p class="weather__date-week">
+<svg class="weather-img" ${svgWeather}
+</svg>
+<p class="weather__date-week">
   ${localDate.dayOfWeek}
 </p>
 <p class="weather__date-date">
