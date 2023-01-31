@@ -22,7 +22,6 @@ refs.form.addEventListener('submit', e => {
   const oprions = {
     q: refs.input.value.trim(),
   };
-
   getNews('articles', oprions).then(resp => {
     refs.newsList.innerHTML = '';
     renderMarkup(
@@ -30,22 +29,22 @@ refs.form.addEventListener('submit', e => {
       createMarkup(resp.data.response.docs, 'inputsCards')
     );
 
+    showNoNewsSection(resp.data.response.docs);
+
     size = Math.ceil(resp.data.response.meta.hits / 10);
     if (size > 99) {
       size = 99;
     }
+
+    window.localStorage.setItem(
+      'lastFetchType',
+      JSON.stringify({
+        type: 'input',
+        value: refs.input.value,
+      })
+    );
+
     init(size);
+    refs.input.value = '';
   });
-
-  showNoNewsSection(resp.data.response.docs);
-
-  window.localStorage.setItem(
-    'lastFetchType',
-    JSON.stringify({
-      type: 'input',
-      value: refs.input.value,
-    })
-  );
-
-  refs.input.value = '';
 });

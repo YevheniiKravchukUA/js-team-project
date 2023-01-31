@@ -3,6 +3,7 @@ import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
 import { all } from 'axios';
 import { init } from './pagination/pagination.js';
+import { showNoNewsSection } from './requests/emptyFetch.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
@@ -74,6 +75,8 @@ function renderActiveBtn(e) {
         );
         init(10);
 
+        showNoNewsSection(resp.data.results);
+
         window.localStorage.setItem(
           'lastFetchType',
           JSON.stringify({
@@ -83,7 +86,6 @@ function renderActiveBtn(e) {
         );
       }
     );
-
   } else {
     if (activeBtnLine) {
       activeBtnLine.classList.remove('active-underline');
@@ -102,7 +104,11 @@ function renderActiveBtn(e) {
           newsListRef,
           createMarkup(resp.data.results, 'categoryCards')
         );
+
         init(10);
+
+        showNoNewsSection(resp.data.response.docs);
+
         window.localStorage.setItem(
           'lastFetchType',
           JSON.stringify({

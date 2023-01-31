@@ -12,9 +12,9 @@ import './js/favorit/favoriteToLocalStorage';
 import './js/requests/weatherFetch';
 import './js/categories';
 import './js/header/btn-search-mob';
-import './js/header/inputFetch';
 import './js/add-to-read';
 import './js/pagination/paginationFetch';
+import './js/header/inputFetch';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
