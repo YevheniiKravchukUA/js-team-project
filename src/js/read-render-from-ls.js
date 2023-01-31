@@ -38,13 +38,22 @@ function renderAccordionBody(arrOfNews) {
 
 function renderAccordionItems(arr) {
   const markup = arr
-    .map(
-      item =>
-        `<li class="news__item accordion__news accordion__read">
+    .map(item => {
+      let wayToUrl;
+
+      if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
+        wayToUrl = `${item.multimedia[3].url}`;
+      } else if (item.hasOwnProperty('multimedia')) {
+        wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
+      } else if (item.hasOwnProperty('media')) {
+        wayToUrl = item.media[0]['media-metadata'][2].url;
+      }
+
+      const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
           <img
             class="news__image"
-            src="${item.media[0]['media-metadata'][2].url}"
+            src="${wayToUrl}"
             alt=""
           />
           <div class="div">
@@ -59,9 +68,11 @@ function renderAccordionItems(arr) {
               <use href="./images/icons.svg#icon-icon-heart-1"></use>
             </svg>
           </div>
-          <h3 class="news__image-heading">${item.section}</h3>
+          <h3 class="news__image-heading">${
+            item.section || item.section_name
+          }</h3>
         </div>
-        <h2 class="news__title">${item.title}
+        <h2 class="news__title">${item.title || item.abstract}
         </h2>
         <p class="news__text">${item.abstract}
         </p>
@@ -69,8 +80,9 @@ function renderAccordionItems(arr) {
           <p class="news__date">date</p>
           <a class="news__readmore-link" href="#">Read more</a>
         </div>
-      </li>`
-    )
+      </li>`;
+      return markup;
+    })
     .join('');
   return markup;
 }

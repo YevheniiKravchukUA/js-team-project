@@ -16,8 +16,8 @@ import './js/categories';
 import './js/header/btn-search-mob';
 import './js/add-to-read';
 import './js/pagination/paginationFetch';
+import { addFetchedToLocalStorage } from './js/fromFetchToLocalStorage';
 import './js/header/inputFetch';
-
 
 const refs = {
   newsList: document.querySelector('.news__list'),
@@ -30,6 +30,6 @@ getNews('mostPopular')
     return resp.data.results;
   })
   .then(results => {
-    localStorage.setItem('NewsFromHome', JSON.stringify(results));
+    addFetchedToLocalStorage(results);
     haveRead.checkFetchedNewsByID(results);
   });

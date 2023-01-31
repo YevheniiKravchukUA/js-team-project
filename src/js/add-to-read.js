@@ -4,6 +4,8 @@ class Read {
     this.readNews = this.dataFromLocalStorage(this.jsonReadNews) || [];
     // новости из хранилища, сюда их записываем чтоб потом искать в них по айди нужый обьект
     this.newsArr = [];
+    this.checkedNew = null;
+    this.currentItemID = null;
   }
 
   getJsonFromLocalStorage(key) {
@@ -21,8 +23,26 @@ class Read {
     }
   }
 
-  findCheckedNew(currentItemID) {
-    return this.newsArr.find(item => item.id === currentItemID);
+  findCheckedNew(id) {
+    console.log('id -->', id);
+
+    let selectedNews;
+
+    this.newsArr.forEach(element => {
+      if (element.hasOwnProperty('_id') && element._id === id) {
+        selectedNews = element;
+      } else if (element.hasOwnProperty('id') && element.id === Number(id)) {
+        selectedNews = element;
+      } else if (
+        element.hasOwnProperty('slug_name') &&
+        element.slug_name === id
+      ) {
+        selectedNews = element;
+      }
+    });
+    console.log('🆑selectedNews', selectedNews);
+
+    return selectedNews;
   }
   getCurrentDate() {
     const date = new Date();
@@ -43,25 +63,28 @@ class Read {
 export const alreadyRead = new Read();
 
 export function handleReadMoreBtnClick(e) {
-  const currentItemID = Number(
+  const currentItemID = String(
     e.target.parentNode.parentNode.getAttribute('data-id')
   );
+  console.log('🆑  currentItemID', currentItemID);
 
   const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
   const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
 
   alreadyRead.newsArr = news; // записываем их для поиска
 
-  const checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
+  alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID); //получаем обьект отмеченой новости
 
   if (alreadyRead.readNews.length === 0) {
     const todayNews = {
       date: `${alreadyRead.getCurrentDate()}`,
-      news: [checkedNew],
+      news: [alreadyRead.checkedNew],
     };
     alreadyRead.readNews.push(todayNews); // пушим в массив из ЛокалС или пустой
   } else {
-    alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(checkedNew);
+    alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(
+      alreadyRead.checkedNew
+    );
   }
 
   // alreadyRead.leaveUniqueNews();
@@ -75,6 +98,7 @@ export function handleReadMoreBtnClick(e) {
 // toDo - create uniqueFilter function
 // toDo - fix date format from 12/1/2023 to 12/01/2023
 // toDo - сделать класс show только первому списку аккордеона
+// toDo - убрать дублирование в сторедж пришедщих новіх новостей
 
 // testing arrays with different days
 const dayOne = [

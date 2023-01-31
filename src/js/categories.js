@@ -1,6 +1,8 @@
 import { getNews } from './requests/newsFetch.js';
 import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
+import { addFetchedToLocalStorage } from './fromFetchToLocalStorage';
+import { haveRead } from './haveReadOnHome.js';
 import { all } from 'axios';
 import { init } from './pagination/pagination.js';
 import { showNoNewsSection } from './requests/emptyFetch.js';
@@ -23,28 +25,42 @@ getNews('allCategories').then(resp => {
     createMarkup(resp.data.results, 'categoriesForDesktop'),
     'afterbegin'
   );
+  // return resp.data.results;
 });
+// .then(results => {
+//   console.log('respAll -->', results);
+
+//   addFetchedToLocalStorage(results);
+//   haveRead.checkFetchedNewsByID(results);
+// });
 
 function getCategoriesNews(e) {
   if (
     e.target.classList.contains('btn-menu') ||
     e.target.classList.contains('btn-desktop')
   ) {
-    getNews('category', {}, e.target.textContent.toLowerCase()).then(resp => {
-      newsListRef.innerHTML = '';
-      renderMarkup(
-        newsListRef,
-        createMarkup(resp.data.results, 'categoryCards')
-      );
-      checkBtnId()
-      window.localStorage.setItem(
-        'lastFetchType',
-        JSON.stringify({
-          type: 'category',
-          value: e.target.textContent.toLowerCase(),
-        })
-      );
-    });
+  
+    getNews('category', {}, e.target.textContent.toLowerCase())
+      .then(resp => {
+        newsListRef.innerHTML = '';
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+        return resp.data.results;
+      })
+      .then(results => {
+        addFetchedToLocalStorage(results);
+        haveRead.checkFetchedNewsByID(results);
+      });
   }
 }
 

@@ -109,7 +109,7 @@ function createMarkup(data, markupName) {
       normalDate = date.toISOString().split('T')[0];
 
       return `
-      <li class="news__item" data-id="${el.uri}">
+      <li class="news__item" data-id="${el.slug_name}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">

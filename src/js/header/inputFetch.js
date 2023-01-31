@@ -2,6 +2,8 @@ import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
 import { showNoNewsSection } from '../requests/emptyFetch';
 import { getNews } from '../requests/newsFetch';
+import { addFetchedToLocalStorage } from '../fromFetchToLocalStorage';
+import { haveRead } from '../haveReadOnHome';
 import { init } from '../pagination/pagination';
 import { checkBtnId } from '../favorit/checkBtnId';
 
@@ -23,6 +25,27 @@ refs.form.addEventListener('submit', e => {
   const oprions = {
     q: refs.input.value.trim(),
   };
+
+  getNews('articles', oprions)
+    .then(resp => {
+      refs.newsList.innerHTML = '';
+      renderMarkup(
+        refs.newsList,
+        createMarkup(resp.data.response.docs, 'inputsCards')
+      );
+
+      showNoNewsSection(resp.data.response.docs);
+
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'input',
+          value: refs.input.value,
+        })
+      );
+
+
+  refs.input.value = '';
   getNews('articles', oprions).then(resp => {
     refs.newsList.innerHTML = '';
     renderMarkup(
@@ -48,5 +71,10 @@ refs.form.addEventListener('submit', e => {
       init(size);
     }
     refs.input.value = '';
-  });
+        return resp.data.response.docs;
+    })
+    .then(results => {
+      addFetchedToLocalStorage(results);
+      haveRead.checkFetchedNewsByID(results);
+    });
 });
