@@ -2,6 +2,7 @@ import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
 import { haveRead } from './js/haveReadOnHome';
+import './js/firebase/firebase';
 import { checkBtnId } from './js/favorit/checkBtnId';
 import './js/header/toggle-theme-dark';
 import './js/calendar/calendar';
