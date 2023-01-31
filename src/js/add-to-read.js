@@ -34,6 +34,11 @@ class Read {
         selectedNews = element;
       } else if (element.hasOwnProperty('id') && element.id === Number(id)) {
         selectedNews = element;
+      } else if (
+        element.hasOwnProperty('slug_name') &&
+        element.slug_name === id
+      ) {
+        selectedNews = element;
       }
     });
     console.log('🆑selectedNews', selectedNews);

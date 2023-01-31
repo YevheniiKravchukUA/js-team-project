@@ -45,6 +45,9 @@ function renderAccordionItems(arr) {
       } else if (item.hasOwnProperty('multimedia')) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[0].url}`;
       }
+      // else if (item.hasOwnProperty('multimedia')) {
+      //   wayToUrl = `https://static01.nyt.com/${item.multimedia[0].url}`;
+      // }
 
       const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
