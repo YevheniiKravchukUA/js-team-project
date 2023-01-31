@@ -1,6 +1,7 @@
 import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
 import { getNews } from '../requests/newsFetch';
+import { init } from '../pagination/pagination';
 
 const refs = {
   form: document.querySelector('.header-form'),
@@ -9,6 +10,7 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', e => {
+  let size;
   e.preventDefault();
 
   if (refs.input.value.trim() === '') {
@@ -25,6 +27,11 @@ refs.form.addEventListener('submit', e => {
       refs.newsList,
       createMarkup(resp.data.response.docs, 'inputsCards')
     );
+    size = Math.ceil(resp.data.response.meta.hits / 10);
+    if (size > 99) {
+      size = 99;
+    }
+    init(size);
   });
 
   window.localStorage.setItem(

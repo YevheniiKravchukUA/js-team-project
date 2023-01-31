@@ -4,6 +4,7 @@
   justify-content: center;
   margin-bottom: 60px;
   gap: 4px;
+  padding: 0;
 }
 #pagination a,
 #pagination i {
@@ -29,8 +30,8 @@
   border: 1px solid #4440f6;
 
   @media screen and (min-width: 768px) {
-    height: 32px;
-    width: 32px;
+    height: 31px;
+    width: 33px;
   }
 
   margin: 0 4px 0 4px;
@@ -50,6 +51,10 @@
   color: getColor(full-white);
 }
 a.arr {
-  width: 80px !important;
-  height: 30px !important;
+  width: 70px !important;
+  height: 28px !important;
+  @media screen and (min-width: 768px) {
+    width: 80px !important;
+    height: 31px !important;
+  }
 }
