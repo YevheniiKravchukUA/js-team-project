@@ -17,7 +17,7 @@ const newsListElements = document.querySelector('.news__list')
               }
            })
         });
-      }, 1000);
+      }, 700);
 
 
 
