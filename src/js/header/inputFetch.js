@@ -14,6 +14,8 @@ refs.form.addEventListener('submit', e => {
   let size;
   e.preventDefault();
 
+  let size;
+
   if (refs.input.value.trim() === '') {
     return;
   }
@@ -46,4 +48,6 @@ refs.form.addEventListener('submit', e => {
       })
     );
   });
+
+  refs.input.value = '';
 });
