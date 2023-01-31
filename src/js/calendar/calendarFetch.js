@@ -17,8 +17,10 @@ addEventListenerToChangeDate(e => {
     Notify.warning('You can`t see into the future, it`s a pity!');
     return;
   } else {
-    console.log('else');
-    getNews('articles', { fq: date }).then(resp => {
+    getNews('articles', {
+      begin_date: date,
+      end_date: date,
+    }).then(resp => {
       refs.newsList.innerHTML = '';
       renderMarkup(
         refs.newsList,
