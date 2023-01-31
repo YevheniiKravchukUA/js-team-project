@@ -4,7 +4,7 @@ function showNoNewsSection(data) {
     newsSection: document.querySelector('.news'),
     pagination: document.querySelector('.pagination '),
   };
-  console.log(data);
+
   if (data.length === 0) {
     refs.noNewsSection.classList.remove('is-hidden');
     refs.newsSection.classList.add('is-hidden');
