@@ -1,5 +1,6 @@
 import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
+import { showNoNewsSection } from '../requests/emptyFetch';
 import { getNews } from '../requests/newsFetch';
 
 const refs = {
@@ -25,15 +26,17 @@ refs.form.addEventListener('submit', e => {
       refs.newsList,
       createMarkup(resp.data.response.docs, 'inputsCards')
     );
-  });
 
-  window.localStorage.setItem(
-    'lastFetchType',
-    JSON.stringify({
-      type: 'input',
-      value: refs.input.value,
-    })
-  );
+    showNoNewsSection(resp.data.response.docs);
+
+    window.localStorage.setItem(
+      'lastFetchType',
+      JSON.stringify({
+        type: 'input',
+        value: refs.input.value,
+      })
+    );
+  });
 
   refs.input.value = '';
 });

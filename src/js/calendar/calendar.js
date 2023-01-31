@@ -12,8 +12,8 @@ function setDate(timestamp) {
   datepicker.setDate(timestamp);
 }
 
-function getDate() {
-  return datepicker.getDate('yyyymmdd');
+function getDate(dateType) {
+  return datepicker.getDate(dateType);
 }
 
 function addEventListenerToChangeDate(callback) {
