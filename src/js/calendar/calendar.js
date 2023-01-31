@@ -13,7 +13,7 @@ function setDate(timestamp) {
 }
 
 function getDate() {
-  return datepicker.getDate('yyyy-mm-dd');
+  return datepicker.getDate('yyyymmdd');
 }
 
 function addEventListenerToChangeDate(callback) {
