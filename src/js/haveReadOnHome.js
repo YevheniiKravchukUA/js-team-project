@@ -1,54 +1,61 @@
-let currentItemID = null;
+class HaveReadStyles {
+  constructor() {
+    this.currentItemID = null;
+  }
+  addAlreadyReadStyles(currentItemID) {
+    const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
+
+    const imgBoxEl = currItemEl.firstElementChild;
+    imgBoxEl.classList.add('already-read');
+
+    const loverBoxEl = currItemEl.lastElementChild;
+    loverBoxEl.classList.add('already-read-bg');
+  }
+  checkFetchedNewsByID(array) {
+    const json = this.getJsonFromLocalStorage('IdOfHaveReadNews');
+    const arrOfId = this.dataFromLocalStorage(json);
+
+    if (arrOfId !== null) {
+      array.forEach(result => {
+        if (arrOfId.includes(String(result.id))) {
+          this.addAlreadyReadStyles(String(result.id));
+        }
+      });
+    }
+  }
+  dataFromLocalStorage(json) {
+    try {
+      const data = JSON.parse(json);
+      return data;
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    }
+  }
+  getJsonFromLocalStorage(key) {
+    const json = localStorage.getItem(key);
+    return json;
+  }
+}
+
+export const haveRead = new HaveReadStyles();
 
 export function addHaveReadStylesForCard(event) {
-  currentItemID = event.target.parentNode.parentNode.getAttribute('data-id');
+  haveRead.currentItemID =
+    event.target.parentNode.parentNode.getAttribute('data-id');
 
-  const json = getJsonFromLocalStorage('IdOfHaveReadNews');
-  const arrOfId = dataFromLocalStorage(json);
+  const json = haveRead.getJsonFromLocalStorage('IdOfHaveReadNews');
+  const arrOfId = haveRead.dataFromLocalStorage(json);
+
   if (arrOfId !== null) {
-    arrOfId.push(currentItemID);
+    arrOfId.push(haveRead.currentItemID);
     localStorage.setItem('IdOfHaveReadNews', JSON.stringify(arrOfId));
   } else {
-    localStorage.setItem('IdOfHaveReadNews', JSON.stringify([currentItemID]));
+    localStorage.setItem(
+      'IdOfHaveReadNews',
+      JSON.stringify([haveRead.currentItemID])
+    );
   }
 
-  addAlreadyReadStyles(currentItemID);
-}
-
-function addAlreadyReadStyles(currentItemID) {
-  const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
-
-  const imgBoxEl = currItemEl.firstElementChild;
-  imgBoxEl.classList.add('already-read');
-
-  const loverBoxEl = currItemEl.lastElementChild;
-  loverBoxEl.classList.add('already-read-bg');
-}
-
-export function checkFetchedNewsByID(array) {
-  const json = getJsonFromLocalStorage('IdOfHaveReadNews');
-  const arrOfId = dataFromLocalStorage(json);
-
-  if (arrOfId !== null) {
-    array.forEach(result => {
-      if (arrOfId.includes(String(result.id))) {
-        addAlreadyReadStyles(String(result.id));
-      }
-    });
-  }
-}
-
-function dataFromLocalStorage(json) {
-  try {
-    const data = JSON.parse(json);
-    return data;
-  } catch (error) {
-    console.log(error.name);
-    console.log(error.message);
-  }
-}
-
-function getJsonFromLocalStorage(key) {
-  const json = localStorage.getItem(key);
-  return json;
+  haveRead.addAlreadyReadStyles(haveRead.currentItemID);
 }
