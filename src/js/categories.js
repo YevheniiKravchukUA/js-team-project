@@ -4,6 +4,7 @@ import { renderMarkup } from './markup/renderMarkup.js';
 import { all } from 'axios';
 import { init } from './pagination/pagination.js';
 import { showNoNewsSection } from './requests/emptyFetch.js';
+import { checkBtnId } from './favorit/checkBtnId.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
@@ -35,7 +36,7 @@ function getCategoriesNews(e) {
         newsListRef,
         createMarkup(resp.data.results, 'categoryCards')
       );
-
+      checkBtnId()
       window.localStorage.setItem(
         'lastFetchType',
         JSON.stringify({
@@ -66,14 +67,22 @@ function renderActiveBtn(e) {
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
 
+    getNews(
+      'category',
+      { limit: 500 },
+      e.target.textContent.toLowerCase()
+    ).then(resp => {
+      init(Math.ceil(resp.data.results.length / 10));
+      console.log(Math.ceil(resp.data.results.length / 10));
+    });
+
     getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
       resp => {
-        newsListRef.innerHTML = '';
+        console.log(resp);
         renderMarkup(
           newsListRef,
           createMarkup(resp.data.results, 'categoryCards')
         );
-        init(10);
 
         showNoNewsSection(resp.data.results);
 
@@ -97,17 +106,24 @@ function renderActiveBtn(e) {
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
 
+    getNews(
+      'category',
+      { limit: 500 },
+      e.target.textContent.toLowerCase()
+    ).then(resp => {
+      init(Math.ceil(resp.data.results.length / 10));
+      console.log(Math.ceil(resp.data.results.length / 10));
+    });
+
     getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
       resp => {
-        newsListRef.innerHTML = '';
+        console.log(resp);
         renderMarkup(
           newsListRef,
           createMarkup(resp.data.results, 'categoryCards')
         );
 
-        init(10);
-
-        showNoNewsSection(resp.data.response.docs);
+        showNoNewsSection(resp.data.results);
 
         window.localStorage.setItem(
           'lastFetchType',
