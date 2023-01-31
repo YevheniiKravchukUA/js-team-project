@@ -108,7 +108,7 @@
   visibility: visible;
 }
 
-.date-text {
+.date_text {
   display: none;
   margin-left: auto;
   margin-right: 37px;
@@ -126,6 +126,8 @@
   display: flex;
   margin-bottom: 60px;
   margin-top: 28px;
+
+  justify-content: space-between;
 }
 
 .modal {
