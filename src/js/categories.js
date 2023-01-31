@@ -73,12 +73,10 @@ function renderActiveBtn(e) {
       e.target.textContent.toLowerCase()
     ).then(resp => {
       init(Math.ceil(resp.data.results.length / 10));
-      console.log(Math.ceil(resp.data.results.length / 10));
     });
 
     getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
       resp => {
-        console.log(resp);
         renderMarkup(
           newsListRef,
           createMarkup(resp.data.results, 'categoryCards')
@@ -112,12 +110,10 @@ function renderActiveBtn(e) {
       e.target.textContent.toLowerCase()
     ).then(resp => {
       init(Math.ceil(resp.data.results.length / 10));
-      console.log(Math.ceil(resp.data.results.length / 10));
     });
 
     getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
       resp => {
-        console.log(resp);
         renderMarkup(
           newsListRef,
           createMarkup(resp.data.results, 'categoryCards')
