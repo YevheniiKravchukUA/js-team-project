@@ -1,5 +1,6 @@
 import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
+import { showNoNewsSection } from '../requests/emptyFetch';
 import { getNews } from '../requests/newsFetch';
 import { init } from '../pagination/pagination';
 
@@ -27,6 +28,7 @@ refs.form.addEventListener('submit', e => {
       refs.newsList,
       createMarkup(resp.data.response.docs, 'inputsCards')
     );
+    
     size = Math.ceil(resp.data.response.meta.hits / 10);
     if (size > 99) {
       size = 99;
@@ -34,13 +36,16 @@ refs.form.addEventListener('submit', e => {
     init(size);
   });
 
-  window.localStorage.setItem(
-    'lastFetchType',
-    JSON.stringify({
-      type: 'input',
-      value: refs.input.value,
-    })
-  );
+    showNoNewsSection(resp.data.response.docs);
+
+    window.localStorage.setItem(
+      'lastFetchType',
+      JSON.stringify({
+        type: 'input',
+        value: refs.input.value,
+      })
+    );
+  });
 
   refs.input.value = '';
 });

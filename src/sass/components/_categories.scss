@@ -31,7 +31,7 @@
     width: 0;
     height: 0;
   }
-  @include media-min(desktop) {
+  @include media-min(tablet) {
     width: 168px;
     padding-top: 14px;
     padding-left: 24px;
@@ -46,18 +46,18 @@
   pointer-events: none;
 }
 
-.input_time {
-  width: 152px;
-  height: 31px;
-  border-radius: 20px;
-  font-size: 12px;
-  line-height: 1.33;
-  font-family: 'Manrope';
-  border: 1px solid getColor('primary-text');
-  @include media-min(desktop) {
-    width: 168px;
-  }
-}
+// .input_time {
+//   width: 152px;
+//   height: 31px;
+//   border-radius: 20px;
+//   font-size: 12px;
+//   line-height: 1.33;
+//   font-family: 'Manrope';
+//   border: 1px solid getColor('primary-text');
+//   @include media-min(desktop) {
+//     width: 168px;
+//   }
+// }
 .btn-desktop {
   width: auto;
   height: 31px;
@@ -102,13 +102,14 @@
   line-height: 1.33;
   letter-spacing: 0.01em;
   margin-bottom: 12px;
+  text-align: start;
 }
 
 .visible {
   visibility: visible;
 }
 
-.date_text {
+.date-text {
   display: none;
   margin-left: auto;
   margin-right: 37px;
@@ -128,6 +129,10 @@
   margin-top: 28px;
 
   justify-content: space-between;
+
+  @include media-max(mobile) {
+    margin-bottom: 40px;
+  }
 }
 
 .modal {
@@ -137,18 +142,18 @@
     margin-left: 0;
   }
 }
-.modal_svg_calendar {
-  position: absolute;
-  top: 25%;
-  left: 12px;
-  fill: getColor('primary_active');
-}
-.modal_svg_up {
-  position: absolute;
-  top: 35%;
-  right: 12px;
-  fill: #a2a2a2;
-}
+// .modal_svg_calendar {
+//   position: absolute;
+//   top: 25%;
+//   left: 12px;
+//   fill: getColor('primary_active');
+// }
+// .modal_svg_up {
+//   position: absolute;
+//   top: 35%;
+//   right: 12px;
+//   fill: #a2a2a2;
+// }
 .categories {
   display: flex;
 }

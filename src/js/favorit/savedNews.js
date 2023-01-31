@@ -1,9 +1,5 @@
 const favoretiNewsEl = document.querySelector('.favorite-list')
 
-
-
-
-
 function createMarkup() {
     if (localStorage.length === 1) {
         console.log('NONE')
@@ -11,7 +7,7 @@ function createMarkup() {
     }
     const markup = JSON.parse(localStorage.getItem('news-added-to-favorite'))
     .map(item =>`
-    <li class="news__item" data-id="${item.id}">
+    <li class="news__item-fav" data-id="${item.id}">
     <div class="news__image-box">
     <img class="news__image" src="${item.image}" alt="" />
     <div class="div">
@@ -49,11 +45,6 @@ function deleteItemMarkup(event) {
     localStorage.setItem('news-added-to-favorite', JSON.stringify(arrayWithremovedNew));
     createMarkup()
 }
-            
-
-
-            
-            
             favoretiNewsEl.addEventListener('click', deleteItemMarkup)
             
             
