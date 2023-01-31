@@ -129,7 +129,7 @@ function createMarkup(data, markupName) {
       }
 
       return `
-      <li class="news__item" data-id="${el.id}">
+      <li class="news__item" data-id="${el._id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
             <div class="div">

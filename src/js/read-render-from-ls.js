@@ -38,13 +38,14 @@ function renderAccordionBody(arrOfNews) {
 
 function renderAccordionItems(arr) {
   const markup = arr
-    .map(
-      item =>
-        `<li class="news__item accordion__news accordion__read">
+    .map(item => {
+      `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
           <img
             class="news__image"
-            src="${item.media[0]['media-metadata'][2].url}"
+            src="${
+              item.media[0]['media-metadata'][2].url || item.multimedia[0].url
+            }"
             alt=""
           />
           <div class="div">
@@ -69,8 +70,8 @@ function renderAccordionItems(arr) {
           <p class="news__date">date</p>
           <a class="news__readmore-link" href="#">Read more</a>
         </div>
-      </li>`
-    )
+      </li>`;
+    })
     .join('');
   return markup;
 }
