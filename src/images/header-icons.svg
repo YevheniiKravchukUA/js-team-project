@@ -13,10 +13,7 @@
             <path fill="none" stroke="#f4f4f4" style="stroke: var(--color1, #f4f4f4)" stroke-linejoin="round"
                 stroke-linecap="round" stroke-miterlimit="4" stroke-width="5.3333" d="M24 48l16-16-16-16"></path>
         </symbol>
-        <symbol id="icon-close" width="24" height="24" fill="none" viewBox="0 0 64 64">
-            <path stroke="#111321" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M18 6 6 18M6 6l12 12" />
-        </symbol>
+
         <symbol id="icon-heart" viewBox="0 0 64 64">
             <path fill="#4440f6" style="fill: var(--color2, #4440f6)"
                 d="M64 32c0 17.673-14.327 32-32 32s-32-14.327-32-32c0-17.673 14.327-32 32-32s32 14.327 32 32z"></path>
@@ -78,9 +75,9 @@
             </path>
         </symbol>
 
-        <symbol id="close-modal" viewBox="0 0 24 24">
-            <path
-                d="M15 4.10786L13.8921 3L9.5 7.39214L5.10786 3L4 4.10786L8.39214 8.5L4 12.8921L5.10786 14L9.5 9.60786L13.8921 14L15 12.8921L10.6079 8.5L15 4.10786Z" />
+        <symbol id="close-modal" width="24" height="24" fill="none">
+            <path stroke="#111321" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M18 6 6 18M6 6l12 12" />
         </symbol>
     </defs>
 </svg>
