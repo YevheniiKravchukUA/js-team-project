@@ -1,17 +1,18 @@
 .menu-container {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 24px 16px 18px 16px;
+  // padding: 24px 16px 18px 16px;
   background-color: #ffffff;
   z-index: 100;
 
-  transform: translateY(-1000%);
+  transform: translateY(-101%);
   transition: transform 250ms ease-in-out;
 
   &.is-open {
@@ -25,18 +26,15 @@
 
 .menu-container .menu-toggle {
   position: absolute;
-  top: 28px;
+  top: 35px;
   right: 16px;
-  color: #111321;
 }
 
 .mobile-menu {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-bottom: 248px;
-
-  background-color: tomato;
+  gap: 12px;
+  // background-color: tomato;
 }
 
 .burger-logo {
@@ -46,14 +44,44 @@
   font-size: 24px;
   line-height: 33px;
   color: #111321;
-  margin: 0 0 68px 0;
+  margin: 24px 0 68px 16px;
 }
 
 .switch-menu {
   display: flex;
   gap: 8px;
+  margin: auto auto 18px 16px;
 }
 
 .mobile-menu-item {
   display: flex;
+  align-items: center;
+  // padding: 6px 0 6px 16px;
+}
+
+.burger-svg {
+  margin: 6px 14px 6px 16px;
+}
+
+.mobile-menu-link {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #111321;
+}
+
+.bgc-active {
+  background-color: #4440f6;
+  color: #f4f4f4;
+}
+
+.chevron-right {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+li > .mobile-menu-link--active {
+  color: #f4f4f4;
 }

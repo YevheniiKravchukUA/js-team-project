@@ -33,3 +33,11 @@ body.dark-theme {
 .dark-theme .menu-container {
   background-color: #2e2e2e;
 }
+.dark-theme .close-svg {
+  fill: #f4f4f4;
+}
+
+.dark-theme .header-input::placeholder {
+  color: #f4f4f4;
+  opacity: 0.4;
+}
