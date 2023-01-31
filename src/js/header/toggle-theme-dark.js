@@ -1,8 +1,21 @@
 // const toggle = document.getElementById('toggle');
 const toggle = document.querySelector('.js-toggle');
 const body = document.body;
+const toggleT = document.querySelector('.js-toggle-t');
+const toggleM = document.querySelector('.js-toggle-m');
 
-toggle.addEventListener('input', e => {
+if (JSON.parse(window.localStorage.getItem('theme'))) {
+  body.classList.add('dark-theme');
+  toggle.checked = true;
+  toggleT.checked = true;
+  toggleM.checked = true;
+}
+
+toggle.addEventListener('input', toggleCallback);
+toggleT.addEventListener('input', toggleCallback);
+toggleM.addEventListener('input', toggleCallback);
+
+function toggleCallback(e) {
   const isChecked = e.target.checked;
 
   if (isChecked) {
@@ -10,4 +23,5 @@ toggle.addEventListener('input', e => {
   } else {
     body.classList.remove('dark-theme');
   }
-});
+  window.localStorage.setItem('theme', isChecked);
+}
