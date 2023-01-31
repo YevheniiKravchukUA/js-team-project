@@ -13,7 +13,6 @@ addEventListenerToChangeDate(e => {
   const date = getDate('yyyymmdd');
   const chooseDate = new Date(getDate('yyyy-mm-dd'));
   const dateNow = Date.now();
-  console.log(chooseDate);
 
   if (dateNow <= chooseDate.getTime()) {
     Notify.warning('You can`t see into the future, it`s a pity!');
@@ -27,7 +26,7 @@ addEventListenerToChangeDate(e => {
       refs.newsList.innerHTML = '';
       renderMarkup(
         refs.newsList,
-        createMarkup(resp.data.response.docs, 'inputsCards')
+        createMarkup(resp.data.response.docs, 'dateCards')
       );
 
       showNoNewsSection(resp.data.response.docs);
