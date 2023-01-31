@@ -40,14 +40,14 @@ function renderAccordionItems(arr) {
   const markup = arr
     .map(item => {
       let wayToUrl;
-      if (item.hasOwnProperty('media')) {
-        wayToUrl = item.media[0]['media-metadata'][2].url;
+
+      if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
+        wayToUrl = `${item.multimedia[0].url}`;
       } else if (item.hasOwnProperty('multimedia')) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[0].url}`;
+      } else if (item.hasOwnProperty('media')) {
+        wayToUrl = item.media[0]['media-metadata'][2].url;
       }
-      // else if (item.hasOwnProperty('multimedia')) {
-      //   wayToUrl = `https://static01.nyt.com/${item.multimedia[0].url}`;
-      // }
 
       const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
