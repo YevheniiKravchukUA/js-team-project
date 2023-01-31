@@ -15,12 +15,12 @@ var Pagination = {
   Extend: function (data) {
     if (window.innerWidth < 768) {
       data = data || {};
-      Pagination.size = data.size || 300;
+      Pagination.size = data.size || 0;
       Pagination.page = data.page || 1;
       Pagination.step = data.step || 0;
     } else {
       data = data || {};
-      Pagination.size = data.size || 300;
+      Pagination.size = data.size || 0;
       Pagination.page = data.page || 1;
       Pagination.step = data.step || 1;
     }

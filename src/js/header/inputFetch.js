@@ -43,8 +43,9 @@ refs.form.addEventListener('submit', e => {
         value: refs.input.value,
       })
     );
-
-    init(size);
+    if (resp.data.response.meta.hits !== 0) {
+      init(size);
+    }
     refs.input.value = '';
   });
 });
