@@ -3,6 +3,7 @@ import { renderMarkup } from '../markup/renderMarkup';
 import { showNoNewsSection } from '../requests/emptyFetch';
 import { getNews } from '../requests/newsFetch';
 import { init } from '../pagination/pagination';
+import { checkBtnId } from '../favorit/checkBtnId';
 
 const refs = {
   form: document.querySelector('.header-form'),
@@ -30,7 +31,7 @@ refs.form.addEventListener('submit', e => {
     );
 
     showNoNewsSection(resp.data.response.docs);
-
+    checkBtnId()
     size = Math.ceil(resp.data.response.meta.hits / 10);
     if (size > 99) {
       size = 99;

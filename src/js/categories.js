@@ -4,6 +4,7 @@ import { renderMarkup } from './markup/renderMarkup.js';
 import { all } from 'axios';
 import { init } from './pagination/pagination.js';
 import { showNoNewsSection } from './requests/emptyFetch.js';
+import { checkBtnId } from './favorit/checkBtnId.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
@@ -35,7 +36,7 @@ function getCategoriesNews(e) {
         newsListRef,
         createMarkup(resp.data.results, 'categoryCards')
       );
-
+      checkBtnId()
       window.localStorage.setItem(
         'lastFetchType',
         JSON.stringify({

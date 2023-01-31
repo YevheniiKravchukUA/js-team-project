@@ -5,6 +5,7 @@ import { renderMarkup } from '../markup/renderMarkup';
 import { createMarkup } from '../markup/createMarkup';
 import { init } from '../pagination/pagination';
 import { showNoNewsSection } from '../requests/emptyFetch';
+import { checkBtnId } from '../favorit/checkBtnId';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
@@ -31,6 +32,7 @@ addEventListenerToChangeDate(e => {
         refs.newsList,
         createMarkup(resp.data.response.docs, 'dateCards')
       );
+      checkBtnId()
       size = Math.ceil(resp.data.response.meta.hits / 10);
       if (size > 99) {
         size = 99;
