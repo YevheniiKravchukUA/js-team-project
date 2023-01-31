@@ -9,11 +9,10 @@
   margin-right: auto;
 
   @media screen and (max-width: 767px) {
-    width: 288px;
     height: 630px;
   }
   @media screen and (min-width: 768px) {
-    width: 353px;
+    width: 351px;
     height: 675px;
     display: inline-flex;
     flex-direction: column;
@@ -25,7 +24,7 @@
     }
   }
   @media screen and (min-width: 1280px) {
-    width: 395px;
+    width: 393px;
     margin-right: 0;
 
     &:nth-child(2n) {

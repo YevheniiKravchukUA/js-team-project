@@ -13,6 +13,7 @@ import './js/categories';
 import './js/header/btn-search-mob';
 import './js/header/inputFetch';
 import './js/add-to-read';
+import './js/pagination/paginationFetch';
 
 const refs = {
   newsList: document.querySelector('.news__list'),

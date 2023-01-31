@@ -974,3 +974,5 @@ const dayTwo = [
 ];
 
 const arr = [dayOne, dayTwo];
+
+// localStorage.setItem('alreadyReadNews', JSON.stringify(arr));
