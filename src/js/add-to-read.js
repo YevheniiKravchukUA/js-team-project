@@ -38,19 +38,6 @@ class Read {
   leaveUniqueNews() {
     // toDo create filterUnique function
   }
-  addHaveReadStylesForCard(event) {
-    console.log(event.currentTarget);
-    const currentItemID = Number(
-      event.target.parentNode.parentNode.getAttribute('data-id')
-    );
-    const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
-
-    const imgBoxEl = currItemEl.firstElementChild;
-    imgBoxEl.classList.add('already-read');
-
-    const loverBoxEl = currItemEl.lastElementChild;
-    loverBoxEl.classList.add('already-read-bg');
-  }
 }
 
 export const alreadyRead = new Read();
@@ -984,3 +971,5 @@ const dayTwo = [
 const arr = [dayOne, dayTwo];
 
 // localStorage.setItem('alreadyReadNews', JSON.stringify(arr));
+
+// let idOfHaveReadNews = [];

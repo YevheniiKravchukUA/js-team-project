@@ -1,11 +1,12 @@
-import { handleReadMoreBtnClick, alreadyRead } from '../add-to-read';
+import { handleReadMoreBtnClick } from '../add-to-read';
+import { addHaveReadStylesForCard } from '../haveReadOnHome';
 
 const newsListEl = document.querySelector('.news__list');
 
 function addRemoveHandler(event) {
   if (event.target.classList.contains('news__readmore-link')) {
     handleReadMoreBtnClick(event);
-    alreadyRead.addHaveReadStylesForCard(event);
+    addHaveReadStylesForCard(event);
   }
   if (event.target.nodeName !== 'DIV') {
     return;
