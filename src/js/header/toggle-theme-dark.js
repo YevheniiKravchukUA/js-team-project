@@ -1,4 +1,5 @@
-const toggle = document.getElementById('toggle');
+// const toggle = document.getElementById('toggle');
+const toggle = document.querySelector('.js-toggle');
 const body = document.body;
 
 toggle.addEventListener('input', e => {

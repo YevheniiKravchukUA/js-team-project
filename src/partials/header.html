@@ -20,7 +20,7 @@
     <!-- search from -->
     <form class="header-form" action="submit">
       <label class="label">
-        <input class="header-input" type="search" name="search" placeholder="Search |" />
+        <input class="header-input" autofocus type="search" name="search" placeholder="Search |" />
         <!-- <svg class="form-icon" width="20" height="19">
         <use href="/src/images/header-icons.svg#icon-search"></use>
       </svg> -->
@@ -58,8 +58,8 @@
 
       <!-- бегунок переключателя для таблетки -->
       <li>
-        <div class="toggle1">
-          <input type="checkbox" id="toggle" />
+        <div class="toggle">
+          <input type="checkbox" class="js-toggle" id="toggle" />
           <label for="toggle"></label>
         </div>
       </li>
@@ -85,7 +85,7 @@
       <li>
         <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
           <svg class="menu-toggle__icon" width="24" height="24">
-            <use href="/src/images//icons.svg#icon-menu-burger"></use>
+            <use class="icon-menu-burger" href="/src/images//icons.svg#icon-menu-burger"></use>
           </svg>
         </button>
       </li>

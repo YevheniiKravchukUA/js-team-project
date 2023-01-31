@@ -2,12 +2,24 @@ body.dark-theme {
   background-color: #2e2e2e;
 }
 
+.dark-theme h2 {
+  color: #f4f4f4;
+}
+
 .dark-theme p {
   color: #f4f4f4;
 }
 
 .dark-theme a {
   color: #f4f4f4;
+}
+
+.dark-theme p.news__date {
+  color: #a8a8a8;
+}
+
+.dark-theme .news__readmore-link {
+  color: #4440f7;
 }
 
 .dark-theme .header-input {
@@ -41,3 +53,8 @@ body.dark-theme {
   color: #f4f4f4;
   opacity: 0.4;
 }
+
+// .dark-theme .icon-menu-burger {
+//   stroke: #f4f4f4;
+//   fill: #f4f4f4;
+// }
