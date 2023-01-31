@@ -2,8 +2,8 @@
  * Pagination
  * javascript page navigation
  * * * * * * * * * * * * * * * * */
+const pagination = document.querySelector('#pagination');
 
-const arr = document.querySelector('.arr');
 var Pagination = {
   code: '',
 
@@ -13,10 +13,17 @@ var Pagination = {
 
   // converting initialize data
   Extend: function (data) {
-    data = data || {};
-    Pagination.size = data.size || 300;
-    Pagination.page = data.page || 1;
-    Pagination.step = data.step || 3;
+    if (window.innerWidth < 768) {
+      data = data || {};
+      Pagination.size = data.size || 300;
+      Pagination.page = data.page || 1;
+      Pagination.step = data.step || 0;
+    } else {
+      data = data || {};
+      Pagination.size = data.size || 300;
+      Pagination.page = data.page || 1;
+      Pagination.step = data.step || 1;
+    }
   },
 
   // add pages by number (from [s] to [f])
@@ -33,7 +40,11 @@ var Pagination = {
 
   // add first page with separator
   First: function () {
-    Pagination.code += '<a>1</a><i>...</i>';
+    if (Pagination.page === 1) {
+      return;
+    } else {
+      Pagination.code += '<a>1</a><i>...</i>';
+    }
   },
 
   // --------------------
@@ -86,26 +97,49 @@ var Pagination = {
 
   // find pagination type
   Start: function () {
-    if (Pagination.size < Pagination.step * 2 + 6) {
-      Pagination.Add(1, Pagination.size + 1);
-    } else if (Pagination.page < Pagination.step * 2 + 1) {
-      Pagination.Add(1, Pagination.step * 2 + 4);
-      Pagination.Last();
-    } else if (Pagination.page > Pagination.size - Pagination.step * 2) {
-      Pagination.First();
-      Pagination.Add(
-        Pagination.size - Pagination.step * 2 - 2,
-        Pagination.size + 1
-      );
+    if (window.innerWidth < 768) {
+      if (Pagination.size < Pagination.step * 2 + 6) {
+        Pagination.Add(1, Pagination.size + 1);
+      } else if (Pagination.page < Pagination.step * 2 + 1) {
+        Pagination.Add(1, Pagination.step * 2 + 2);
+        Pagination.Last();
+      } else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+        Pagination.First();
+        Pagination.Add(
+          Pagination.size - Pagination.step * 2,
+          Pagination.size + 1
+        );
+      } else {
+        Pagination.First();
+        Pagination.Add(
+          Pagination.page - Pagination.step + 1,
+          Pagination.page + Pagination.step
+        );
+        Pagination.Last();
+      }
+      Pagination.Finish();
     } else {
-      Pagination.First();
-      Pagination.Add(
-        Pagination.page - Pagination.step,
-        Pagination.page + Pagination.step + 1
-      );
-      Pagination.Last();
+      if (Pagination.size < Pagination.step * 2 + 6) {
+        Pagination.Add(1, Pagination.size + 1);
+      } else if (Pagination.page < Pagination.step * 2 + 1) {
+        Pagination.Add(1, Pagination.step * 2 + 1);
+        Pagination.Last();
+      } else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+        Pagination.First();
+        Pagination.Add(
+          Pagination.size - Pagination.step * 2 + 1,
+          Pagination.size + 1
+        );
+      } else {
+        Pagination.First();
+        Pagination.Add(
+          Pagination.page - Pagination.step + 1,
+          Pagination.page + Pagination.step
+        );
+        Pagination.Last();
+      }
+      Pagination.Finish();
     }
-    Pagination.Finish();
   },
 
   // --------------------
@@ -144,12 +178,22 @@ var Pagination = {
  * Initialization
  * * * * * * * * * * * * * * * * */
 
-var init = function () {
-  Pagination.Init(document.getElementById('pagination'), {
-    size: 20, // pages size
-    page: 1, // selected page
-    step: 1, // pages before and after current
-  });
+var init = function (size) {
+  if (window.innerWidth < 768) {
+    Pagination.Init(document.getElementById('pagination'), {
+      size, // pages size
+      page: 1, // selected page
+      step: 1, // pages before and after current
+    });
+  } else {
+    Pagination.Init(document.getElementById('pagination'), {
+      size, // pages size
+      page: 1, // selected page
+      step: 2, // pages before and after current
+    });
+  }
 };
 
-document.addEventListener('DOMContentLoaded', init, false);
+// document.addEventListener('DOMContentLoaded', init, false);
+
+export { init };

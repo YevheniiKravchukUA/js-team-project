@@ -1,6 +1,8 @@
 import { getNews } from './requests/newsFetch.js';
 import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
+import { all } from 'axios';
+import { init } from './pagination/pagination.js';
 
 const showCategories = document.querySelector('.show-more-btn');
 const categoriesMenu = document.querySelector('.categories-menu');
@@ -62,6 +64,26 @@ function renderActiveBtn(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
+
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        newsListRef.innerHTML = '';
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+        init(10);
+
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
+
   } else {
     if (activeBtnLine) {
       activeBtnLine.classList.remove('active-underline');
@@ -72,6 +94,24 @@ function renderActiveBtn(e) {
     categoriesMenu.classList.remove('visible');
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
+
+    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
+      resp => {
+        newsListRef.innerHTML = '';
+        renderMarkup(
+          newsListRef,
+          createMarkup(resp.data.results, 'categoryCards')
+        );
+        init(10);
+        window.localStorage.setItem(
+          'lastFetchType',
+          JSON.stringify({
+            type: 'category',
+            value: e.target.textContent.toLowerCase(),
+          })
+        );
+      }
+    );
   }
 }
 
