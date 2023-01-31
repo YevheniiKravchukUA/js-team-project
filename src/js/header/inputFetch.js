@@ -11,7 +11,6 @@ const refs = {
 };
 
 refs.form.addEventListener('submit', e => {
-  let size;
   e.preventDefault();
 
   let size;
@@ -30,7 +29,7 @@ refs.form.addEventListener('submit', e => {
       refs.newsList,
       createMarkup(resp.data.response.docs, 'inputsCards')
     );
-    
+
     size = Math.ceil(resp.data.response.meta.hits / 10);
     if (size > 99) {
       size = 99;
@@ -38,16 +37,15 @@ refs.form.addEventListener('submit', e => {
     init(size);
   });
 
-    showNoNewsSection(resp.data.response.docs);
+  showNoNewsSection(resp.data.response.docs);
 
-    window.localStorage.setItem(
-      'lastFetchType',
-      JSON.stringify({
-        type: 'input',
-        value: refs.input.value,
-      })
-    );
-  });
+  window.localStorage.setItem(
+    'lastFetchType',
+    JSON.stringify({
+      type: 'input',
+      value: refs.input.value,
+    })
+  );
 
   refs.input.value = '';
 });
