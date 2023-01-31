@@ -3,17 +3,22 @@ import { alreadyRead } from './add-to-read';
 const jsonFromLocalStorage =
   alreadyRead.getJsonFromLocalStorage('alreadyReadNews');
 const news = alreadyRead.dataFromLocalStorage(jsonFromLocalStorage);
-console.log('🆑  news', news);
 const accordionEl = document.querySelector('.accordion');
 
-spliceObjWithNews();
+checkDataFromLocalStorage();
 
-function spliceObjWithNews() {
+function checkDataFromLocalStorage() {
   if (news !== null) {
-    const arrOfNews = news.map(arr => arr[0]);
-    renderAccordionBody(arrOfNews);
+    // const arrOfNews = news.map(arr => arr[0]);
+    // console.log('🆑  arrOfNews', arrOfNews);
+
+    // console.log('🆑  arrOfNews', arrOfNews);
+    renderAccordionBody(news);
+    // return arrOfNews;
   }
 }
+
+// const arrOfNews = spliceObjWithNews();
 
 function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews
