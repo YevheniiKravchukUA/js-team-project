@@ -37,5 +37,4 @@ refs.form.addEventListener('submit', e => {
       })
     );
   });
-  refs.input.value = '';
 });
