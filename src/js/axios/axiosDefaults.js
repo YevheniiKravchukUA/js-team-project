@@ -32,7 +32,7 @@ const axiosWeather = axios.create({
 const axiosNews = axios.create({
   baseURL: 'https://api.nytimes.com/svc/',
   params: {
-    'api-key': KEYS.NEWS_2,
+    'api-key': KEYS.NEWS,
   },
 });
 

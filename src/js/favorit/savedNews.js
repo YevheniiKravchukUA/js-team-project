@@ -1,12 +1,13 @@
-const favoretiNewsEl = document.querySelector('.favorite-list')
+const favoretiNewsEl = document.querySelector('.favorite-list');
 
 function createMarkup() {
-    if (localStorage.length === 1) {
-        console.log('NONE')
-        return
-    }
+  if (localStorage.length === 1) {
+    return;
+  }
+  if (localStorage.getItem('news-added-to-favorite')) {
     const markup = JSON.parse(localStorage.getItem('news-added-to-favorite'))
-    .map(item =>`
+      .map(
+        item => `
     <li class="news__item-fav" data-id="${item.id}">
     <div class="news__image-box">
     <img class="news__image" src="${item.image}" alt="" />
@@ -26,27 +27,32 @@ function createMarkup() {
         rel="noopener noreferrer" href="${item.href}">Read more</a>
         </div>
         </li>
-        `).join('')
-        
-        favoretiNewsEl.innerHTML = markup
-    }
-    createMarkup()
-    
-function deleteItemMarkup(event) {
-        
+        `
+      )
+      .join('');
 
-        if (event.target.nodeName !== "DIV" ) {
-    return
-} 
-    
-     const arrayWithremovedNew = JSON.parse(localStorage.getItem('news-added-to-favorite')).filter(
-                      item => item.id !== event.target.parentNode.parentNode.dataset.id);
-                    localStorage.removeItem('news-added-to-favorite');
-    localStorage.setItem('news-added-to-favorite', JSON.stringify(arrayWithremovedNew));
-    createMarkup()
+    favoretiNewsEl.innerHTML = markup;
+  }
 }
-            favoretiNewsEl.addEventListener('click', deleteItemMarkup)
-            
-            
-            
-            
+
+createMarkup();
+
+function deleteItemMarkup(event) {
+  if (event.target.nodeName !== 'DIV') {
+    return;
+  }
+
+  if (localStorage.getItem('news-added-to-favorite')) {
+    const arrayWithremovedNew = JSON.parse(
+      localStorage.getItem('news-added-to-favorite')
+    ).filter(item => item.id !== event.target.parentNode.parentNode.dataset.id);
+    localStorage.removeItem('news-added-to-favorite');
+    localStorage.setItem(
+      'news-added-to-favorite',
+      JSON.stringify(arrayWithremovedNew)
+    );
+  }
+
+  createMarkup();
+}
+favoretiNewsEl.addEventListener('click', deleteItemMarkup);
