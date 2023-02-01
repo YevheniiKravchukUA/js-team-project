@@ -69,9 +69,8 @@
             </path>
         </symbol>
 
-        <symbol id="close-modal" width="24" height="24" fill="none">
-            <path stroke="#111321" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M18 6 6 18M6 6l12 12" />
+        <symbol id="close-modal" width="24" height="24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6 6 18M6 6l12 12" />
         </symbol>
     </defs>
 </svg>
