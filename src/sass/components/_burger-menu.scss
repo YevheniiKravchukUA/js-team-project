@@ -63,6 +63,10 @@
 
 .burger-svg {
   margin: 6px 14px 6px 16px;
+  border: 1px solid getColor('full-white');
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
 }
 
 .mobile-menu-link {
