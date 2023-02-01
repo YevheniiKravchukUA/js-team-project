@@ -191,7 +191,7 @@ class SimpleCalendar {
 
   getDate(format) {
     const yyyy = this.selectedDate.getFullYear();
-    const mm = addLeadingZero(this.selectedDate.getMonth());
+    const mm = addLeadingZero(this.selectedDate.getMonth() + 1);
     const dd = addLeadingZero(this.selectedDate.getDate());
     // Негарне рішення, я знаю :-(
     if (format === 'yyyy-mm-dd') {
