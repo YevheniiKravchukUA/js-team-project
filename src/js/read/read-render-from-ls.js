@@ -9,16 +9,9 @@ checkDataFromLocalStorage();
 
 function checkDataFromLocalStorage() {
   if (news !== null) {
-    // const arrOfNews = news.map(arr => arr[0]);
-    // console.log('🆑  arrOfNews', arrOfNews);
-
-    // console.log('🆑  arrOfNews', arrOfNews);
     renderAccordionBody(news);
-    // return arrOfNews;
   }
 }
-
-// const arrOfNews = spliceObjWithNews();
 
 function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews
@@ -40,14 +33,33 @@ function renderAccordionItems(arr) {
   const markup = arr
     .map(item => {
       let wayToUrl;
+      let dateAPI;
+      let urlLive;
+
+      if (item.hasOwnProperty('url')) {
+        urlLive = item.url;
+      } else {
+        urlLive = item.web_url;
+      }
+
+      if (item.hasOwnProperty('pub_date')) {
+        dateAPI = item.pub_date;
+      } else {
+        dateAPI = item.published_date;
+      }
 
       if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
         wayToUrl = `${item.multimedia[3].url}`;
       } else if (item.hasOwnProperty('multimedia')) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
+        dateAPI = item.pub_date;
       } else if (item.hasOwnProperty('media')) {
         wayToUrl = item.media[0]['media-metadata'][2].url;
+        dateAPI = item.published_date;
       }
+
+      date = new Date(dateAPI);
+      normalDate = date.toISOString().split('T')[0];
 
       const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
@@ -64,9 +76,9 @@ function renderAccordionItems(arr) {
             >
               Add to favorite
             </button>
-            <svg class="favorite-btn__icon-add" width="16" height="16">
-              <use href="./images/icons.svg#icon-icon-heart-1"></use>
-            </svg>
+            <svg class="favorite-btn__icon-add" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.66659 1C2.82592 1 1.33325 2.47733 1.33325 4.3C1.33325 5.77133 1.91659 9.26333 7.65858 12.7933C7.76144 12.8559 7.87952 12.889 7.99992 12.889C8.12032 12.889 8.2384 12.8559 8.34125 12.7933C14.0833 9.26333 14.6666 5.77133 14.6666 4.3C14.6666 2.47733 13.1739 1 11.3333 1C9.49258 1 7.99992 3 7.99992 3C7.99992 3 6.50725 1 4.66659 1Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
           </div>
           <h3 class="news__image-heading">${
             item.section || item.section_name
@@ -77,8 +89,8 @@ function renderAccordionItems(arr) {
         <p class="news__text">${item.abstract}
         </p>
         <div class="news__lower-box">
-          <p class="news__date">date</p>
-          <a class="news__readmore-link" href="#">Read more</a>
+          <p class="news__date">${normalDate}</p>
+          <a class="news__readmore-link" href="${urlLive}">Read more</a>
         </div>
       </li>`;
       return markup;

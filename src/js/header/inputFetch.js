@@ -2,8 +2,8 @@ import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
 import { showNoNewsSection } from '../requests/emptyFetch';
 import { getNews } from '../requests/newsFetch';
-import { addFetchedToLocalStorage } from '../fromFetchToLocalStorage';
-import { haveRead } from '../haveReadOnHome';
+import { addFetchedToLocalStorage } from '../read/fromFetchToLocalStorage';
+import { haveRead } from '../read/haveReadOnHome';
 import { init } from '../pagination/pagination';
 import { checkBtnId } from '../favorit/checkBtnId';
 
