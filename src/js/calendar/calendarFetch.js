@@ -14,7 +14,6 @@ const refs = {
 };
 
 addEventListenerToChangeDate(e => {
-
   let size;
   const date = getDate('yyyymmdd');
   const chooseDate = new Date(getDate('yyyy-mm-dd'));
@@ -28,18 +27,19 @@ addEventListenerToChangeDate(e => {
     getNews('articles', {
       begin_date: date,
       end_date: date,
-    }).then(resp => {
-      refs.newsList.innerHTML = '';
-      renderMarkup(
-        refs.newsList,
-        createMarkup(resp.data.response.docs, 'dateCards')
-      );
-      checkBtnId()
-      size = Math.ceil(resp.data.response.meta.hits / 10);
-      if (size > 99) {
-        size = 99;
-      }
-      init(size);
+    })
+      .then(resp => {
+        refs.newsList.innerHTML = '';
+        renderMarkup(
+          refs.newsList,
+          createMarkup(resp.data.response.docs, 'dateCards')
+        );
+        checkBtnId();
+        size = Math.ceil(resp.data.response.meta.hits / 10);
+        if (size > 99) {
+          size = 99;
+        }
+        init(size);
 
         showNoNewsSection(resp.data.response.docs);
 
@@ -53,7 +53,6 @@ addEventListenerToChangeDate(e => {
         return resp.data.response.docs;
       })
       .then(resp => {
-        console.log('resp -->', resp);
         addFetchedToLocalStorage(resp);
         haveRead.checkFetchedNewsByID(resp);
       });
