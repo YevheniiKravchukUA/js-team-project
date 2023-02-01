@@ -54,7 +54,17 @@ body.dark-theme {
   opacity: 0.4;
 }
 
-// .dark-theme .icon-menu-burger {
-//   stroke: #f4f4f4;
-//   fill: #f4f4f4;
-// }
+.dark-theme .menu-toggle__icon {
+  fill: #f4f4f4;
+  stroke: #f4f4f4;
+}
+
+.dark-theme .svg-btn-search {
+  fill: #f4f4f4;
+  stroke: #f4f4f4;
+}
+
+.dark-theme .menu-toggle__svg-close {
+  fill: #f4f4f4;
+  stroke: #f4f4f4;
+}
