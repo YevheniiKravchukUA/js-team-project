@@ -132,11 +132,19 @@ main {
 .accordion__read {
   opacity: 0.8;
   position: relative;
+
+  & .news__image {
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+    filter: alpha(opacity=80) black;
+    -khtml-opacity: 0.7;
+    background-color: #000;
+  }
 }
 
 .accordion__read .news__image-box {
   &::before {
-    content: 'Have read';
+    content: 'Have read   ✓';
     background-color: transparent;
     font-family: 'Manrope';
     font-size: 14px;
