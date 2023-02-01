@@ -29,10 +29,20 @@ const axiosWeather = axios.create({
 //   },
 // });
 
+function randomKey() {
+  const random = Math.random();
+
+  if (random > 5) {
+    return KEYS.NEWS;
+  } else {
+    return KEYS.NEWS_2;
+  }
+}
+
 const axiosNews = axios.create({
   baseURL: 'https://api.nytimes.com/svc/',
   params: {
-    'api-key': KEYS.NEWS,
+    'api-key': randomKey(),
   },
 });
 
