@@ -1,8 +1,8 @@
 import { getNews } from './requests/newsFetch.js';
 import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
-import { addFetchedToLocalStorage } from './fromFetchToLocalStorage';
-import { haveRead } from './haveReadOnHome.js';
+import { addFetchedToLocalStorage } from './read/fromFetchToLocalStorage';
+import { haveRead } from './read/haveReadOnHome';
 import { all } from 'axios';
 import { init } from './pagination/pagination.js';
 import { showNoNewsSection } from './requests/emptyFetch.js';

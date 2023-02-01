@@ -5,8 +5,8 @@ import { renderMarkup } from '../markup/renderMarkup';
 import { createMarkup } from '../markup/createMarkup';
 import { init } from '../pagination/pagination';
 import { showNoNewsSection } from '../requests/emptyFetch';
-import { addFetchedToLocalStorage } from '../fromFetchToLocalStorage';
-import { haveRead } from '../haveReadOnHome';
+import { addFetchedToLocalStorage } from '../read/fromFetchToLocalStorage';
+import { haveRead } from '../read/haveReadOnHome';
 import { checkBtnId } from '../favorit/checkBtnId';
 
 const refs = {

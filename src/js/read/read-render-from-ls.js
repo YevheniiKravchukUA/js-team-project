@@ -9,16 +9,9 @@ checkDataFromLocalStorage();
 
 function checkDataFromLocalStorage() {
   if (news !== null) {
-    // const arrOfNews = news.map(arr => arr[0]);
-    // console.log('🆑  arrOfNews', arrOfNews);
-
-    // console.log('🆑  arrOfNews', arrOfNews);
     renderAccordionBody(news);
-    // return arrOfNews;
   }
 }
-
-// const arrOfNews = spliceObjWithNews();
 
 function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews

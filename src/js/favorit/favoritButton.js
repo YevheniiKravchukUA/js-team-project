@@ -1,5 +1,5 @@
-import { handleReadMoreBtnClick } from '../add-to-read';
-import { addHaveReadStylesForCard } from '../haveReadOnHome';
+import { handleReadMoreBtnClick } from '../read/add-to-read';
+import { addHaveReadStylesForCard } from '../read/haveReadOnHome';
 
 const newsListEl = document.querySelector('.news__list');
 
@@ -33,5 +33,3 @@ function addRemoveHandler(event) {
 
 newsListEl.addEventListener('click', addRemoveHandler);
 newsListEl.addEventListener('click', addRemoveHandler);
-
-

@@ -1,7 +1,7 @@
 import { getNews } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
-import { haveRead } from './js/haveReadOnHome';
+import { haveRead } from './js/read/haveReadOnHome';
 import { checkBtnId } from './js/favorit/checkBtnId';
 import './js/header/toggle-theme-dark';
 import './js/calendar/calendar';
@@ -13,9 +13,9 @@ import './js/favorit/favoriteToLocalStorage';
 import './js/requests/weatherFetch';
 import './js/categories';
 import './js/header/btn-search-mob';
-import './js/add-to-read';
+import './js/read/add-to-read';
 import './js/pagination/paginationFetch';
-import { addFetchedToLocalStorage } from './js/fromFetchToLocalStorage';
+import { addFetchedToLocalStorage } from './js/read/fromFetchToLocalStorage';
 import './js/header/inputFetch';
 
 const refs = {

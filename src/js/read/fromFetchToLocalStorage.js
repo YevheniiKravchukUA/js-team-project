@@ -1,4 +1,4 @@
-import { alreadyRead } from '../js/add-to-read';
+import { alreadyRead } from './add-to-read';
 
 export function addFetchedToLocalStorage(response) {
   const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
