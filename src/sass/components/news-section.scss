@@ -62,6 +62,13 @@
     width: 395px;
     height: 395px;
   }
+  &.already-read-bg {
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+    filter: alpha(opacity=80) black;
+    -khtml-opacity: 0.7;
+    background-color: #000;
+  }
 }
 .news__title {
   height: 99px;
@@ -250,8 +257,9 @@
 }
 
 .already-read {
+  opacity: 0.8;
   &::before {
-    content: 'Already read';
+    content: 'Already read ✓';
     background-color: transparent;
     font-family: 'Manrope';
     font-size: 14px;
@@ -260,6 +268,7 @@
     color: #00b912;
 
     position: absolute;
+    z-index: 99;
     right: 10;
     top: 10;
     @include media-min(tablet) {
@@ -273,22 +282,22 @@
   }
 }
 
-.already-read-bg {
-  &::after {
-    content: '';
-    background: rgba(244, 244, 244, 0.4);
-    border-radius: 4px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 395px;
-    height: 630px;
-    @include media-min(tablet) {
-      width: 353px;
-      height: 675px;
-    }
-    @include media-min(desktop) {
-      width: 395px;
-    }
-  }
-}
+// .already-read-bg {
+//   &::after {
+//     content: '';
+//     background: rgba(244, 244, 244, 0.4);
+//     border-radius: 4px;
+//     position: absolute;
+//     bottom: 0;
+//     right: 0;
+//     width: 395px;
+//     height: 630px;
+//     @include media-min(tablet) {
+//       width: 353px;
+//       height: 675px;
+//     }
+//     @include media-min(desktop) {
+//       width: 395px;
+//     }
+//   }
+// }

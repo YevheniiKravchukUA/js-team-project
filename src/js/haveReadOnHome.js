@@ -4,12 +4,10 @@ class HaveReadStyles {
   }
   addAlreadyReadStyles(currentItemID) {
     const currItemEl = document.querySelector(`[data-id='${currentItemID}']`);
+    currItemEl.classList.add('already-read');
 
-    const imgBoxEl = currItemEl.firstElementChild;
-    imgBoxEl.classList.add('already-read');
-
-    const loverBoxEl = currItemEl.lastElementChild;
-    loverBoxEl.classList.add('already-read-bg');
+    const imgEl = currItemEl.firstElementChild.firstElementChild;
+    imgEl.classList.add('already-read-bg');
   }
   checkFetchedNewsByID(array) {
     const json = this.getJsonFromLocalStorage('IdOfHaveReadNews');

@@ -24,8 +24,6 @@ class Read {
   }
 
   findCheckedNew(id) {
-    console.log('id -->', id);
-
     let selectedNews;
 
     this.newsArr.forEach(element => {
@@ -40,14 +38,15 @@ class Read {
         selectedNews = element;
       }
     });
-    console.log('🆑selectedNews', selectedNews);
 
     return selectedNews;
   }
   getCurrentDate() {
     const date = new Date();
 
-    return `${String(date.getDate())}/${String(date.getMonth() + 1)}/${String(
+    return `${this.addLeadingZero(
+      String(date.getDate())
+    )}/${this.addLeadingZero(String(date.getMonth() + 1))}/${String(
       date.getFullYear()
     )}`;
   }
@@ -58,6 +57,9 @@ class Read {
   leaveUniqueNews() {
     // toDo create filterUnique function
   }
+  addLeadingZero(value) {
+    return String(value).padStart(2, '0');
+  }
 }
 
 export const alreadyRead = new Read();
@@ -66,7 +68,6 @@ export function handleReadMoreBtnClick(e) {
   const currentItemID = String(
     e.target.parentNode.parentNode.getAttribute('data-id')
   );
-  console.log('🆑  currentItemID', currentItemID);
 
   const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
   const news = alreadyRead.dataFromLocalStorage(json); // получаем популярные новости из локалС
