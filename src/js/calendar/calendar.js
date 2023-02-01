@@ -1,26 +1,24 @@
-import { Datepicker } from 'vanillajs-datepicker';
+import { SimpleCalendar } from '../simple-calendar/simple-calendar';
 
-const calendar = document.querySelector('.calendar__btn');
-const datepicker = new Datepicker(calendar, {
-  weekStart: 1,
-  defaultViewDate: new Date(),
-  format: 'dd/mm/yyyy',
+const calendarBtn = document.querySelector('.calendar__btn');
+const simpleCalendar = new SimpleCalendar({
+  fromYear: 1995,
+  toYear: 2030,
+  defaultDate: new Date(),
 });
-setDate(new Date());
 
-function setDate(timestamp) {
-  datepicker.setDate(timestamp);
-}
+// function setDate(timestamp) {
+//   simpleCalendar.setDate(timestamp);
+// }
 
 function getDate(dateType) {
-  return datepicker.getDate(dateType);
+  return simpleCalendar.getDate(dateType);
 }
 
 function addEventListenerToChangeDate(callback) {
-  calendar.addEventListener('changeDate', e => {
-    datepicker.hide();
+  calendarBtn.addEventListener('changeDate', e => {
     callback(e);
   });
 }
 
-export { getDate, setDate, addEventListenerToChangeDate };
+export { getDate, addEventListenerToChangeDate };
