@@ -40,16 +40,32 @@ function renderAccordionItems(arr) {
   const markup = arr
     .map(item => {
       let wayToUrl;
+      let dateAPI;
+      let urlLive;
+
+      if (item.hasOwnProperty('url')) {
+        urlLive = item.url;
+      } else {
+        urlLive = item.web_url;
+      }
+
+      if (item.hasOwnProperty('pub_date')) {
+        dateAPI = item.pub_date;
+      } else {
+        dateAPI = item.published_date;
+      }
 
       if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
         wayToUrl = `${item.multimedia[3].url}`;
       } else if (item.hasOwnProperty('multimedia')) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
+        dateAPI = item.pub_date;
       } else if (item.hasOwnProperty('media')) {
         wayToUrl = item.media[0]['media-metadata'][2].url;
+        dateAPI = item.published_date;
       }
 
-      date = new Date(item.published_date);
+      date = new Date(dateAPI);
       normalDate = date.toISOString().split('T')[0];
 
       const markup = `<li class="news__item accordion__news accordion__read">
@@ -81,7 +97,7 @@ function renderAccordionItems(arr) {
         </p>
         <div class="news__lower-box">
           <p class="news__date">${normalDate}</p>
-          <a class="news__readmore-link" href="#">Read more</a>
+          <a class="news__readmore-link" href="${urlLive}">Read more</a>
         </div>
       </li>`;
       return markup;
