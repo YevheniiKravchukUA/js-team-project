@@ -25,14 +25,7 @@ getNews('allCategories').then(resp => {
     createMarkup(resp.data.results, 'categoriesForDesktop'),
     'afterbegin'
   );
-  // return resp.data.results;
 });
-// .then(results => {
-//   console.log('respAll -->', results);
-
-//   addFetchedToLocalStorage(results);
-//   haveRead.checkFetchedNewsByID(results);
-// });
 
 function getCategoriesNews(e) {
   if (

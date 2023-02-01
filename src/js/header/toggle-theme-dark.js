@@ -10,7 +10,6 @@ if (JSON.parse(window.localStorage.getItem('theme'))) {
   toggleT.checked = true;
   toggleM.checked = true;
 }
-console.log(toggleM);
 
 toggleT.addEventListener('input', toggleCallback);
 toggle.addEventListener('input', toggleCallback);
