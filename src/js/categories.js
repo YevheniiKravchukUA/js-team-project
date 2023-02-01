@@ -39,7 +39,6 @@ function getCategoriesNews(e) {
     e.target.classList.contains('btn-menu') ||
     e.target.classList.contains('btn-desktop')
   ) {
-  
     getNews('category', {}, e.target.textContent.toLowerCase())
       .then(resp => {
         newsListRef.innerHTML = '';
@@ -55,6 +54,8 @@ function getCategoriesNews(e) {
             value: e.target.textContent.toLowerCase(),
           })
         );
+
+        checkBtnId();
         return resp.data.results;
       })
       .then(results => {

@@ -3,6 +3,7 @@ import axios from 'axios';
 export const KEYS = {
   WEATHER: 'f3ada08f24524eaebe0dab7657f9578c',
   NEWS: 'zqSBDCWWfsUqmPN3a0NlmObTljUQwqkT',
+  NEWS_2: 'I88PRBGPysQPobg19OG21QsF1dTuRU9q',
 };
 
 const axiosWeather = axios.create({
@@ -31,7 +32,7 @@ const axiosWeather = axios.create({
 const axiosNews = axios.create({
   baseURL: 'https://api.nytimes.com/svc/',
   params: {
-    'api-key': KEYS.NEWS,
+    'api-key': KEYS.NEWS_2,
   },
 });
 
