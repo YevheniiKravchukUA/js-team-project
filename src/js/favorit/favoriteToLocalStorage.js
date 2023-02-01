@@ -1,9 +1,5 @@
 const newsListElements = document.querySelector('.news__list');
 
-
-  
-
-
 let arrayOfFavoriteNews = [];
 
 if (localStorage.getItem('news-added-to-favorite')) {
@@ -14,7 +10,7 @@ if (localStorage.getItem('news-added-to-favorite')) {
 
 function addRemoveToLocalStore(event) {
   if (event.target.nodeName !== 'DIV') {
-    return
+    return;
   }
   arrayOfFavoriteNews.push({
     image: event.target.parentNode.firstElementChild.src,
