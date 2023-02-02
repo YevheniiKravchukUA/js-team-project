@@ -3,7 +3,7 @@ import { Notify } from 'notiflix';
 
 async function getNews(pathName, parameters, category) {
   const path = {
-    mostPopular: 'mostpopular/v2/emailed/7.json',
+    mostPopular: 'mostpopular/v2//viewed/1.json',
     articles: 'search/v2/articlesearch.json',
     allCategories: 'news/v3/content/section-list.json',
     category: `news/v3/content/all/${category}.json`,

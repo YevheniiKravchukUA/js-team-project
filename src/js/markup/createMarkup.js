@@ -16,6 +16,12 @@ function createMarkup(data, markupName) {
   let imageUrl;
 
   if (markupName === 'popularCards') {
+    data.sort((a, b) => {
+      const firstDate = new Date(a.published_date);
+      const lastDate = new Date(b.published_date);
+      return lastDate - firstDate;
+    });
+
     markupArr = data.flatMap(el => {
       if (el.media.length !== 0) {
         imageUrl = el.media[0]['media-metadata'][2].url;
@@ -23,9 +29,7 @@ function createMarkup(data, markupName) {
         imageUrl =
           'https://t4.ftcdn.net/jpg/00/38/13/73/240_F_38137330_gUbR3ZXBc5J5g4pRkaC8TYZQA62OZhx5.jpg';
       }
-
       return `
-
       <li class="news__item" data-id="${el.id}">
         <div class="news__image-box">
           <img class="news__image" src="${imageUrl}" alt="" />
