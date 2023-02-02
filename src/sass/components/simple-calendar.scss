@@ -84,7 +84,7 @@
   height: 12px;
   fill: #4440f6;
   pointer-events: none;
-  transition: transform 500ms;
+  transition: transform 500ms, fill 500ms;
 }
 
 .dd-wrapper__arrow--navi {
