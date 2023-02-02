@@ -84,7 +84,7 @@
   height: 12px;
   fill: #4440f6;
   pointer-events: none;
-  transition: transform 500ms;
+  transition: transform 500ms, fill 500ms;
 }
 
 .dd-wrapper__arrow--navi {
@@ -249,18 +249,37 @@
   border-color: #4440f6 !important;
 }
 
+.js-accent-secondary > p {
+  color: #fff !important;
+}
+
+.js-accent-secondary {
+  background-color: #cecbcb;
+  border-color: #cecbcb;
+}
+
+.js-accent-secondary:hover {
+  box-shadow: 1px 1px 5px #cecbcb;
+}
+
 .number-items__item.js-accent p {
   color: #fff;
 }
 
-.js-accent ~ .calendar__img {
-  fill: #fff;
-}
-
-.js-accent ~ .calendar__img--right {
-  transform: translate(0, -50%) rotate(180deg);
-}
-
 .js-dd-accent + .dd-wrapper__arrow {
   transform: rotate(90deg);
+}
+
+.simple-calendar ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.simple-calendar ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.simple-calendar ::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 4px;
+  border: none;
 }

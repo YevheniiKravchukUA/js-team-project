@@ -13,7 +13,12 @@
   border-radius: 20px;
   cursor: pointer;
 
-  transition: border 250ms, color 250ms, background-color 250ms;
+  font-family: 'Manrope';
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+
+  transition: border 500ms, color 500ms, background-color 500ms;
 }
 
 .calendar__btn:focus,
@@ -32,7 +37,7 @@
   top: 50%;
   transform: translate(0, -50%);
   pointer-events: none;
-  transition: fill 250ms;
+  transition: fill 500ms, transform 500ms;
 }
 
 .calendar__img--left {
@@ -61,4 +66,12 @@
     width: 168px;
     font-size: 14px;
   }
+}
+
+.js-accent ~ .calendar__img {
+  fill: #fff;
+}
+
+.js-accent ~ .calendar__img--right {
+  transform: translate(0, -50%) rotate(180deg);
 }

@@ -1,10 +1,11 @@
 import { SimpleCalendar } from '../simple-calendar/simple-calendar';
 
+const currentDate = new Date();
 const calendarBtn = document.querySelector('.calendar__btn');
 const simpleCalendar = new SimpleCalendar({
-  fromYear: 1995,
-  toYear: 2030,
-  defaultDate: new Date(),
+  fromYear: 1899,
+  toYear: currentDate.getFullYear(),
+  defaultDate: currentDate,
 });
 
 // function setDate(timestamp) {
@@ -12,7 +13,7 @@ const simpleCalendar = new SimpleCalendar({
 // }
 
 function getDate(dateType) {
-  return simpleCalendar.getDate(dateType);
+  return simpleCalendar.getFormattedDate(dateType);
 }
 
 function addEventListenerToChangeDate(callback) {
