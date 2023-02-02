@@ -18,7 +18,7 @@
   line-height: 1.75;
   letter-spacing: 0.02em;
 
-  transition: border 250ms, color 250ms, background-color 250ms;
+  transition: border 500ms, color 500ms, background-color 500ms;
 }
 
 .calendar__btn:focus,
@@ -37,7 +37,7 @@
   top: 50%;
   transform: translate(0, -50%);
   pointer-events: none;
-  transition: fill 250ms, transform 250ms;
+  transition: fill 500ms, transform 500ms;
 }
 
 .calendar__img--left {
