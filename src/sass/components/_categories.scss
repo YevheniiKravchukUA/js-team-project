@@ -13,6 +13,14 @@
   justify-content: center;
   margin-right: auto;
   cursor: pointer;
+  &:hover {
+    background-color: getColor('primary-active');
+    color: getColor('full-white');
+    transition: border 500ms, color 500ms, background-color 500ms;
+    .open-icon {
+      fill: getColor('full-white');
+    }
+  }
   @include media-min(tablet) {
     margin-right: 24px;
   }
@@ -46,18 +54,6 @@
   pointer-events: none;
 }
 
-// .input_time {
-//   width: 152px;
-//   height: 31px;
-//   border-radius: 20px;
-//   font-size: 12px;
-//   line-height: 1.33;
-//   font-family: 'Manrope';
-//   border: 1px solid getColor('primary-text');
-//   @include media-min(desktop) {
-//     width: 168px;
-//   }
-// }
 .btn-desktop {
   width: auto;
   height: 31px;
@@ -75,6 +71,11 @@
   cursor: pointer;
   padding-left: 20px;
   padding-right: 20px;
+  &:hover {
+    background-color: getColor('primary-active');
+    color: getColor('full-white');
+    transition: border 500ms, color 500ms, background-color 500ms;
+  }
 }
 .desktop-btn-active {
   background-color: getColor('primary-active');
@@ -82,6 +83,7 @@
   .open-icon {
     transform: rotate(180deg);
     fill: getColor('full-white');
+    transition: fill 500ms, transform 500ms;
   }
 }
 .active-underline {
@@ -142,18 +144,7 @@
     margin-left: 0;
   }
 }
-// .modal_svg_calendar {
-//   position: absolute;
-//   top: 25%;
-//   left: 12px;
-//   fill: getColor('primary_active');
-// }
-// .modal_svg_up {
-//   position: absolute;
-//   top: 35%;
-//   right: 12px;
-//   fill: #a2a2a2;
-// }
+
 .categories {
   display: flex;
 }
