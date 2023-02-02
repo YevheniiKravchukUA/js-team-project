@@ -16,7 +16,7 @@ function checkDataFromLocalStorage() {
 function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews
     .map(
-      item => `<div class="accordion__item accordion__item_show">
+      item => `<div class="accordion__item">
   <div class="accordion__header">${item.date}</div>
   <div class="accordion__body">
     <ul class="news__list accordion__list">
