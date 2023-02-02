@@ -58,8 +58,8 @@ function renderAccordionItems(arr) {
         dateAPI = item.published_date;
       }
 
-      date = new Date(dateAPI);
-      normalDate = date.toISOString().split('T')[0];
+      const date = new Date(dateAPI);
+      const normalDate = date.toISOString().split('T')[0];
 
       const markup = `<li class="news__item accordion__news accordion__read">
         <div class="news__image-box">
