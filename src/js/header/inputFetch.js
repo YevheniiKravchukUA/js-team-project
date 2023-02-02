@@ -24,6 +24,7 @@ refs.form.addEventListener('submit', e => {
 
   const oprions = {
     q: refs.input.value.trim(),
+    sort: 'newest',
   };
 
   getNews('articles', oprions).then(resp => {
