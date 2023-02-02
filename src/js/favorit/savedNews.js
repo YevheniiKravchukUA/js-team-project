@@ -1,8 +1,11 @@
 const favoretiNewsEl = document.querySelector('.favorite-list');
+import noNewsFoto from '../../images/no-news/no-news-tab@2x.png'
 
 function createMarkup() {
   if (localStorage.length === 1) {
-    return;
+
+    return favoretiNewsEl.innerHTML = `<div class="no-news__box"><p class="no-news__text">Nothing to read in this section</p>
+  <img class="no-news__image" src="${noNewsFoto}" alt="no-news" width="400px"/></div>`
   }
   if (localStorage.getItem('news-added-to-favorite')) {
     const markup = JSON.parse(localStorage.getItem('news-added-to-favorite'))
