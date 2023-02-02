@@ -13,11 +13,123 @@ const MONTHS = [
   'December',
 ];
 
-class SimpleCalendar {
-  constructor({ fromYear, toYear, defaultDate = null }) {
-    this.createBaseMarkup();
-    this.selectedDate;
+function getPositionForModal(buttonElem, modalElem, bodyElem) {
+  let x = 0;
+  let y = 0;
+
+  const getParams = elem => {
+    const rect = elem.getBoundingClientRect();
+    return {
+      x: rect.x + window.scrollX,
+      y: rect.y + window.scrollY,
+      width: rect.width,
+      height: rect.height,
+    };
+  };
+
+  const btnRect = getParams(buttonElem);
+  const modalRect = getParams(modalElem);
+  const bodyRect = getParams(bodyElem);
+
+  if (btnRect.x + btnRect.width > modalRect.width) {
+    x = btnRect.x - (modalRect.width - btnRect.width);
+  } else if (bodyRect.width - (btnRect.x + btnRect.width) > modalRect.width) {
+    x = btnRect.x;
+  }
+
+  if (bodyRect.height - (btnRect.y + btnRect.height) < modalRect.height) {
+    y = btnRect.y - modalRect.height;
+  } else {
+    y = btnRect.y + btnRect.height;
+  }
+
+  x = x < 0 ? 0 : x;
+  y = y < 0 ? 0 : y;
+  return { x, y };
+}
+
+function addLeadingZero(num) {
+  return num < 10 ? String(`0${num}`) : String(num);
+}
+
+class SCDate {
+  constructor(defaultDate = null) {
+    this.date;
+    if (!defaultDate) {
+      this.date = new Date();
+    } else {
+      this.date = new Date(defaultDate);
+    }
+    this.pastDate = new Date(this.date);
+  }
+
+  getDate() {
+    return this.date.getDate();
+  }
+
+  comparePeriods() {
+    return (
+      this.date.getMonth() === this.pastDate.getMonth() &&
+      this.date.getFullYear() === this.pastDate.getFullYear()
+    );
+  }
+
+  getFormattedDate(format) {
+    const yyyy = this.date.getFullYear();
+    const mm = addLeadingZero(this.date.getMonth() + 1);
+    const dd = addLeadingZero(this.date.getDate());
+    // Негарне рішення, я знаю :-(
+    if (format === 'yyyy-mm-dd') {
+      return `${yyyy}-${mm}-${dd}`;
+    } else if (format === 'yyyymmdd') {
+      return `${yyyy}${mm}${dd}`;
+    } else {
+      return `${dd}/${mm}/${yyyy}`;
+    }
+  }
+
+  getYear() {
+    return this.date.getFullYear();
+  }
+
+  getMonth() {
+    return this.date.getMonth();
+  }
+
+  setDate(d) {
+    this.date.setDate(d);
+  }
+
+  savePastDate() {
+    this.pastDate = new Date(this.date);
+  }
+
+  setYear(y) {
+    this.date.setFullYear(y);
+  }
+
+  setMonth(m) {
+    this.date.setMonth(m);
+  }
+
+  getDaysInMonth(year, month) {
+    const h = new Date(year, month);
+    h.setMonth(h.getMonth() + 1);
+    h.setDate(h.getDate() - 1);
+    return h.getDate();
+  }
+
+  getFirstDayOfMonth(year, month) {
+    const d = new Date(year, month, 1).getDay();
+    return !d ? d + 6 : d - 1;
+  }
+}
+
+class SimpleCalendar extends SCDate {
+  constructor({ fromYear, toYear, defaultDate }) {
+    super(defaultDate);
     this.settings = { fromYear, toYear, defaultDate };
+    this.#createBaseMarkup();
     this.refs = {
       openBtn: document.querySelector('.simple-calendar-open'),
       calendar: document.querySelector('.simple-calendar'),
@@ -31,17 +143,6 @@ class SimpleCalendar {
       numItems: document.querySelector('.number-items'),
       yearList: document.querySelector('.years-drop-down'),
     };
-
-    if (!defaultDate) {
-      defaultDate = new Date();
-    }
-    this.printYears();
-    this.#update(
-      defaultDate.getFullYear(),
-      defaultDate.getMonth(),
-      defaultDate.getDate()
-    );
-
     this.refs.openBtn.addEventListener(
       'click',
       this.#onOpenCalendar.bind(this)
@@ -62,9 +163,19 @@ class SimpleCalendar {
     this.refs.prevBtn.addEventListener('click', this.#onClickPrev.bind(this));
     this.refs.numItems.addEventListener('click', this.#onSelectDate.bind(this));
     this.refs.yearList.addEventListener('click', this.#onSelectYear.bind(this));
+
+    this.refs.dropDownBtn.value = `${
+      MONTHS[this.getMonth()]
+    } ${this.getYear()}`;
+    this.#printDates();
+    this.#printDate();
+    this.#printYears();
+    this.#setValueToYearList(this.getYear());
+    this.#highlightCurrentDate();
+    this.#highlightCurrentMonth();
   }
 
-  createBaseMarkup() {
+  #createBaseMarkup() {
     const markup = `
       <div class="simple-calendar-backdrop js-not-visible">
         <div class="simple-calendar">
@@ -189,84 +300,7 @@ class SimpleCalendar {
     body.insertAdjacentHTML('beforeend', markup);
   }
 
-  getDate(format) {
-    const yyyy = this.selectedDate.getFullYear();
-    const mm = addLeadingZero(this.selectedDate.getMonth() + 1);
-    const dd = addLeadingZero(this.selectedDate.getDate());
-    // Негарне рішення, я знаю :-(
-    if (format === 'yyyy-mm-dd') {
-      return `${yyyy}-${mm}-${dd}`;
-    } else if (format === 'yyyymmdd') {
-      return `${yyyy}${mm}${dd}`;
-    } else {
-      return `${dd}/${mm}/${yyyy}`;
-    }
-  }
-
-  #update(year, monthIndex, date) {
-    this.selectedDate = new Date(year, monthIndex, date);
-    const dd = addLeadingZero(this.selectedDate.getDate());
-    const mm = addLeadingZero(this.selectedDate.getMonth() + 1);
-    const yyyy = this.selectedDate.getFullYear();
-    this.refs.openBtn.value = `${dd}/${mm}/${yyyy}`;
-    this.refs.dropDownBtn.value = `${MONTHS[monthIndex]} ${year}`;
-    this.printDates();
-    this.#setValueToYearList(year);
-    this.#highlightCurrentDate();
-    this.#highlightCurrentMonth();
-  }
-
-  setYear(year) {
-    this.#update(
-      year,
-      this.selectedDate.getMonth(),
-      this.selectedDate.getDate()
-    );
-  }
-
-  setMonth(monthIndex) {
-    this.#update(
-      this.selectedDate.getFullYear(),
-      monthIndex,
-      this.selectedDate.getDate()
-    );
-  }
-
-  setDate(dateNum) {
-    this.#update(
-      this.selectedDate.getFullYear(),
-      this.selectedDate.getMonth(),
-      dateNum
-    );
-  }
-
-  toNextMonth() {
-    let month;
-    let year;
-    if (this.selectedDate.getMonth() === 11) {
-      month = 0;
-      year = this.selectedDate.getFullYear() + 1;
-    } else {
-      month = this.selectedDate.getMonth() + 1;
-      year = this.selectedDate.getFullYear();
-    }
-    this.#update(year, month, this.selectedDate.getDate());
-  }
-
-  toPrevMonth() {
-    let month;
-    let year;
-    if (this.selectedDate.getMonth() === 0) {
-      month = 11;
-      year = this.selectedDate.getFullYear() - 1;
-    } else {
-      month = this.selectedDate.getMonth() - 1;
-      year = this.selectedDate.getFullYear();
-    }
-    this.#update(year, month, this.selectedDate.getDate());
-  }
-
-  printYears() {
+  #printYears() {
     let markup = '';
     for (let i = 0; i <= this.settings.toYear - this.settings.fromYear; ++i) {
       const date = new Date();
@@ -276,17 +310,13 @@ class SimpleCalendar {
     this.refs.yearList.innerHTML = markup;
   }
 
-  printDates() {
-    const year = this.selectedDate.getFullYear();
-    const month = this.selectedDate.getMonth();
+  #printDates() {
+    const year = this.getYear();
+    const month = this.getMonth();
+    const firstDay = this.getFirstDayOfMonth(year, month);
+    const days = this.getDaysInMonth(year, month);
     let markup = '';
-    const firstDay = getFirstDayOfMonth(year, month);
-    const days = getDaysInMonth(year, month);
-    // firstDay.getDay() <-- повертає день тижня який починається з неділі
-    const d = !firstDay.getDay()
-      ? firstDay.getDay() + 6
-      : firstDay.getDay() - 1;
-    for (let i = 0; i < d; ++i) {
+    for (let i = 0; i < firstDay; ++i) {
       markup += `<li></li>`;
     }
     for (let i = 0; i < days; ++i) {
@@ -294,8 +324,14 @@ class SimpleCalendar {
         i + 1
       }"><p class="number-items__num">${i + 1}</p></li>`;
     }
-    this.refs.numItems.innerHTML = '';
-    this.refs.numItems.insertAdjacentHTML('beforeend', markup);
+    this.refs.numItems.innerHTML = markup;
+  }
+
+  #printDate() {
+    const dd = addLeadingZero(this.getDate());
+    const mm = addLeadingZero(this.getMonth() + 1);
+    const yyyy = this.getYear();
+    this.refs.openBtn.value = `${dd}/${mm}/${yyyy}`;
   }
 
   #setValueToYearList(year) {
@@ -308,16 +344,23 @@ class SimpleCalendar {
   }
 
   #highlightCurrentDate() {
-    const currentDate = this.selectedDate.getDate();
+    let highlighter;
+    if (this.comparePeriods()) {
+      highlighter = 'js-accent';
+    } else {
+      highlighter = 'js-accent-secondary';
+    }
+    const selectedDate = this.getDate();
     [...this.refs.numItems.children].map(item => {
-      if (Number(item.dataset['value']) === currentDate) {
-        item.classList.add('js-accent');
+      if (Number(item.dataset['value']) === selectedDate) {
+        item.classList.add(highlighter);
+        return;
       }
     });
   }
 
   #highlightCurrentMonth() {
-    const currentMonth = this.selectedDate.getMonth();
+    const currentMonth = this.getMonth();
     [...this.refs.monthItems.children].map(item => {
       if (item.classList.contains('js-accent')) {
         item.classList.remove('js-accent');
@@ -339,11 +382,13 @@ class SimpleCalendar {
     );
     this.refs.calendar.style.top = `${position.y}px`;
     this.refs.calendar.style.left = `${position.x}px`;
+    this.#printDates();
+    this.#highlightCurrentDate();
   }
 
   #onCloseCalendar(e) {
     if (e.target === e.currentTarget) {
-      this.#closeCalendar();
+      this.close();
     }
   }
 
@@ -362,17 +407,47 @@ class SimpleCalendar {
     } else {
       return;
     }
-
     this.setMonth(Number(value));
     this.#closePeriodBox();
+    this.#refreshAll();
   }
 
   #onClickNext(e) {
-    this.toNextMonth();
+    if (this.getYear() === this.settings.toYear && this.getMonth() >= 11) {
+      return;
+    }
+
+    let month;
+    let year;
+    if (this.getMonth() === 11) {
+      month = 0;
+      year = this.getYear() + 1;
+    } else {
+      month = this.getMonth() + 1;
+      year = this.getYear();
+    }
+    this.setYear(year);
+    this.setMonth(month);
+    this.#refreshAll();
   }
 
   #onClickPrev(e) {
-    this.toPrevMonth();
+    if (this.getYear() === this.settings.fromYear && this.getMonth() <= 0) {
+      return;
+    }
+
+    let month;
+    let year;
+    if (this.getMonth() === 0) {
+      month = 11;
+      year = this.getYear() - 1;
+    } else {
+      month = this.getMonth() - 1;
+      year = this.getYear();
+    }
+    this.setYear(year);
+    this.setMonth(month);
+    this.#refreshAll();
   }
 
   #onSelectDate(e) {
@@ -390,18 +465,26 @@ class SimpleCalendar {
     }
 
     if (keys.includes('active')) {
-      this.setDate(value);
-      this.#closeCalendar();
+      this.setDate(Number(value));
       const customEvent = new CustomEvent('changeDate');
       this.refs.openBtn.dispatchEvent(customEvent);
+      this.#printDate();
+      this.savePastDate();
+      this.close();
     }
   }
 
   #onSelectYear(e) {
-    this.setYear(e.currentTarget.value);
+    this.setYear(Number(e.currentTarget.value));
+    this.#setValueToYearList(e.currentTarget.value);
+    this.#printDates();
+    this.refs.dropDownBtn.value = `${
+      MONTHS[this.getMonth()]
+    } ${this.getYear()}`;
+    this.#highlightCurrentDate();
   }
 
-  #closeCalendar() {
+  close() {
     this.refs.backdrop.classList.toggle('js-not-visible');
     this.refs.openBtn.classList.toggle('js-accent');
     this.#closePeriodBox();
@@ -412,63 +495,16 @@ class SimpleCalendar {
     this.refs.dateBox.classList.remove('js-not-visible');
     this.refs.dropDownBtn.classList.remove('js-dd-accent');
   }
-}
 
-function getPositionForModal(buttonElem, modalElem, bodyElem) {
-  let x = 0;
-  let y = 0;
-
-  const getParams = elem => {
-    const rect = elem.getBoundingClientRect();
-    return {
-      x: rect.x + window.scrollX,
-      y: rect.y + window.scrollY,
-      width: rect.width,
-      height: rect.height,
-    };
-  };
-
-  const btnRect = getParams(buttonElem);
-  const modalRect = getParams(modalElem);
-  const bodyRect = getParams(bodyElem);
-
-  if (btnRect.x + btnRect.width > modalRect.width) {
-    x = btnRect.x - (modalRect.width - btnRect.width);
-  } else if (bodyRect.width - (btnRect.x + btnRect.width) > modalRect.width) {
-    x = btnRect.x;
+  #refreshAll() {
+    this.refs.dropDownBtn.value = `${
+      MONTHS[this.getMonth()]
+    } ${this.getYear()}`;
+    this.#printDates();
+    this.#highlightCurrentDate();
+    this.#highlightCurrentMonth();
+    this.#setValueToYearList(String(this.getYear()));
   }
-
-  if (bodyRect.height - (btnRect.y + btnRect.height) < modalRect.height) {
-    y = btnRect.y - modalRect.height;
-  } else {
-    y = btnRect.y + btnRect.height;
-  }
-
-  x = x < 0 ? 0 : x;
-  y = y < 0 ? 0 : y;
-  return { x, y };
 }
-
-function addLeadingZero(num) {
-  return num < 10 ? String(`0${num}`) : String(num);
-}
-
-function getDaysInMonth(year, month) {
-  const h = new Date(year, month);
-  h.setMonth(h.getMonth() + 1);
-  h.setDate(h.getDate() - 1);
-  return h.getDate();
-}
-
-function getFirstDayOfMonth(year, month) {
-  return new Date(year, month, 1);
-}
-
-export {
-  getPositionForModal,
-  addLeadingZero,
-  getDaysInMonth,
-  getFirstDayOfMonth,
-};
 
 export { SimpleCalendar };

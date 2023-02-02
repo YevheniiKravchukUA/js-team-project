@@ -32,7 +32,7 @@
   top: 50%;
   transform: translate(0, -50%);
   pointer-events: none;
-  transition: fill 250ms;
+  transition: fill 250ms, transform 250ms;
 }
 
 .calendar__img--left {
@@ -61,4 +61,12 @@
     width: 168px;
     font-size: 14px;
   }
+}
+
+.js-accent ~ .calendar__img {
+  fill: #fff;
+}
+
+.js-accent ~ .calendar__img--right {
+  transform: translate(0, -50%) rotate(180deg);
 }
