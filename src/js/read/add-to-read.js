@@ -71,13 +71,8 @@ export function handleReadMoreBtnClick(e) {
   const news = alreadyRead.dataFromLocalStorage(json);
 
   alreadyRead.readNews = news;
-  console.log('🆑  alreadyRead.readNews', alreadyRead.readNews);
 
   alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID);
-  console.log(
-    'alreadyRead.readNews === null -->',
-    alreadyRead.readNews === null
-  );
 
   if (alreadyRead.readNews === null) {
     const todayNews = {

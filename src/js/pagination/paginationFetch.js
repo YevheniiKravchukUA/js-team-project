@@ -28,7 +28,6 @@ function fetchPagination(e) {
         return resp.data.response.docs;
       })
       .then(results => {
-        console.log('🆑  results', results);
         addFetchedToLocalStorage(results);
         haveRead.checkFetchedNewsByID(results);
       });
@@ -47,7 +46,6 @@ function fetchPagination(e) {
         return resp.data.results;
       })
       .then(results => {
-        console.log('🆑  results', results);
         addFetchedToLocalStorage(results);
         haveRead.checkFetchedNewsByID(results);
       });
@@ -69,7 +67,6 @@ function fetchPagination(e) {
         return resp.data.response.docs;
       })
       .then(results => {
-        console.log('🆑  results', results);
         addFetchedToLocalStorage(results);
         haveRead.checkFetchedNewsByID(results);
       });
