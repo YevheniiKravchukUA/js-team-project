@@ -259,7 +259,7 @@
 
 .already-read {
   @include media-min(tablet) {
-    opacity: 0.8;
+    opacity: 0.9;
     &::before {
       content: 'Already read ✓';
       font-family: 'Manrope';
