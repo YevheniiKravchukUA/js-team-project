@@ -1,4 +1,5 @@
 import { alreadyRead } from './add-to-read';
+import noNewsFoto from '../../images/no-news/no-news-tab@2x.png';
 
 const jsonFromLocalStorage =
   alreadyRead.getJsonFromLocalStorage('alreadyReadNews');
@@ -73,9 +74,11 @@ function renderAccordionItems(arr) {
       } else if (item.hasOwnProperty('multimedia')) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
         dateAPI = item.pub_date;
-      } else if (item.hasOwnProperty('media')) {
+      } else if (item.hasOwnProperty('media') && item.media.length !== 0) {
         wayToUrl = item.media[0]['media-metadata'][2].url;
         dateAPI = item.published_date;
+      } else {
+        wayToUrl = `${noNewsFoto}`;
       }
 
       const date = new Date(dateAPI);
