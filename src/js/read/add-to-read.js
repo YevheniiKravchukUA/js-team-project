@@ -71,6 +71,7 @@ export function handleReadMoreBtnClick(e) {
   const news = alreadyRead.dataFromLocalStorage(json);
 
   alreadyRead.readNews = news;
+  console.log('🆑  alreadyRead.readNews', alreadyRead.readNews);
 
   alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID);
 
@@ -81,10 +82,19 @@ export function handleReadMoreBtnClick(e) {
     };
     alreadyRead.readNews = [todayNews];
     localStorage.setItem('alreadyReadNews', alreadyRead.readNews);
-  } else {
+  } else if (
+    alreadyRead.readNews[alreadyRead.readNews.length - 1].date ===
+    alreadyRead.getCurrentDate()
+  ) {
     alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(
       alreadyRead.checkedNew
     );
+  } else {
+    const todayNews = {
+      date: `${alreadyRead.getCurrentDate()}`,
+      news: [alreadyRead.checkedNew],
+    };
+    alreadyRead.readNews.push(todayNews);
   }
 
   alreadyRead.saveToLocalStorage();
