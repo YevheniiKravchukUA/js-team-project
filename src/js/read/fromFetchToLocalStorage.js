@@ -7,7 +7,6 @@ export function addFetchedToLocalStorage(response) {
     alreadyRead.newsArr = [...news, ...response];
 
     const uniq = uniqNews(alreadyRead.newsArr);
-    console.log('🆑  uniq', uniq);
 
     localStorage.setItem('NewsFromHome', JSON.stringify(uniq));
   } else {
