@@ -71,7 +71,10 @@ function renderAccordionItems(arr) {
         item.hasOwnProperty('kicker')
       ) {
         wayToUrl = `${item.multimedia[3].url}`;
-      } else if (item.hasOwnProperty('multimedia')) {
+      } else if (
+        item.hasOwnProperty('multimedia') &&
+        item.multimedia.length !== 0
+      ) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
         dateAPI = item.pub_date;
       } else if (item.hasOwnProperty('media') && item.media.length !== 0) {
