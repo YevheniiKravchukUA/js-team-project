@@ -67,23 +67,34 @@ export function handleReadMoreBtnClick(e) {
     e.target.parentNode.parentNode.getAttribute('data-id')
   );
 
-  const json = alreadyRead.getJsonFromLocalStorage('NewsFromHome');
+  const json = alreadyRead.getJsonFromLocalStorage('alreadyReadNews');
   const news = alreadyRead.dataFromLocalStorage(json);
 
-  alreadyRead.newsArr = news;
+  alreadyRead.readNews = news;
+  console.log('🆑  alreadyRead.readNews', alreadyRead.readNews);
 
   alreadyRead.checkedNew = alreadyRead.findCheckedNew(currentItemID);
 
-  if (alreadyRead.readNews.length === 0) {
+  if (alreadyRead.readNews === null) {
+    const todayNews = {
+      date: `${alreadyRead.getCurrentDate()}`,
+      news: [alreadyRead.checkedNew],
+    };
+    alreadyRead.readNews = [todayNews];
+    localStorage.setItem('alreadyReadNews', alreadyRead.readNews);
+  } else if (
+    alreadyRead.readNews[alreadyRead.readNews.length - 1].date ===
+    alreadyRead.getCurrentDate()
+  ) {
+    alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(
+      alreadyRead.checkedNew
+    );
+  } else {
     const todayNews = {
       date: `${alreadyRead.getCurrentDate()}`,
       news: [alreadyRead.checkedNew],
     };
     alreadyRead.readNews.push(todayNews);
-  } else {
-    alreadyRead.readNews[alreadyRead.readNews.length - 1].news.push(
-      alreadyRead.checkedNew
-    );
   }
 
   alreadyRead.saveToLocalStorage();
