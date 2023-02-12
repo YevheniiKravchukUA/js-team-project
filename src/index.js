@@ -1,8 +1,10 @@
 import { getNews } from './js/requests/newsFetch';
+import { NewsApi } from './js/requests/newsFetch';
 import { createMarkup } from './js/markup/createMarkup';
 import { renderMarkup } from './js/markup/renderMarkup';
 import { haveRead } from './js/read/haveReadOnHome';
 import { checkBtnId } from './js/favorit/checkBtnId';
+import { addFetchedToLocalStorage } from './js/read/fromFetchToLocalStorage';
 import './js/header/toggle-theme-dark';
 import './js/calendar/calendar';
 import './js/calendar/calendarFetch';
@@ -15,13 +17,15 @@ import './js/categories';
 import './js/header/btn-search-mob';
 import './js/read/add-to-read';
 import './js/pagination/paginationFetch';
-import { addFetchedToLocalStorage } from './js/read/fromFetchToLocalStorage';
 import './js/header/inputFetch';
 
 const refs = {
   newsList: document.querySelector('.news__list'),
 };
-getNews('mostPopular')
+
+const News = new NewsApi();
+
+News.getMostPopularNews()
   .then(resp => {
     const markup = createMarkup(resp.data.results, 'popularCards');
     renderMarkup(refs.newsList, markup);

@@ -1,7 +1,7 @@
 import { createMarkup } from '../markup/createMarkup';
 import { renderMarkup } from '../markup/renderMarkup';
 import { showNoNewsSection } from '../requests/emptyFetch';
-import { getNews } from '../requests/newsFetch';
+import { NewsApi } from '../requests/newsFetch';
 import { addFetchedToLocalStorage } from '../read/fromFetchToLocalStorage';
 import { haveRead } from '../read/haveReadOnHome';
 import { init } from '../pagination/pagination';
@@ -13,6 +13,8 @@ const refs = {
   newsList: document.querySelector('.news__list'),
 };
 
+const News = new NewsApi();
+
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -22,60 +24,43 @@ refs.form.addEventListener('submit', e => {
     return;
   }
 
-  const oprions = {
+  const options = {
     q: refs.input.value.trim(),
     sort: 'newest',
   };
 
-  getNews('articles', oprions).then(resp => {
-    refs.newsList.innerHTML = '';
-    renderMarkup(
-      refs.newsList,
-      createMarkup(resp.data.response.docs, 'inputsCards')
-    );
+  News.getNewsByName(options)
+    .then(resp => {
+      refs.newsList.innerHTML = '';
+      renderMarkup(
+        refs.newsList,
+        createMarkup(resp.data.response.docs, 'inputsCards')
+      );
 
-    showNoNewsSection(resp.data.response.docs);
+      showNoNewsSection(resp.data.response.docs);
+      checkBtnId();
 
-    window.localStorage.setItem(
-      'lastFetchType',
-      JSON.stringify({
-        type: 'input',
-        value: refs.input.value,
-      })
-    );
+      size = Math.ceil(resp.data.response.meta.hits / 10);
+      if (size > 99) {
+        size = 99;
+      }
 
-    refs.input.value = '';
-    getNews('articles', oprions)
-      .then(resp => {
-        refs.newsList.innerHTML = '';
-        renderMarkup(
-          refs.newsList,
-          createMarkup(resp.data.response.docs, 'inputsCards')
-        );
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'input',
+          value: refs.input.value,
+        })
+      );
 
-        showNoNewsSection(resp.data.response.docs);
-        checkBtnId();
-        size = Math.ceil(resp.data.response.meta.hits / 10);
-        if (size > 99) {
-          size = 99;
-        }
-
-        window.localStorage.setItem(
-          'lastFetchType',
-          JSON.stringify({
-            type: 'input',
-            value: refs.input.value,
-          })
-        );
-        if (resp.data.response.meta.hits !== 0) {
-          init(size);
-        }
-        refs.input.value = '';
-        return resp.data.response.docs;
-      })
-      .then(results => {
-        addFetchedToLocalStorage(results);
-        haveRead.checkFetchedNewsByID(results);
-      });
-  });
+      if (resp.data.response.meta.hits !== 0) {
+        init(size);
+      }
+      refs.input.value = '';
+      return resp.data.response.docs;
+    })
+    .then(results => {
+      addFetchedToLocalStorage(results);
+      haveRead.checkFetchedNewsByID(results);
+    });
 });
