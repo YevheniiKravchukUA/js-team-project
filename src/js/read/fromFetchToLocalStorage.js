@@ -5,8 +5,19 @@ export function addFetchedToLocalStorage(response) {
   const news = alreadyRead.dataFromLocalStorage(json);
   if (news !== null) {
     alreadyRead.newsArr = [...news, ...response];
-    localStorage.setItem('NewsFromHome', JSON.stringify(alreadyRead.newsArr));
+
+    const uniq = uniqNews(alreadyRead.newsArr);
+
+    localStorage.setItem('NewsFromHome', JSON.stringify(uniq));
   } else {
     localStorage.setItem('NewsFromHome', JSON.stringify(response));
   }
+}
+
+function uniqNews(arr) {
+  let seen = {};
+  return arr.filter(function (item) {
+    var key = JSON.stringify(item);
+    return !(key in seen) && (seen[key] = item);
+  });
 }

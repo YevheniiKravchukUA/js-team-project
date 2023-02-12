@@ -134,10 +134,10 @@ main {
     position: relative;
 
     & .news__image {
-      opacity: 0.7;
-      -moz-opacity: 0.7;
+      opacity: 0.8;
+      -moz-opacity: 0.8;
       filter: alpha(opacity=80) black;
-      -khtml-opacity: 0.7;
+      -khtml-opacity: 0.8;
       background-color: #000;
     }
   }
@@ -152,6 +152,7 @@ main {
       line-height: 19px;
 
       color: #00b912;
+      z-index: 99;
 
       position: absolute;
       right: 10;

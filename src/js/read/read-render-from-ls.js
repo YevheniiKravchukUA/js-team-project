@@ -1,4 +1,5 @@
 import { alreadyRead } from './add-to-read';
+import noNewsFoto from '../../images/no-news/no-news-tab@2x.png';
 
 const jsonFromLocalStorage =
   alreadyRead.getJsonFromLocalStorage('alreadyReadNews');
@@ -15,16 +16,31 @@ function checkDataFromLocalStorage() {
 
 function renderAccordionBody(arrOfNews) {
   const markup = arrOfNews
-    .map(
-      item => `<div class="accordion__item">
-  <div class="accordion__header">${item.date}</div>
-  <div class="accordion__body">
-    <ul class="news__list accordion__list">
-    ${renderAccordionItems(item.news)}
-    </ul>
-  </div>
-</div>`
-    )
+    .reverse()
+    .map((item, index) => {
+      let markup = null;
+
+      if (index === 0) {
+        markup = `<div class="accordion__item accordion__item_show">
+          <div class="accordion__header">${item.date}</div>
+          <div class="accordion__body">
+            <ul class="news__list accordion__list">
+            ${renderAccordionItems(item.news)}
+            </ul>
+          </div>
+        </div>`;
+      } else {
+        markup = `<div class="accordion__item">
+          <div class="accordion__header">${item.date}</div>
+          <div class="accordion__body">
+            <ul class="news__list accordion__list">
+            ${renderAccordionItems(item.news)}
+            </ul>
+          </div>
+        </div>`;
+      }
+      return markup;
+    })
     .join('');
   accordionEl.innerHTML = markup;
 }
@@ -48,14 +64,24 @@ function renderAccordionItems(arr) {
         dateAPI = item.published_date;
       }
 
-      if (item.hasOwnProperty('multimedia') && item.hasOwnProperty('kicker')) {
+      if (item.hasOwnProperty('kicker') && item['multimedia'] === null) {
+        wayToUrl = '../images/no-news/no-news-mob@1x.png';
+      } else if (
+        item.hasOwnProperty('multimedia') &&
+        item.hasOwnProperty('kicker')
+      ) {
         wayToUrl = `${item.multimedia[3].url}`;
-      } else if (item.hasOwnProperty('multimedia')) {
+      } else if (
+        item.hasOwnProperty('multimedia') &&
+        item.multimedia.length !== 0
+      ) {
         wayToUrl = `https://static01.nyt.com/${item.multimedia[3].url}`;
         dateAPI = item.pub_date;
-      } else if (item.hasOwnProperty('media')) {
+      } else if (item.hasOwnProperty('media') && item.media.length !== 0) {
         wayToUrl = item.media[0]['media-metadata'][2].url;
         dateAPI = item.published_date;
+      } else {
+        wayToUrl = `${noNewsFoto}`;
       }
 
       const date = new Date(dateAPI);

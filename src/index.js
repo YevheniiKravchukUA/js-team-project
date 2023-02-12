@@ -547,4 +547,4 @@ const obj4 = {
 
 const all = [obj1, obj2, obj3, obj4];
 
-localStorage.setItem('alreadyReadNews', JSON.stringify(all));
+// localStorage.setItem('alreadyReadNews', JSON.stringify(all));
