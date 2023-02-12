@@ -1,10 +1,11 @@
-import { getNews } from '../requests/newsFetch';
+import { NewsApi } from '../requests/newsFetch';
 import { renderMarkup } from '../markup/renderMarkup';
 import { createMarkup } from '../markup/createMarkup';
-// import { currentPage } from './pagination';
 
 const paginationSection = document.querySelector('#pagination');
 const newsListRef = document.querySelector('.news__list');
+
+const News = new NewsApi();
 
 paginationSection.addEventListener('click', fetchPagination);
 
@@ -14,8 +15,8 @@ function fetchPagination(e) {
     const currentPage = document.querySelector('.current').textContent;
     const page = currentPage - 1;
 
-    const oprions = { q: lastFetch.value, page };
-    getNews('articles', oprions).then(resp => {
+    const options = { q: lastFetch.value, page };
+    News.getNewsByName(options).then(resp => {
       newsListRef.innerHTML = '';
       renderMarkup(
         newsListRef,
@@ -26,8 +27,8 @@ function fetchPagination(e) {
     const currentPage = document.querySelector('.current').textContent;
     const page = currentPage * 10 - 10;
 
-    const oprions = { limit: 10, offset: page };
-    getNews('category', oprions, lastFetch.value).then(resp => {
+    const options = { category: lastFetch.value, limit: 10, offset: page };
+    News.getNewsByCategory(options).then(resp => {
       newsListRef.innerHTML = '';
       renderMarkup(
         newsListRef,
@@ -37,12 +38,12 @@ function fetchPagination(e) {
   } else if (lastFetch.type === 'date') {
     const currentPage = document.querySelector('.current').textContent;
     const page = currentPage - 1;
-    const oprions = {
+    const options = {
       begin_date: lastFetch.value,
       end_date: lastFetch.value,
       page,
     };
-    getNews('articles', oprions).then(resp => {
+    News.getNewsByDate(options).then(resp => {
       newsListRef.innerHTML = '';
       renderMarkup(
         newsListRef,
@@ -51,22 +52,3 @@ function fetchPagination(e) {
     });
   }
 }
-
-// ПО INPUT
-
-// CATEGORY
-
-// getNews('category', {}, e.target.textContent.toLowerCase()).then(resp => {
-//       newsListRef.innerHTML = '';
-//       renderMarkup(
-//         newsListRef,
-//         createMarkup(resp.data.results, 'categoryCards')
-
-//  DATE
-// getNews('articles', { begin_date: date, end_date: date }).then(resp => {
-//   refs.newsList.innerHTML = '';
-//   renderMarkup(
-//     refs.newsList,
-//     createMarkup(resp.data.response.docs, 'inputsCards')
-//   );
-// });

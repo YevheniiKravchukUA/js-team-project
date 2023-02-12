@@ -1,9 +1,8 @@
-import { getNews } from './requests/newsFetch.js';
+import { NewsApi } from './requests/newsFetch.js';
 import { createMarkup } from './markup/createMarkup.js';
 import { renderMarkup } from './markup/renderMarkup.js';
 import { addFetchedToLocalStorage } from './read/fromFetchToLocalStorage';
 import { haveRead } from './read/haveReadOnHome';
-import { all } from 'axios';
 import { init } from './pagination/pagination.js';
 import { showNoNewsSection } from './requests/emptyFetch.js';
 import { checkBtnId } from './favorit/checkBtnId.js';
@@ -15,7 +14,9 @@ const categoriesBtn = document.querySelector('.categories');
 const newsListRef = document.querySelector('.news__list');
 const bodyClik = document.querySelector('body');
 
-getNews('allCategories').then(resp => {
+const News = new NewsApi();
+
+News.getAllCategories().then(resp => {
   renderMarkup(
     categoriesMenu,
     createMarkup(resp.data.results, 'categoriesFull')
@@ -28,11 +29,12 @@ getNews('allCategories').then(resp => {
 });
 
 function getCategoriesNews(e) {
+  const options = { category: e.target.textContent.toLowerCase() };
   if (
     e.target.classList.contains('btn-menu') ||
     e.target.classList.contains('btn-desktop')
   ) {
-    getNews('category', {}, e.target.textContent.toLowerCase())
+    News.getNewsByCategory(options)
       .then(resp => {
         newsListRef.innerHTML = '';
         renderMarkup(
@@ -59,6 +61,7 @@ function getCategoriesNews(e) {
 }
 
 function renderActiveBtn(e) {
+  const options = { category: e.target.textContent.toLowerCase(), limit: 500 };
   const activeBtnLine = document.querySelector('.active-underline');
   const activeBtnColor = document.querySelector('.is-active');
   if (e.target.nodeName !== 'BUTTON') {
@@ -77,32 +80,28 @@ function renderActiveBtn(e) {
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
 
-    getNews(
-      'category',
-      { limit: 500 },
-      e.target.textContent.toLowerCase()
-    ).then(resp => {
+    News.getAllCategories(options).then(resp => {
       init(Math.ceil(resp.data.results.length / 10));
     });
 
-    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
-      resp => {
-        renderMarkup(
-          newsListRef,
-          createMarkup(resp.data.results, 'categoryCards')
-        );
+    options.limit = 10;
 
-        showNoNewsSection(resp.data.results);
+    News.getNewsByCategory(options).then(resp => {
+      renderMarkup(
+        newsListRef,
+        createMarkup(resp.data.results, 'categoryCards')
+      );
 
-        window.localStorage.setItem(
-          'lastFetchType',
-          JSON.stringify({
-            type: 'category',
-            value: e.target.textContent.toLowerCase(),
-          })
-        );
-      }
-    );
+      showNoNewsSection(resp.data.results);
+
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'category',
+          value: e.target.textContent.toLowerCase(),
+        })
+      );
+    });
   } else {
     if (activeBtnLine) {
       activeBtnLine.classList.remove('active-underline');
@@ -114,32 +113,28 @@ function renderActiveBtn(e) {
     showCategories.classList.remove('desktop-btn-active');
     categoriesMenuJs.classList.remove('desktop-btn-active');
 
-    getNews(
-      'category',
-      { limit: 500 },
-      e.target.textContent.toLowerCase()
-    ).then(resp => {
+    News.getNewsByCategory(options).then(resp => {
       init(Math.ceil(resp.data.results.length / 10));
     });
 
-    getNews('category', { limit: 10 }, e.target.textContent.toLowerCase()).then(
-      resp => {
-        renderMarkup(
-          newsListRef,
-          createMarkup(resp.data.results, 'categoryCards')
-        );
+    options.limit = 10;
 
-        showNoNewsSection(resp.data.results);
+    News.getNewsByCategory(options).then(resp => {
+      renderMarkup(
+        newsListRef,
+        createMarkup(resp.data.results, 'categoryCards')
+      );
 
-        window.localStorage.setItem(
-          'lastFetchType',
-          JSON.stringify({
-            type: 'category',
-            value: e.target.textContent.toLowerCase(),
-          })
-        );
-      }
-    );
+      showNoNewsSection(resp.data.results);
+
+      window.localStorage.setItem(
+        'lastFetchType',
+        JSON.stringify({
+          type: 'category',
+          value: e.target.textContent.toLowerCase(),
+        })
+      );
+    });
   }
 }
 

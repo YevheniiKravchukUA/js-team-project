@@ -1,6 +1,6 @@
 import { Notify } from 'notiflix';
-import { getDate, setDate, addEventListenerToChangeDate } from './calendar';
-import { getNews } from '../requests/newsFetch';
+import { getDate, addEventListenerToChangeDate } from './calendar';
+import { getNews, NewsApi } from '../requests/newsFetch';
 import { renderMarkup } from '../markup/renderMarkup';
 import { createMarkup } from '../markup/createMarkup';
 import { init } from '../pagination/pagination';
@@ -13,6 +13,8 @@ const refs = {
   newsList: document.querySelector('.news__list'),
 };
 
+const News = new NewsApi();
+
 addEventListenerToChangeDate(e => {
   let size;
   const date = getDate('yyyymmdd');
@@ -24,7 +26,7 @@ addEventListenerToChangeDate(e => {
 
     return;
   } else {
-    getNews('articles', {
+    News.getNewsByDate({
       begin_date: date,
       end_date: date,
     })
